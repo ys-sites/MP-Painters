@@ -339,9 +339,10 @@ export default function App() {
             })}
           </motion.div>
 
-          <motion.div initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-20 flex flex-col md:flex-row items-center justify-between bg-gradient-to-r from-blue-700 to-blue-600 rounded-3xl p-10 shadow-2xl">
-            <h3 className="text-2xl md:text-3xl font-bold mb-6 md:mb-0 max-w-lg text-center md:text-left">{t.services.cta.title}</h3>
-            <a href="#contact" className="px-8 py-4 bg-white text-blue-700 font-extrabold rounded-xl hover:bg-slate-50 transition-colors w-full md:w-auto text-center shadow-lg uppercase tracking-wide">
+          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-20 flex flex-col md:flex-row items-center justify-between bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500 rounded-[2.5rem] p-10 md:p-14 shadow-[0_30px_60px_-10px_rgba(37,99,235,0.3)] relative overflow-hidden group">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-1000"></div>
+            <h3 className="text-2xl md:text-3xl font-black mb-6 md:mb-0 max-w-lg text-center md:text-left text-white tracking-tight relative z-10">{t.services.cta.title}</h3>
+            <a href="#contact" className="px-10 py-5 bg-white text-blue-700 font-black rounded-2xl hover:bg-slate-50 transition-all w-full md:w-auto text-center shadow-xl uppercase tracking-[0.2em] relative z-10 hover:-translate-y-1 active:translate-y-0 text-sm">
               {t.services.cta.button}
             </a>
           </motion.div>
@@ -412,20 +413,30 @@ export default function App() {
       {/* Testimonials */}
       <section id="reviews" className="py-24 bg-slate-50 px-6">
         <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-16">
+          <div className="text-center mb-20">
             <ShinyText 
-              text={t.nav.reviews} 
+              text={lang === 'fr' ? 'Témoignage' : 'Testimonial'} 
               className="text-xs font-black uppercase tracking-[0.2em] mb-4 block" 
               color="#2563eb" 
               shineColor="#93c5fd" 
             />
+            
             <ShinyText 
               text={t.testimonials.title} 
-              className="text-4xl md:text-5xl font-extrabold mb-6 tracking-tight block" 
+              className="text-4xl md:text-6xl font-black mb-8 tracking-tighter block" 
               color="#0f172a" 
               shineColor="#2563eb" 
             />
-            <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-slate-600 max-w-2xl mx-auto text-xl">{t.testimonials.subtitle}</motion.p>
+
+            <motion.p 
+              initial={{ opacity: 0, y: 10 }} 
+              whileInView={{ opacity: 1, y: 0 }} 
+              viewport={{ once: true }} 
+              transition={{ delay: 0.3 }} 
+              className="text-slate-500 max-w-2xl mx-auto text-xl font-medium mt-8"
+            >
+              {t.testimonials.subtitle}
+            </motion.p>
           </div>
 
           <div 

@@ -70,7 +70,7 @@ export const translations = {
     },
     testimonials: {
       title: "Client Testimonials",
-      subtitle: "Don't just take our word for it—see what our satisfied clients have to say.",
+      subtitle: "Trusted by homeowners across Montreal for quality and reliability.",
       items: [
         { name: "Sarah M.", role: "Homeowner", text: "Manny and his team did an incredible job spraying our old oak kitchen cabinets. They look brand new! Highly professional and clean." },
         { name: "David L.", role: "Residential Client", text: "The plastering repair work was seamless, and the paint job turned out perfect. They respected our home and finished on schedule." },
@@ -188,8 +188,8 @@ export const translations = {
       subtitle: "Découvrez nos récents travaux de peinture au pistolet et de finition résidentielle.",
     },
     testimonials: {
-      title: "Témoignages de Clients",
-      subtitle: "Ne nous croyez pas sur parole, voyez ce que nos clients satisfaits ont à dire.",
+      title: "Témoignages Clients",
+      subtitle: "Approuvé par les propriétaires à travers Montréal pour la qualité et la fiabilité.",
       items: [
         { name: "Sarah M.", role: "Propriétaire", text: "Manny et son équipe ont fait un travail incroyable en pulvérisant nos vieilles armoires de cuisine en chêne. Elles ont l'air toutes neuves ! Très professionnel et propre." },
         { name: "David L.", role: "Client Résidentiel", text: "Le travail de réparation de plâtrage était parfait et la peinture s'est avérée impeccable. Ils ont respecté notre maison et ont terminé à temps." },
