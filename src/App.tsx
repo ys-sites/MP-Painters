@@ -53,7 +53,15 @@ export default function App() {
   const t = translations[lang];
   const [isScrolled, setIsScrolled] = useState(false);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [isMobile, setIsMobile] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+
+  useEffect(() => {
+    const checkMobile = () => setIsMobile(window.innerWidth < 768);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
 
   useEffect(() => {
     let ticking = false;
@@ -181,10 +189,20 @@ export default function App() {
               color="#0f172a" 
               shineColor="#2563eb" 
             />
-            <motion.p initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.3 }} className="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium">
+            <motion.p 
+              initial={{ opacity: 0, y: isMobile ? 30 : 0 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ delay: 0.3 }} 
+              className="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
+            >
               {t.hero.subtitle}
             </motion.p>
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ delay: 0.4 }} className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start">
+            <motion.div 
+              initial={{ opacity: 0, y: isMobile ? 40 : 0 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ delay: 0.4 }} 
+              className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
+            >
               <a href="#contact" className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-xl shadow-blue-600/20 text-center flex items-center justify-center gap-2">
                 {t.hero.cta} <ArrowRight size={18} />
               </a>
@@ -311,7 +329,7 @@ export default function App() {
                 {t.about.points.map((point: string, idx: number) => (
                   <motion.div 
                      key={idx} 
-                     variants={{ hidden: { opacity: 0, x: -20 }, visible: { opacity: 1, x: 0, transition: { type: "spring" } } }}
+                     variants={{ hidden: { opacity: 0, x: isMobile ? 0 : -20, y: isMobile ? 20 : 0 }, visible: { opacity: 1, x: 0, y: 0, transition: { type: "spring" } } }}
                      className="flex items-start gap-4 group"
                   >
                     <div className="flex-shrink-0 w-10 h-10 bg-blue-50 group-hover:bg-blue-600 group-hover:text-white transition-colors rounded-xl flex items-center justify-center text-blue-600 mt-1">
@@ -371,7 +389,7 @@ export default function App() {
                 <motion.div 
                   key={idx}
                   variants={{
-                    hidden: { opacity: 0, y: 20 },
+                    hidden: { opacity: 0, y: isMobile ? 40 : 20 },
                     visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
                   }}
                   className="bg-slate-800/80 backdrop-blur-sm border border-white/5 p-8 rounded-[2rem] hover:bg-slate-800 transition-all group hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(37,99,235,0.15)] overflow-hidden relative"
@@ -427,7 +445,7 @@ export default function App() {
              variants={{ visible: { transition: { staggerChildren: 0.1 } }, hidden: {} }}
              className="grid md:grid-cols-3 gap-8"
           >
-             <motion.div onClick={() => setSelectedImage('/media/work 5.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", damping: 20 } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer">
+             <motion.div onClick={() => setSelectedImage('/media/work 5.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 20 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", damping: 20 } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer">
                  <img src="/media/work 5.png" alt="Recent Work" loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
                      <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
@@ -436,7 +454,7 @@ export default function App() {
                      </div>
                  </div>
              </motion.div>
-             <motion.div onClick={() => setSelectedImage('/media/work2.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", damping: 20 } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer">
+             <motion.div onClick={() => setSelectedImage('/media/work2.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 20 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", damping: 20 } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer">
                  <img src="/media/work2.png" alt="Recent Work" loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
                      <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
@@ -445,7 +463,7 @@ export default function App() {
                      </div>
                  </div>
              </motion.div>
-             <motion.div onClick={() => setSelectedImage('/media/work3.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", damping: 20 } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer">
+             <motion.div onClick={() => setSelectedImage('/media/work3.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 20 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", damping: 20 } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer">
                  <img src="/media/work3.png" alt="Recent Work" loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
                      <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
