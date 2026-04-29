@@ -11,7 +11,7 @@ export const translations = {
     hero: {
       badge: "Top-Rated Painting Specialists in Montreal",
       title: "Contractor for all your painting needs",
-      subtitle: "Manny Peintres offers high-quality painting, spraying, and repair services. Discover flawless finishes and professional service.",
+      subtitle: "MP Painter offers high-quality painting, spraying, and repair services. Discover flawless finishes and professional service.",
       cta: "Request a Free Estimate",
       consultation: "Call Us: 514 463 7097"
     },
@@ -77,9 +77,9 @@ export const translations = {
       title: "Client Testimonials",
       subtitle: "Trusted by homeowners across Montreal for quality and reliability.",
       items: [
-        { name: "Sarah M.", role: "Homeowner", text: "Manny and his team did an incredible job spraying our old oak kitchen cabinets. They look brand new! Highly professional and clean." },
+        { name: "Sarah M.", role: "Homeowner", text: "MP Painter and his team did an incredible job spraying our old oak kitchen cabinets. They look brand new! Highly professional and clean." },
         { name: "David L.", role: "Residential Client", text: "The plastering repair work was seamless, and the paint job turned out perfect. They respected our home and finished on schedule." },
-        { name: "Elena V.", role: "Homeowner", text: "Manny Peintres transformed our entire main floor. The attention to detail around the trim and edges is unmatched. I highly recommend them." }
+        { name: "Elena V.", role: "Homeowner", text: "MP Painter transformed our entire main floor. The attention to detail around the trim and edges is unmatched. I highly recommend them." }
       ]
     },
     contact: {
@@ -105,7 +105,7 @@ export const translations = {
         error: "Failed to send. Please call us directly.",
         success: {
           title: "Message Received!",
-          desc: "Thank you for reaching out to Manny Peintres. We will contact you shortly.",
+          desc: "Thank you for reaching out to MP Painter. We will contact you shortly.",
           button: "Send another message"
         }
       },
@@ -120,7 +120,7 @@ export const translations = {
     },
     footer: {
       desc: "Delivering exceptional painting, spraying, and repair services to residential clients across Montreal.",
-      rights: "© 2026 Manny Peintres. All rights reserved."
+      rights: "© 2026 MP Painter. All rights reserved."
     }
   },
   fr: {

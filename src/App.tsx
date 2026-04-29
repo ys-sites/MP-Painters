@@ -37,10 +37,10 @@ const FadeInText = ({ text, className, delay = 0 }: { text: string, className?: 
   );
 };
 
-const Logo = ({ isDark }: { isDark?: boolean }) => (
+const Logo = ({ isDark, lang }: { isDark?: boolean; lang?: 'en' | 'fr' }) => (
   <div className={`flex items-center gap-2 font-black text-base md:text-lg tracking-tighter uppercase ${isDark ? 'text-white' : 'text-slate-900'} whitespace-nowrap`}>
-    <img src="/media/mp.png" alt="Manny Peintres Logo" className="h-8 md:h-10 w-auto object-contain drop-shadow-sm" />
-    <span>Manny Peintres</span>
+    <img src="/media/mp.png" alt="MP Painter Logo" className="h-8 md:h-10 w-auto object-contain drop-shadow-sm" />
+    <span>{lang === 'en' ? 'MP Painter' : 'Manny Peintres'}</span>
   </div>
 );
 
@@ -73,7 +73,7 @@ export default function App() {
       <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] will-change-transform ${isScrolled ? 'bg-white/70 backdrop-blur-2xl border-b border-white/50 shadow-[0_4px_30px_rgba(0,0,0,0.03)] py-2.5 md:py-3' : 'bg-transparent py-5 md:py-8'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between relative z-10 font-bold">
           <a href="#" className="hover:opacity-80 transition-opacity active:scale-95 duration-200">
-            <Logo />
+            <Logo lang={lang} />
           </a>
           
           <div className="hidden md:flex items-center md:gap-3 lg:gap-6 text-[10px] lg:text-xs tracking-wider uppercase whitespace-nowrap">
@@ -119,7 +119,7 @@ export default function App() {
               className="w-4/5 max-w-sm bg-white h-full shadow-2xl p-6 flex flex-col"
             >
               <div className="flex justify-between items-center mb-8">
-                <Logo />
+                <Logo lang={lang} />
                 <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-slate-500 hover:bg-slate-100 rounded-full">
                   <X size={24} />
                 </button>
@@ -237,7 +237,7 @@ export default function App() {
                className="relative lg:w-1/2 min-h-[400px] md:min-h-[500px]"
             >
               <div className="absolute inset-0 bg-blue-600 rounded-[2.5rem] translate-x-4 translate-y-4 opacity-5 blur-2xl"></div>
-              <img loading="lazy" decoding="async" src="/media/about.jpg" alt="Manny Peintres Work" className="relative z-10 w-full h-full object-cover rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:shadow-2xl transition-all duration-700" />
+              <img loading="lazy" decoding="async" src="/media/about.jpg" alt="MP Painter Work" className="relative z-10 w-full h-full object-cover rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:shadow-2xl transition-all duration-700" />
               
               {/* Highlight card popup */}
               <motion.div 
@@ -566,7 +566,7 @@ export default function App() {
           {/* Brand Info */}
           <div className="flex flex-col items-start gap-6">
             <div className="opacity-80 hover:opacity-100 transition-all bg-white/5 p-4 rounded-2xl">
-              <Logo isDark={true} />
+              <Logo isDark={true} lang={lang} />
             </div>
             <p className="text-sm leading-relaxed max-w-sm">{t.footer.desc}</p>
           </div>
