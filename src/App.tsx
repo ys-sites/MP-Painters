@@ -38,8 +38,8 @@ const FadeInText = ({ text, className, delay = 0 }: { text: string, className?: 
 };
 
 const Logo = ({ isDark }: { isDark?: boolean }) => (
-  <div className={`flex items-center gap-2 md:gap-3 font-black text-xl md:text-2xl tracking-tighter uppercase ${isDark ? 'text-white' : 'text-slate-900'}`}>
-    <img src="/media/mp.png" alt="Manny Peintres Logo" className="h-12 md:h-16 w-auto object-contain drop-shadow-sm" />
+  <div className={`flex items-center gap-2 font-black text-base md:text-lg tracking-tighter uppercase ${isDark ? 'text-white' : 'text-slate-900'} whitespace-nowrap`}>
+    <img src="/media/mp.png" alt="Manny Peintres Logo" className="h-8 md:h-10 w-auto object-contain drop-shadow-sm" />
     <span>Manny Peintres</span>
   </div>
 );
@@ -76,7 +76,7 @@ export default function App() {
             <Logo />
           </a>
           
-          <div className="hidden md:flex items-center md:gap-3 lg:gap-8 text-xs lg:text-sm tracking-widest uppercase">
+          <div className="hidden md:flex items-center md:gap-3 lg:gap-6 text-[10px] lg:text-xs tracking-wider uppercase whitespace-nowrap">
             {['about', 'services', 'portfolio', 'reviews'].map((item) => (
               <a 
                 key={item}
@@ -89,12 +89,12 @@ export default function App() {
             ))}
           </div>
 
-          <div className="hidden md:flex items-center md:gap-3 lg:gap-4">
+          <div className="hidden md:flex items-center md:gap-2 lg:gap-3 flex-shrink-0">
             <div className="flex bg-slate-200/50 rounded-md p-1 backdrop-blur-sm whitespace-nowrap">
               <button onClick={() => setLang('en')} className={`px-2 py-1 text-xs font-bold rounded ${lang === 'en' ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}>EN</button>
               <button onClick={() => setLang('fr')} className={`px-2 py-1 text-xs font-bold rounded ${lang === 'fr' ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}>FR</button>
             </div>
-            <a href="#contact" className="bg-blue-600 text-white px-3 lg:px-5 py-2.5 rounded-lg font-bold hover:bg-blue-700 transition-colors text-xs lg:text-sm shadow-md shadow-blue-600/20 whitespace-nowrap">
+            <a href="#contact" className="bg-blue-600 text-white px-3 lg:px-4 py-2 rounded-lg font-bold hover:bg-blue-700 transition-colors text-[10px] lg:text-xs tracking-wider uppercase shadow-md shadow-blue-600/20 whitespace-nowrap">
               {t.nav.getQuote}
             </a>
           </div>
