@@ -41,10 +41,10 @@ const Logo = ({ isDark, lang, size = 'normal' }: { isDark?: boolean; lang?: 'en'
   <div className={`flex items-center gap-3 md:gap-5 font-black tracking-tighter uppercase ${isDark ? 'text-white' : 'text-slate-900'} whitespace-nowrap ${size === 'large' ? 'text-2xl md:text-4xl' : 'text-xl md:text-2xl'}`}>
     <img 
       src="/media/mp.png" 
-      alt={lang === 'en' ? 'MP Painter Logo' : 'Logo Manny Peintres'} 
+      alt="Manny Painter Logo" 
       className={`${size === 'large' ? 'h-20 md:h-28' : 'h-10 md:h-12'} w-auto object-contain drop-shadow-sm`} 
     />
-    <span>{lang === 'en' ? 'MP Painter' : 'Manny Peintres'}</span>
+    <span>Manny Painter</span>
   </div>
 );
 
@@ -88,9 +88,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    document.title = lang === 'en' 
-      ? 'MP Painter | Painting & Spraying Montreal' 
-      : 'Manny Peintres | Peinture et Pulvérisation Montréal';
+    document.title = 'Manny Painter | Painting & Spraying Montreal';
   }, [lang]);
 
   return (
@@ -303,7 +301,7 @@ export default function App() {
                className="relative lg:w-1/2 min-h-[400px] md:min-h-[500px]"
             >
               <div className="absolute inset-0 bg-blue-600 rounded-[2.5rem] translate-x-4 translate-y-4 opacity-5 blur-2xl"></div>
-              <img loading="lazy" decoding="async" src="/media/about.jpg" alt={lang === 'en' ? 'MP Painter Work' : 'Travaux de Manny Peintres'} className="relative z-10 w-full h-full object-cover rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:shadow-2xl transition-all duration-700" />
+              <img loading="lazy" decoding="async" src="/media/about.jpg" alt={lang === 'en' ? 'Manny Painter Work' : 'Travaux de Manny Painter'} className="relative z-10 w-full h-full object-cover rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:shadow-2xl transition-all duration-700" />
               
               {/* Highlight card popup */}
               <motion.div 

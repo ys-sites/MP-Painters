@@ -11,7 +11,7 @@ export const translations = {
     hero: {
       badge: "Top-Rated Painting Specialists in Montreal",
       title: "Contractor for all your painting needs",
-      subtitle: "MP Painter offers high-quality painting, spraying, and repair services. Discover flawless finishes and professional service.",
+      subtitle: "Manny Painter offers high-quality painting, spraying, and repair services. Discover flawless finishes and professional service.",
       cta: "Request a Free Estimate",
       consultation: "Call Us: 514 463 7097"
     },
@@ -77,9 +77,9 @@ export const translations = {
       title: "Client Testimonials",
       subtitle: "Trusted by homeowners across Montreal for quality and reliability.",
       items: [
-        { name: "Sarah M.", role: "Homeowner", text: "MP Painter and his team did an incredible job spraying our old oak kitchen cabinets. They look brand new! Highly professional and clean." },
+        { name: "Sarah M.", role: "Homeowner", text: "Manny Painter and his team did an incredible job spraying our old oak kitchen cabinets. They look brand new! Highly professional and clean." },
         { name: "David L.", role: "Residential Client", text: "The plastering repair work was seamless, and the paint job turned out perfect. They respected our home and finished on schedule." },
-        { name: "Elena V.", role: "Homeowner", text: "MP Painter transformed our entire main floor. The attention to detail around the trim and edges is unmatched. I highly recommend them." }
+        { name: "Elena V.", role: "Homeowner", text: "Manny Painter transformed our entire main floor. The attention to detail around the trim and edges is unmatched. I highly recommend them." }
       ]
     },
     contact: {
@@ -105,7 +105,7 @@ export const translations = {
         error: "Failed to send. Please call us directly.",
         success: {
           title: "Message Received!",
-          desc: "Thank you for reaching out to MP Painter. We will contact you shortly.",
+          desc: "Thank you for reaching out to Manny Painter. We will contact you shortly.",
           button: "Send another message"
         }
       },
@@ -120,7 +120,7 @@ export const translations = {
     },
     footer: {
       desc: "Delivering exceptional painting, spraying, and repair services to residential clients across Montreal.",
-      rights: "© 2026 MP Painter. All rights reserved."
+      rights: "© 2026 Manny Painter. All rights reserved."
     }
   },
   fr: {
@@ -135,7 +135,7 @@ export const translations = {
     hero: {
       badge: "Spécialiste en peinture les mieux cotés à Montréal",
       title: "Entrepreneur pour tous vos travaux de peinture",
-      subtitle: "Manny Peintres offre des services de peinture, de pulvérisation et de réparations de haute qualité. Découvrez des finitions impeccables et un service professionnel.",
+      subtitle: "Manny Painter offre des services de peinture, de pulvérisation et de réparations de haute qualité. Découvrez des finitions impeccables et un service professionnel.",
       cta: "Demandez une soumission gratuite",
       consultation: "Appelez-nous : 514 463 7097"
     },
@@ -201,9 +201,9 @@ export const translations = {
       title: "Témoignages Clients",
       subtitle: "Approuvé par les propriétaires à travers Montréal pour la qualité et la fiabilité.",
       items: [
-        { name: "Sarah M.", role: "Propriétaire", text: "Manny Peintres et son équipe ont fait un travail incroyable en pulvérisant nos vieilles armoires de cuisine en chêne. Elles ont l'air toutes neuves ! Très professionnel et propre." },
+        { name: "Sarah M.", role: "Propriétaire", text: "Manny Painter et son équipe ont fait un travail incroyable en pulvérisant nos vieilles armoires de cuisine en chêne. Elles ont l'air toutes neuves ! Très professionnel et propre." },
         { name: "David L.", role: "Client Résidentiel", text: "Le travail de réparation de plâtrage était parfait et la peinture s'est avérée impeccable. Ils ont respecté notre maison et ont terminé à temps." },
-        { name: "Elena V.", role: "Propriétaire", text: "Manny Peintres a transformé tout notre rez-de-chaussée. L'attention portée aux détails autour des moulures et des bords est inégalée. Je les recommande vivement." }
+        { name: "Elena V.", role: "Propriétaire", text: "Manny Painter a transformé tout notre rez-de-chaussée. L'attention portée aux détails autour des moulures et des bords est inégalée. Je les recommande vivement." }
       ]
     },
     contact: {
@@ -229,7 +229,7 @@ export const translations = {
         error: "Échec de l'envoi. Veuillez nous appeler directement.",
         success: {
           title: "Message Reçu !",
-          desc: "Merci d'avoir contacté Manny Peintres. Nous vous contacterons sous peu.",
+          desc: "Merci d'avoir contacté Manny Painter. Nous vous contacterons sous peu.",
           button: "Envoyer un autre message"
         }
       },
@@ -244,7 +244,7 @@ export const translations = {
     },
     footer: {
       desc: "Offrir des services exceptionnels de peinture, de pulvérisation et de réparation aux clients résidentiels à travers Montréal.",
-      rights: "© 2026 Manny Peintres. Tous droits réservés."
+      rights: "© 2026 Manny Painter. Tous droits réservés."
     }
   }
 };
