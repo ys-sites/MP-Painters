@@ -109,10 +109,18 @@ export default function App() {
             </a>
           </div>
 
-          {/* Mobile Menu Toggle */}
-          <button className="md:hidden p-2 text-slate-600" onClick={() => setMobileMenuOpen(true)}>
-            <Menu size={24} />
-          </button>
+          {/* Mobile Actions */}
+          <div className="md:hidden flex items-center gap-3">
+            <button 
+              onClick={() => setLang(lang === 'en' ? 'fr' : 'en')}
+              className="flex items-center justify-center min-w-[40px] px-2.5 py-1.5 rounded-xl bg-blue-600 text-white font-black text-xs tracking-widest shadow-lg shadow-blue-600/20 active:scale-95 transition-all"
+            >
+              {lang === 'en' ? 'FR' : 'EN'}
+            </button>
+            <button className="p-1 text-slate-600" onClick={() => setMobileMenuOpen(true)}>
+              <Menu size={28} />
+            </button>
+          </div>
         </div>
       </nav>
 
