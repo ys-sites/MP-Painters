@@ -14,19 +14,19 @@ const FadeInText = ({ text, className, delay = 0 }: { text: string, className?: 
     <motion.div
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, margin: "-50px" }}
+      viewport={{ once: true, amount: 0.2 }}
       variants={{
-        visible: { transition: { staggerChildren: 0.05, delayChildren: delay } },
+        visible: { transition: { staggerChildren: 0.08, delayChildren: delay } },
         hidden: {},
       }}
-      className={className}
+      className={`${className} will-change-transform`}
     >
       {words.map((word, i) => (
         <motion.span
           key={i}
           variants={{
             hidden: { opacity: 0, y: 20 },
-            visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: [0.2, 0.65, 0.3, 0.9] } },
+            visible: { opacity: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } },
           }}
           className="inline-block mr-[0.25em]"
         >
@@ -329,8 +329,11 @@ export default function App() {
                 {t.about.points.map((point: string, idx: number) => (
                   <motion.div 
                      key={idx} 
-                     variants={{ hidden: { opacity: 0, x: isMobile ? 0 : -20, y: isMobile ? 20 : 0 }, visible: { opacity: 1, x: 0, y: 0, transition: { type: "spring" } } }}
-                     className="flex items-start gap-4 group"
+                     variants={{ 
+                       hidden: { opacity: 0, x: isMobile ? 0 : -20, y: isMobile ? 30 : 0 }, 
+                       visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } 
+                     }}
+                     className="flex items-start gap-4 group will-change-transform"
                   >
                     <div className="flex-shrink-0 w-10 h-10 bg-blue-50 group-hover:bg-blue-600 group-hover:text-white transition-colors rounded-xl flex items-center justify-center text-blue-600 mt-1">
                        <CheckCircle size={18} />
@@ -376,9 +379,9 @@ export default function App() {
           <motion.div 
             initial="hidden"
             whileInView="visible"
-            viewport={{ once: true, margin: "-50px" }}
+            viewport={{ once: true, amount: 0.2 }}
             variants={{ 
-              visible: { transition: { staggerChildren: 0.1 } }, 
+              visible: { transition: { staggerChildren: 0.15 } }, 
               hidden: {} 
             }}
             className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
@@ -389,10 +392,10 @@ export default function App() {
                 <motion.div 
                   key={idx}
                   variants={{
-                    hidden: { opacity: 0, y: isMobile ? 40 : 20 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 0.5, ease: "easeOut" } }
+                    hidden: { opacity: 0, y: isMobile ? 50 : 20 },
+                    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
                   }}
-                  className="bg-slate-800/80 backdrop-blur-sm border border-white/5 p-8 rounded-[2rem] hover:bg-slate-800 transition-all group hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(37,99,235,0.15)] overflow-hidden relative"
+                  className="bg-slate-800/80 backdrop-blur-sm border border-white/5 p-8 rounded-[2rem] hover:bg-slate-800 transition-all group hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(37,99,235,0.15)] overflow-hidden relative will-change-transform"
                 >
                   <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl -translate-y-12 translate-x-12 group-hover:bg-blue-500/20 transition-all"></div>
                   <div className="w-16 h-16 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-inner">
@@ -435,17 +438,16 @@ export default function App() {
               <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-slate-600 text-lg">
                 {t.transformation.subtitle}
               </motion.p>
-            </div>
           </div>
 
           <motion.div 
              initial="hidden" 
              whileInView="visible" 
-             viewport={{ once: true, margin: "-50px" }}
-             variants={{ visible: { transition: { staggerChildren: 0.1 } }, hidden: {} }}
+             viewport={{ once: true, amount: 0.2 }}
+             variants={{ visible: { transition: { staggerChildren: 0.15 } }, hidden: {} }}
              className="grid md:grid-cols-3 gap-8"
           >
-             <motion.div onClick={() => setSelectedImage('/media/work 5.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 20 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", damping: 20 } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer">
+             <motion.div onClick={() => setSelectedImage('/media/work 5.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 40 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer will-change-transform">
                  <img src="/media/work 5.png" alt="Recent Work" loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
                      <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
@@ -454,7 +456,7 @@ export default function App() {
                      </div>
                  </div>
              </motion.div>
-             <motion.div onClick={() => setSelectedImage('/media/work2.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 20 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", damping: 20 } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer">
+             <motion.div onClick={() => setSelectedImage('/media/work2.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 40 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer will-change-transform">
                  <img src="/media/work2.png" alt="Recent Work" loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
                      <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
@@ -463,7 +465,7 @@ export default function App() {
                      </div>
                  </div>
              </motion.div>
-             <motion.div onClick={() => setSelectedImage('/media/work3.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 20 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", damping: 20 } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer">
+             <motion.div onClick={() => setSelectedImage('/media/work3.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 40 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer will-change-transform">
                  <img src="/media/work3.png" alt="Recent Work" loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
                      <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
