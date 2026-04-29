@@ -37,9 +37,13 @@ const FadeInText = ({ text, className, delay = 0 }: { text: string, className?: 
   );
 };
 
-const Logo = ({ isDark, lang }: { isDark?: boolean; lang?: 'en' | 'fr' }) => (
-  <div className={`flex items-center gap-2 font-black text-xl md:text-2xl tracking-tighter uppercase ${isDark ? 'text-white' : 'text-slate-900'} whitespace-nowrap`}>
-    <img src="/media/mp.png" alt={lang === 'en' ? 'MP Painter Logo' : 'Logo Manny Peintres'} className="h-10 md:h-12 w-auto object-contain drop-shadow-sm" />
+const Logo = ({ isDark, lang, size = 'normal' }: { isDark?: boolean; lang?: 'en' | 'fr'; size?: 'normal' | 'large' }) => (
+  <div className={`flex items-center gap-3 md:gap-4 font-black tracking-tighter uppercase ${isDark ? 'text-white' : 'text-slate-900'} whitespace-nowrap ${size === 'large' ? 'text-4xl md:text-6xl' : 'text-xl md:text-2xl'}`}>
+    <img 
+      src="/media/mp.png" 
+      alt={lang === 'en' ? 'MP Painter Logo' : 'Logo Manny Peintres'} 
+      className={`${size === 'large' ? 'h-24 md:h-32' : 'h-10 md:h-12'} w-auto object-contain drop-shadow-sm`} 
+    />
     <span>{lang === 'en' ? 'MP Painter' : 'Manny Peintres'}</span>
   </div>
 );
@@ -570,11 +574,11 @@ export default function App() {
         <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
           
           {/* Brand Info */}
-          <div className="flex flex-col items-start gap-6">
-            <div className="opacity-80 hover:opacity-100 transition-all bg-white/5 p-4 rounded-2xl">
-              <Logo isDark={true} lang={lang} />
+          <div className="flex flex-col items-start gap-8">
+            <div className="opacity-90 hover:opacity-100 transition-all bg-white/5 p-6 md:p-8 rounded-[2.5rem] w-full md:w-auto flex justify-center md:justify-start">
+              <Logo isDark={true} lang={lang} size="large" />
             </div>
-            <p className="text-sm leading-relaxed max-w-sm">{t.footer.desc}</p>
+            <p className="text-sm md:text-base leading-relaxed max-w-sm">{t.footer.desc}</p>
           </div>
 
           {/* Contact Details */}
