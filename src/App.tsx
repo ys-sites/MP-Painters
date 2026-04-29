@@ -165,8 +165,8 @@ export default function App() {
 
       {/* Hero Section (Split Layout) */}
       <section className="pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-blue-300/30 to-blue-500/10 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-slate-200/50 to-blue-200/20 rounded-full blur-3xl opacity-60 translate-y-1/4 -translate-x-1/4 pointer-events-none"></div>
+        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-blue-300/30 to-blue-500/10 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/3 pointer-events-none will-change-transform"></div>
+        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-slate-200/50 to-blue-200/20 rounded-full blur-3xl opacity-60 translate-y-1/4 -translate-x-1/4 pointer-events-none will-change-transform"></div>
         
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
           <div className="lg:w-1/2 relative text-center lg:text-left">
@@ -499,15 +499,16 @@ export default function App() {
                   ...t.testimonials.items.slice(col.offset), 
                   ...t.testimonials.items.slice(0, col.offset)
                 ];
-                // Duplicate multiple times to ensure enough scrollable content
-                const repeatedReviews = [...colReviews, ...colReviews, ...colReviews, ...colReviews];
+                // Duplicate enough times for smooth loop
+                const repeatedReviews = [...colReviews, ...colReviews, ...colReviews];
                 
                 return (
                   <div key={cIdx} className={`h-max ${cIdx === 1 ? 'hidden md:block' : ''} ${cIdx === 2 ? 'hidden lg:block' : ''}`}>
                     <motion.div
                       animate={{ y: ["0%", "-50%"] }}
                       transition={{ ease: "linear", duration: col.duration, repeat: Infinity, repeatType: "loop" }}
-                      className="flex flex-col gap-6"
+                      className="flex flex-col gap-6 will-change-transform"
+                      style={{ transform: 'translateZ(0)' }}
                     >
                       {repeatedReviews.map((review: any, idx: number) => (
                           <div 
@@ -544,15 +545,15 @@ export default function App() {
       {/* Contact Section */}
       <section id="contact" className="bg-slate-50 border-y border-slate-200 relative overflow-hidden group/main py-24 lg:py-32">
         {/* Background Images with Fade */}
-        <div className="absolute inset-0 z-0 pointer-events-auto overflow-hidden opacity-30">
+        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-10">
           <div className="grid grid-cols-4 md:grid-cols-6 grid-rows-3 md:grid-rows-4 h-full transform scale-110">
             {Array.from({ length: 24 }).map((_, i) => {
               const images = ["/media/work 5.png", "/media/work2.png", "/media/work3.png"];
               const img = images[i % 3];
               return (
               <div key={i} className="relative group/item">
-                <img loading="lazy" src={img} alt="" className="w-full h-full object-cover transition-opacity duration-500 opacity-20 group-hover/main:opacity-10 will-change-[opacity]" />
-                <img loading="lazy" src={img} alt="" className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 will-change-[opacity]" />
+                <img loading="lazy" decoding="async" src={img} alt="" className="w-full h-full object-cover transition-opacity duration-500 opacity-20 group-hover/main:opacity-10 will-change-[opacity]" />
+                <img loading="lazy" decoding="async" src={img} alt="" className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 will-change-[opacity]" />
               </div>
             )})}
           </div>

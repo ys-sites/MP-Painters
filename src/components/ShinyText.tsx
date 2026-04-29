@@ -1,4 +1,4 @@
-import React, { useState, useCallback, useEffect, useRef } from 'react';
+import React, { useState, useCallback, useEffect, useRef, memo } from 'react';
 import { motion, useMotionValue, useAnimationFrame, useTransform } from 'motion/react';
 import './ShinyText.css';
 
@@ -113,7 +113,8 @@ const ShinyText: React.FC<ShinyTextProps> = ({
     backgroundSize: '200% auto',
     WebkitBackgroundClip: 'text',
     backgroundClip: 'text',
-    WebkitTextFillColor: 'transparent'
+    WebkitTextFillColor: 'transparent',
+    willChange: 'background-position'
   };
 
   return (
@@ -128,4 +129,4 @@ const ShinyText: React.FC<ShinyTextProps> = ({
   );
 };
 
-export default ShinyText;
+export default memo(ShinyText);
