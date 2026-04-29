@@ -9,26 +9,36 @@ export const translations = {
       getQuote: "Free Estimate"
     },
     hero: {
-      badge: "Top-Rated Painting Specialists in Montreal",
+      badge: "Top-Rated Painting Specialists in Montreal & Pierrefonds",
       title: "Contractor for all your painting needs",
-      subtitle: "Manny Painter offers high-quality painting, spraying, and repair services. Discover flawless finishes and professional service.",
+      subtitle: "Manny Painter delivers professional painting, spray painting, and repair services to homeowners in Montreal, Pierrefonds, Laval, and across the West Island. Discover flawless finishes and expert craftsmanship.",
       cta: "Request a Free Estimate",
       consultation: "Call Us: 514 463 7097"
     },
     about: {
       title: "About",
       subtitle: "Specialist",
-      desc: "We refresh your homes, whether inside or outside, with over 15 (fifteen) years of experience in preparation and execution of work. We use high-quality tools, materials, and paint from Sherwin Williams and Benjamin Moore.",
+      desc: "We refresh homes across Montreal, Pierrefonds, Laval, and the West Island — inside and outside — with over 15 years of experience in surface preparation and painting. We use premium tools, materials, and paints from Sherwin Williams and Benjamin Moore.",
       points: [
-        "Specialized in Residential properties",
-        "Expertise in fine spraying and kitchen cabinets",
-        "Comprehensive plastering and repair services",
-        "Clean, respectful, and on-time project delivery"
+        "Residential painting in Montreal, Pierrefonds & Laval",
+        "Expert spray painting and kitchen cabinet refinishing",
+        "Plastering, drywall repair, and surface preparation",
+        "Clean, punctual, and professional service"
+      ]
+    },
+    serviceAreas: {
+      title: "Serving Greater Montreal",
+      subtitle: "From Pierrefonds to Laval, our professional painting team delivers exceptional results to homeowners across all of Montreal and surrounding communities.",
+      areas: [
+        "Montréal", "Pierrefonds", "Laval", "West Island",
+        "Dollard-des-Ormeaux", "Pointe-Claire", "Kirkland",
+        "Beaconsfield", "Saint-Laurent", "Côte-Saint-Luc",
+        "Île-Perrot", "Vaudreuil-Dorion", "Lachine", "LaSalle"
       ]
     },
     location: {
       title: "Location & Hours",
-      serving: "Serving Montréal Area",
+      serving: "Serving Montréal, Pierrefonds, Laval & West Island",
       days: {
         mon: "Mon", tue: "Tue", wed: "Wed", thu: "Thu", fri: "Fri", sat: "Sat", sun: "Sun"
       },
@@ -40,23 +50,23 @@ export const translations = {
     },
     services: {
       title: "Our Expertise",
-      subtitle: "Professional solutions tailored to your home's needs.",
+      subtitle: "Professional painting solutions tailored to homes in Montreal, Pierrefonds, Laval, and the West Island.",
       items: [
         {
           title: "All Spray Painting Jobs",
-          desc: "Full contracting for all scale spray painting operations. High-end finishes using premium materials and advanced spraying techniques."
+          desc: "Full contracting for all-scale spray painting operations in Montreal and surrounding areas. High-end finishes using premium materials and advanced techniques."
         },
         {
           title: "Residential Painting",
-          desc: "Complete interior and exterior painting services designed to refresh and protect your living spaces."
+          desc: "Complete interior and exterior painting services designed to refresh and protect homes in Montreal, Pierrefonds, Laval, and the West Island."
         },
         {
           title: "Kitchen Cabinets",
-          desc: "Refinish and modernize your kitchen cabinets with our specialized cabinet spraying and painting services."
+          desc: "Refinish and modernize your kitchen cabinets with our specialized cabinet spraying and painting services across the Montreal area."
         },
         {
           title: "Plastering & Repairs",
-          desc: "Expert plastering, drywall repair, and surface preparation to ensure the perfect foundation for any paint job."
+          desc: "Expert plastering, drywall repair, and surface preparation in Montreal, Pierrefonds, Laval, and surrounding communities."
         }
       ],
       cta: {
@@ -66,29 +76,29 @@ export const translations = {
     },
     transformation: {
       title: "Portfolio / Recent Projects",
-      subtitle: "Explore our latest spray painting and residential finishing works.",
+      subtitle: "Explore our latest spray painting and residential finishing works across Montreal, Pierrefonds, and Laval.",
       items: [
-        { label: "Project 01", title: "Interior Finishing" },
-        { label: "Project 02", title: "Spray Painting" },
-        { label: "Project 03", title: "Cabinet Restoration" }
+        { label: "Project 01", title: "Interior Finishing", alt: "Interior wall painting and finishing by Manny Painter in Montreal" },
+        { label: "Project 02", title: "Spray Painting", alt: "Professional spray painting service in Pierrefonds and Montreal area" },
+        { label: "Project 03", title: "Cabinet Restoration", alt: "Kitchen cabinet painting and restoration in Montreal West Island" }
       ]
     },
     testimonials: {
       title: "Client Testimonials",
-      subtitle: "Trusted by homeowners across Montreal for quality and reliability.",
+      subtitle: "Trusted by homeowners across Montreal, Pierrefonds, Laval, and the West Island for quality and reliability.",
       items: [
-        { name: "Sarah M.", role: "Homeowner", text: "Manny Painter and his team did an incredible job spraying our old oak kitchen cabinets. They look brand new! Highly professional and clean." },
-        { name: "David L.", role: "Residential Client", text: "The plastering repair work was seamless, and the paint job turned out perfect. They respected our home and finished on schedule." },
-        { name: "Elena V.", role: "Homeowner", text: "Manny Painter transformed our entire main floor. The attention to detail around the trim and edges is unmatched. I highly recommend them." }
+        { name: "Sarah M.", role: "Homeowner – Montreal", text: "Manny Painter and his team did an incredible job spraying our old oak kitchen cabinets. They look brand new! Highly professional and clean." },
+        { name: "David L.", role: "Residential Client – Pierrefonds", text: "The plastering repair work was seamless, and the paint job turned out perfect. They respected our home and finished on schedule." },
+        { name: "Elena V.", role: "Homeowner – West Island", text: "Manny Painter transformed our entire main floor. The attention to detail around the trim and edges is unmatched. I highly recommend them." }
       ]
     },
     contact: {
       title: "Request a Professional Quote",
-      subtitle: "Fill out the details below. We'll review your project and provide a comprehensive estimate tailored to your needs.",
+      subtitle: "Fill out the details below. We serve Montreal, Pierrefonds, Laval, and surrounding areas. We'll review your project and provide a comprehensive estimate.",
       info: {
         phone: "514 463 7097",
         email: "pereira.manny@gmail.com",
-        location: "Montreal & Surrounding Areas"
+        location: "Montreal, Pierrefonds, Laval & West Island"
       },
       form: {
         name: "Full Name",
@@ -119,7 +129,7 @@ export const translations = {
       ]
     },
     footer: {
-      desc: "Delivering exceptional painting, spraying, and repair services to residential clients across Montreal.",
+      desc: "Delivering exceptional painting, spraying, and repair services to residential clients across Montreal, Pierrefonds, Laval, Dollard-des-Ormeaux, Pointe-Claire, and the greater West Island area.",
       rights: "© 2026 Manny Painter. All rights reserved."
     }
   },
@@ -133,26 +143,36 @@ export const translations = {
       getQuote: "Estimation Gratuite"
     },
     hero: {
-      badge: "Spécialiste en peinture les mieux cotés à Montréal",
+      badge: "Spécialistes en peinture les mieux cotés à Montréal et Pierrefonds",
       title: "Entrepreneur pour tous vos travaux de peinture",
-      subtitle: "Manny Painter offre des services de peinture, de pulvérisation et de réparations de haute qualité. Découvrez des finitions impeccables et un service professionnel.",
+      subtitle: "Manny Painter offre des services professionnels de peinture, pulvérisation et réparation aux propriétaires de Montréal, Pierrefonds, Laval et dans tout le West Island. Des finitions impeccables et un savoir-faire expert.",
       cta: "Demandez une soumission gratuite",
       consultation: "Appelez-nous : 514 463 7097"
     },
     about: {
       title: "À propos",
       subtitle: "Spécialiste",
-      desc: "Nous rafraîchissons vos maisons que ce soit à l'intérieur ou à l'extérieur avec plus de 15 (quinze) ans d'expérience dans la préparation et l'exécution des travaux. Nous utilisons des outils, des matériaux et de la peinture de bonne qualité soit Sherwin Williams et Benjamin Moore.",
+      desc: "Nous rafraîchissons les maisons à travers Montréal, Pierrefonds, Laval et le West Island — à l'intérieur comme à l'extérieur — avec plus de 15 ans d'expérience en préparation et exécution des travaux. Nous utilisons des matériaux et peintures de qualité supérieure : Sherwin Williams et Benjamin Moore.",
       points: [
-        "Spécialisé dans les propriétés résidentielles",
+        "Peinture résidentielle à Montréal, Pierrefonds et Laval",
         "Expertise en pulvérisation fine et armoires de cuisine",
-        "Services complets de plâtrage et de réparation",
-        "Livraison de projet propre, respectueuse et à temps"
+        "Plâtrage, réparation de cloisons sèches et préparation de surface",
+        "Service propre, ponctuel et professionnel"
+      ]
+    },
+    serviceAreas: {
+      title: "Desservant le Grand Montréal",
+      subtitle: "De Pierrefonds à Laval, notre équipe de peintres professionnels offre des résultats exceptionnels aux propriétaires à Montréal et dans toutes les communautés environnantes.",
+      areas: [
+        "Montréal", "Pierrefonds", "Laval", "West Island",
+        "Dollard-des-Ormeaux", "Pointe-Claire", "Kirkland",
+        "Beaconsfield", "Saint-Laurent", "Côte-Saint-Luc",
+        "Île-Perrot", "Vaudreuil-Dorion", "Lachine", "LaSalle"
       ]
     },
     location: {
       title: "Localisation et Heures",
-      serving: "Desservant la région de Montréal",
+      serving: "Desservant Montréal, Pierrefonds, Laval et West Island",
       days: {
         mon: "Lun", tue: "Mar", wed: "Mer", thu: "Jeu", fri: "Ven", sat: "Sam", sun: "Dim"
       },
@@ -164,23 +184,23 @@ export const translations = {
     },
     services: {
       title: "Notre Expertise",
-      subtitle: "Des solutions professionnelles adaptées aux besoins de votre maison.",
+      subtitle: "Des solutions de peinture professionnelles adaptées aux maisons de Montréal, Pierrefonds, Laval et du West Island.",
       items: [
         {
           title: "Tous les travaux de peinture au pistolet",
-          desc: "Entreprise générale pour toutes les opérations de peinture au pistolet. Finitions haut de gamme utilisant des matériaux et des techniques avancées."
+          desc: "Entrepreneur général pour toutes les opérations de peinture au pistolet à Montréal et dans les environs. Finitions haut de gamme avec des matériaux et techniques avancées."
         },
         {
           title: "Peinture Résidentielle",
-          desc: "Services complets de peinture intérieure et extérieure conçus pour rafraîchir et protéger vos espaces de vie."
+          desc: "Services complets de peinture intérieure et extérieure pour rafraîchir et protéger les maisons à Montréal, Pierrefonds, Laval et le West Island."
         },
         {
           title: "Armoires de cuisine",
-          desc: "Remettez à neuf et modernisez vos armoires de cuisine avec nos services spécialisés de pulvérisation et de peinture d'armoires."
+          desc: "Remettez à neuf et modernisez vos armoires de cuisine avec nos services spécialisés de pulvérisation et peinture dans toute la région de Montréal."
         },
         {
           title: "Plâtrage et Réparations",
-          desc: "Plâtrage expert, réparation de cloisons sèches et préparation de surface pour garantir la base parfaite pour tout travail de peinture."
+          desc: "Plâtrage expert, réparation de cloisons sèches et préparation de surface à Montréal, Pierrefonds, Laval et les communautés environnantes."
         }
       ],
       cta: {
@@ -190,29 +210,29 @@ export const translations = {
     },
     transformation: {
       title: "Réalisations / Projets Récents",
-      subtitle: "Découvrez nos récents travaux de peinture au pistolet et de finition résidentielle.",
+      subtitle: "Découvrez nos récents travaux de peinture au pistolet et de finition résidentielle à Montréal, Pierrefonds et Laval.",
       items: [
-        { label: "Projet 01", title: "Finition Intérieure" },
-        { label: "Projet 02", title: "Peinture au pistolet" },
-        { label: "Projet 03", title: "Restauration d'armoires" }
+        { label: "Projet 01", title: "Finition Intérieure", alt: "Peinture intérieure et finition par Manny Painter à Montréal" },
+        { label: "Projet 02", title: "Peinture au pistolet", alt: "Service de peinture au pistolet professionnel à Pierrefonds et Montréal" },
+        { label: "Projet 03", title: "Restauration d'armoires", alt: "Peinture et restauration d'armoires de cuisine à Montréal West Island" }
       ]
     },
     testimonials: {
       title: "Témoignages Clients",
-      subtitle: "Approuvé par les propriétaires à travers Montréal pour la qualité et la fiabilité.",
+      subtitle: "Approuvé par les propriétaires à travers Montréal, Pierrefonds, Laval et le West Island pour la qualité et la fiabilité.",
       items: [
-        { name: "Sarah M.", role: "Propriétaire", text: "Manny Painter et son équipe ont fait un travail incroyable en pulvérisant nos vieilles armoires de cuisine en chêne. Elles ont l'air toutes neuves ! Très professionnel et propre." },
-        { name: "David L.", role: "Client Résidentiel", text: "Le travail de réparation de plâtrage était parfait et la peinture s'est avérée impeccable. Ils ont respecté notre maison et ont terminé à temps." },
-        { name: "Elena V.", role: "Propriétaire", text: "Manny Painter a transformé tout notre rez-de-chaussée. L'attention portée aux détails autour des moulures et des bords est inégalée. Je les recommande vivement." }
+        { name: "Sarah M.", role: "Propriétaire – Montréal", text: "Manny Painter et son équipe ont fait un travail incroyable en pulvérisant nos vieilles armoires de cuisine en chêne. Elles ont l'air toutes neuves ! Très professionnel et propre." },
+        { name: "David L.", role: "Client Résidentiel – Pierrefonds", text: "Le travail de réparation de plâtrage était parfait et la peinture s'est avérée impeccable. Ils ont respecté notre maison et ont terminé à temps." },
+        { name: "Elena V.", role: "Propriétaire – West Island", text: "Manny Painter a transformé tout notre rez-de-chaussée. L'attention portée aux détails autour des moulures et des bords est inégalée. Je les recommande vivement." }
       ]
     },
     contact: {
       title: "Demandez une soumission professionnelle",
-      subtitle: "Remplissez les détails ci-dessous. Nous examinerons votre projet et vous fournirons une estimation complète, adaptée à vos besoins.",
+      subtitle: "Remplissez les détails ci-dessous. Nous desservons Montréal, Pierrefonds, Laval et les environs. Nous vous fournirons une estimation complète adaptée à vos besoins.",
       info: {
         phone: "514 463 7097",
         email: "pereira.manny@gmail.com",
-        location: "Montréal et environs"
+        location: "Montréal, Pierrefonds, Laval & West Island"
       },
       form: {
         name: "Nom complet",
@@ -243,7 +263,7 @@ export const translations = {
       ]
     },
     footer: {
-      desc: "Offrir des services exceptionnels de peinture, de pulvérisation et de réparation aux clients résidentiels à travers Montréal.",
+      desc: "Des services exceptionnels de peinture, pulvérisation et réparation pour les clients résidentiels à Montréal, Pierrefonds, Laval, Dollard-des-Ormeaux, Pointe-Claire et dans tout le West Island.",
       rights: "© 2026 Manny Painter. Tous droits réservés."
     }
   }

@@ -88,7 +88,9 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    document.title = 'Manny Painter | Painting & Spraying Montreal';
+    document.title = lang === 'fr'
+      ? 'Manny Painter | Peintre Montréal, Pierrefonds & Laval | Soumission Gratuite'
+      : 'Manny Painter | Painter Montreal, Pierrefonds & Laval | Free Estimate';
   }, [lang]);
 
   return (
@@ -199,14 +201,16 @@ export default function App() {
               transition={{ delay: 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
               className="will-change-transform"
             >
-              <ShinyText 
-                text={t.hero.title} 
-                disabled={false} 
-                speed={3} 
-                className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-6 block" 
-                color="#0f172a" 
-                shineColor="#2563eb" 
-              />
+              <h1>
+                <ShinyText
+                  text={t.hero.title}
+                  disabled={false}
+                  speed={3}
+                  className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-6 block"
+                  color="#0f172a"
+                  shineColor="#2563eb"
+                />
+              </h1>
             </motion.div>
             <motion.p 
               initial={{ opacity: 0, y: isMobile ? 30 : 0 }} 
@@ -242,7 +246,7 @@ export default function App() {
               }} 
               className="relative z-10 w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(37,99,235,0.25)] flex-shrink-0"
             >
-              <img src="/media/hero.jpg" alt={lang === 'en' ? 'Painting Process' : 'Processus de peinture'} className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000" decoding="async" />
+              <img src="/media/hero.jpg" alt={lang === 'en' ? 'Professional painter Manny Painter serving Montreal, Pierrefonds and Laval' : 'Manny Painter – peintre professionnel à Montréal, Pierrefonds et Laval'} className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000" decoding="async" />
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/30 to-transparent"></div>
               
               <motion.div 
@@ -301,7 +305,7 @@ export default function App() {
                className="relative lg:w-1/2 min-h-[400px] md:min-h-[500px]"
             >
               <div className="absolute inset-0 bg-blue-600 rounded-[2.5rem] translate-x-4 translate-y-4 opacity-5 blur-2xl"></div>
-              <img loading="lazy" decoding="async" src="/media/about.jpg" alt={lang === 'en' ? 'Manny Painter Work' : 'Travaux de Manny Painter'} className="relative z-10 w-full h-full object-cover rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:shadow-2xl transition-all duration-700" />
+              <img loading="lazy" decoding="async" src="/media/about.jpg" alt={lang === 'en' ? 'Manny Painter residential painting work in Montreal, Pierrefonds and Laval' : 'Travaux de peinture résidentielle de Manny Painter à Montréal, Pierrefonds et Laval'} className="relative z-10 w-full h-full object-cover rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:shadow-2xl transition-all duration-700" />
               
               {/* Highlight card popup */}
               <motion.div 
@@ -322,12 +326,14 @@ export default function App() {
             </motion.div>
             
             <div className="lg:w-1/2">
-              <ShinyText 
-                text={lang === 'fr' ? 'Spécialiste' : 'Specialist'} 
-                className="text-3xl md:text-5xl font-extrabold mb-8 leading-tight block" 
-                color="#0f172a" 
-                shineColor="#2563eb" 
-              />
+              <h2>
+                <ShinyText
+                  text={lang === 'fr' ? 'Spécialiste' : 'Specialist'}
+                  className="text-3xl md:text-5xl font-extrabold mb-8 leading-tight block"
+                  color="#0f172a"
+                  shineColor="#2563eb"
+                />
+              </h2>
               <motion.p 
                  initial={{ opacity: 0, y: 20 }}
                  whileInView={{ opacity: 1, y: 0 }}
@@ -377,21 +383,21 @@ export default function App() {
               color="#3b82f6" 
               shineColor="#93c5fd" 
             />
-            <div className="flex justify-center items-center gap-4 flex-wrap">
-              <ShinyText 
-                text={lang === 'fr' ? 'Spécialité' : 'Speciality'} 
-                className="text-4xl md:text-5xl font-extrabold tracking-tight" 
-                color="#60a5fa" 
-                shineColor="#ffffff" 
+            <h2 className="flex justify-center items-center gap-4 flex-wrap">
+              <ShinyText
+                text={lang === 'fr' ? 'Spécialité' : 'Speciality'}
+                className="text-4xl md:text-5xl font-extrabold tracking-tight"
+                color="#60a5fa"
+                shineColor="#ffffff"
               />
               <span className="text-4xl md:text-5xl font-extrabold text-blue-500/50">/</span>
-              <ShinyText 
-                text={t.services.title} 
-                className="text-4xl md:text-5xl font-extrabold tracking-tight" 
-                color="#ffffff" 
-                shineColor="#60a5fa" 
+              <ShinyText
+                text={t.services.title}
+                className="text-4xl md:text-5xl font-extrabold tracking-tight"
+                color="#ffffff"
+                shineColor="#60a5fa"
               />
-            </div>
+            </h2>
             <motion.p initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-slate-400 max-w-2xl mx-auto text-xl mt-6">{t.services.subtitle}</motion.p>
           </div>
 
@@ -437,6 +443,56 @@ export default function App() {
         </div>
       </section>
 
+      {/* Service Areas */}
+      <section id="service-areas" className="py-20 bg-white px-6">
+        <div className="max-w-7xl mx-auto text-center">
+          <ShinyText
+            text={lang === 'fr' ? 'Zones Desservies' : 'Service Areas'}
+            className="text-xs font-black uppercase tracking-[0.2em] mb-4 block"
+            color="#2563eb"
+            shineColor="#93c5fd"
+          />
+          <h2>
+            <ShinyText
+              text={t.serviceAreas.title}
+              className="text-3xl md:text-4xl font-extrabold mb-4 block"
+              color="#0f172a"
+              shineColor="#2563eb"
+            />
+          </h2>
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.2 }}
+            className="text-slate-600 max-w-2xl mx-auto mb-12 text-lg"
+          >
+            {t.serviceAreas.subtitle}
+          </motion.p>
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.2 }}
+            variants={{ visible: { transition: { staggerChildren: 0.05 } }, hidden: {} }}
+            className="flex flex-wrap justify-center gap-3"
+          >
+            {t.serviceAreas.areas.map((area: string) => (
+              <motion.div
+                key={area}
+                variants={{
+                  hidden: { opacity: 0, scale: 0.9, y: 10 },
+                  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4 } }
+                }}
+                className="flex items-center gap-2 bg-blue-50 border border-blue-100 hover:bg-blue-100 hover:border-blue-200 text-blue-700 font-bold px-5 py-3 rounded-xl text-sm transition-all cursor-default"
+              >
+                <MapPin size={14} className="text-blue-500 shrink-0" />
+                <span>{area}</span>
+              </motion.div>
+            ))}
+          </motion.div>
+        </div>
+      </section>
+
       {/* Portfolio / Transformations */}
       <section id="portfolio" className="py-32 bg-slate-50 px-6">
         <div className="max-w-7xl mx-auto">
@@ -448,12 +504,14 @@ export default function App() {
                 color="#2563eb" 
                 shineColor="#93c5fd" 
               />
-              <ShinyText 
-                text={t.transformation.title} 
-                className="text-4xl md:text-5xl font-extrabold mb-4 block" 
-                color="#0f172a" 
-                shineColor="#2563eb" 
-              />
+              <h2>
+                <ShinyText
+                  text={t.transformation.title}
+                  className="text-4xl md:text-5xl font-extrabold mb-4 block"
+                  color="#0f172a"
+                  shineColor="#2563eb"
+                />
+              </h2>
               <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-slate-600 text-lg">
                 {t.transformation.subtitle}
               </motion.p>
@@ -468,29 +526,29 @@ export default function App() {
              className="grid md:grid-cols-3 gap-8"
           >
              <motion.div onClick={() => setSelectedImage('/media/work 5.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 40 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer will-change-transform">
-                 <img src="/media/work 5.png" alt="Recent Work" loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
+                 <img src="/media/work 5.png" alt={t.transformation.items[0].alt} loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
                      <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                         <span className="text-blue-400 font-black tracking-[0.2em] uppercase text-[10px] mb-2 block">{t.transformation.items[0].label}</span>
-                        <span className="text-white font-black tracking-tight text-xl">{t.transformation.items[0].title}</span>
+                        <h3 className="text-white font-black tracking-tight text-xl">{t.transformation.items[0].title}</h3>
                      </div>
                  </div>
              </motion.div>
              <motion.div onClick={() => setSelectedImage('/media/work2.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 40 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer will-change-transform">
-                 <img src="/media/work2.png" alt="Recent Work" loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
+                 <img src="/media/work2.png" alt={t.transformation.items[1].alt} loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
                      <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                         <span className="text-blue-400 font-black tracking-[0.2em] uppercase text-[10px] mb-2 block">{t.transformation.items[1].label}</span>
-                        <span className="text-white font-black tracking-tight text-xl">{t.transformation.items[1].title}</span>
+                        <h3 className="text-white font-black tracking-tight text-xl">{t.transformation.items[1].title}</h3>
                      </div>
                  </div>
              </motion.div>
              <motion.div onClick={() => setSelectedImage('/media/work3.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 40 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer will-change-transform">
-                 <img src="/media/work3.png" alt="Recent Work" loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
+                 <img src="/media/work3.png" alt={t.transformation.items[2].alt} loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
                      <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
                         <span className="text-blue-400 font-black tracking-[0.2em] uppercase text-[10px] mb-2 block">{t.transformation.items[2].label}</span>
-                        <span className="text-white font-black tracking-tight text-xl">{t.transformation.items[2].title}</span>
+                        <h3 className="text-white font-black tracking-tight text-xl">{t.transformation.items[2].title}</h3>
                      </div>
                  </div>
              </motion.div>
@@ -511,12 +569,14 @@ export default function App() {
               />
               <br />
               <br />
-              <ShinyText 
-                text={t.testimonials.title} 
-                className="text-4xl md:text-6xl font-black tracking-tighter block" 
-                color="#0f172a" 
-                shineColor="#2563eb" 
-              />
+              <h2>
+                <ShinyText
+                  text={t.testimonials.title}
+                  className="text-4xl md:text-6xl font-black tracking-tighter block"
+                  color="#0f172a"
+                  shineColor="#2563eb"
+                />
+              </h2>
             </div>
 
             <motion.p 
@@ -610,12 +670,14 @@ export default function App() {
 
         <div className="max-w-3xl mx-auto relative z-10 px-6">
           <div className="text-center mb-10">
-            <ShinyText 
-              text={t.contact.title} 
-              className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight block" 
-              color="#0f172a" 
-              shineColor="#2563eb" 
-            />
+            <h2>
+              <ShinyText
+                text={t.contact.title}
+                className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight block"
+                color="#0f172a"
+                shineColor="#2563eb"
+              />
+            </h2>
             <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-slate-600 text-lg">{t.contact.subtitle}</motion.p>
           </div>
           
