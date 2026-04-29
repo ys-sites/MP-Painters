@@ -38,8 +38,8 @@ const FadeInText = ({ text, className, delay = 0 }: { text: string, className?: 
 };
 
 const Logo = ({ isDark, lang }: { isDark?: boolean; lang?: 'en' | 'fr' }) => (
-  <div className={`flex items-center gap-2 font-black text-base md:text-lg tracking-tighter uppercase ${isDark ? 'text-white' : 'text-slate-900'} whitespace-nowrap`}>
-    <img src="/media/mp.png" alt={lang === 'en' ? 'MP Painter Logo' : 'Logo Manny Peintres'} className="h-8 md:h-10 w-auto object-contain drop-shadow-sm" />
+  <div className={`flex items-center gap-2 font-black text-xl md:text-2xl tracking-tighter uppercase ${isDark ? 'text-white' : 'text-slate-900'} whitespace-nowrap`}>
+    <img src="/media/mp.png" alt={lang === 'en' ? 'MP Painter Logo' : 'Logo Manny Peintres'} className="h-10 md:h-12 w-auto object-contain drop-shadow-sm" />
     <span>{lang === 'en' ? 'MP Painter' : 'Manny Peintres'}</span>
   </div>
 );
