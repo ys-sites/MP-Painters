@@ -438,6 +438,7 @@ export default function App() {
               <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-slate-600 text-lg">
                 {t.transformation.subtitle}
               </motion.p>
+            </div>
           </div>
 
           <motion.div 
