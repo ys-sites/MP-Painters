@@ -178,30 +178,42 @@ export default function App() {
         
         <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
           <div className="lg:w-1/2 relative text-center lg:text-left">
-            <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} className="inline-block px-4 py-1.5 bg-blue-100/50 text-blue-700 font-bold text-xs uppercase tracking-widest rounded-full mb-6 border border-blue-200 backdrop-blur-sm">
+            <motion.div 
+              initial={{ opacity: 0, y: isMobile ? 30 : 20 }} 
+              animate={{ opacity: 1, y: 0 }} 
+              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+              className="inline-block px-4 py-1.5 bg-blue-100/50 text-blue-700 font-bold text-xs uppercase tracking-widest rounded-full mb-6 border border-blue-200 backdrop-blur-sm will-change-transform"
+            >
               {t.hero.badge}
             </motion.div>
-            <ShinyText 
-              text={t.hero.title} 
-              disabled={false} 
-              speed={3} 
-              className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-6 block" 
-              color="#0f172a" 
-              shineColor="#2563eb" 
-            />
+            <motion.div
+              initial={{ opacity: 0, y: isMobile ? 40 : 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+              className="will-change-transform"
+            >
+              <ShinyText 
+                text={t.hero.title} 
+                disabled={false} 
+                speed={3} 
+                className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-6 block" 
+                color="#0f172a" 
+                shineColor="#2563eb" 
+              />
+            </motion.div>
             <motion.p 
               initial={{ opacity: 0, y: isMobile ? 30 : 0 }} 
               animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 0.3 }} 
-              className="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium"
+              transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
+              className="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium will-change-transform"
             >
               {t.hero.subtitle}
             </motion.p>
             <motion.div 
               initial={{ opacity: 0, y: isMobile ? 40 : 0 }} 
               animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 0.4 }} 
-              className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start"
+              transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
+              className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start will-change-transform"
             >
               <a href="#contact" className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-xl shadow-blue-600/20 text-center flex items-center justify-center gap-2">
                 {t.hero.cta} <ArrowRight size={18} />
