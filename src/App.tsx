@@ -195,7 +195,16 @@ export default function App() {
           </div>
           
           <div className="lg:w-1/2 relative w-full max-w-lg mx-auto lg:max-w-none">
-            <motion.div initial={{ opacity: 0, scale: 0.9, rotateY: 5 }} animate={{ opacity: 1, scale: 1, rotateY: 0 }} transition={{ delay: 0.2, duration: 0.8, ease: [0.165, 0.84, 0.44, 1] }} className="relative z-10 w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(37,99,235,0.25)] flex-shrink-0">
+            <motion.div 
+              initial={{ opacity: 0, y: 60, scale: 0.9, rotateY: 5 }} 
+              animate={{ opacity: 1, y: 0, scale: 1, rotateY: 0 }} 
+              transition={{ 
+                delay: 0.2, 
+                duration: 1.2, 
+                ease: [0.16, 1, 0.3, 1] 
+              }} 
+              className="relative z-10 w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(37,99,235,0.25)] flex-shrink-0"
+            >
               <img src="/media/hero.jpg" alt={lang === 'en' ? 'Painting Process' : 'Processus de peinture'} className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000" decoding="async" />
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/30 to-transparent"></div>
               
