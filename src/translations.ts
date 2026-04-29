@@ -10,15 +10,15 @@ export const translations = {
     },
     hero: {
       badge: "Top-Rated Painting Specialists in Montreal",
-      title: "Contracting for all Spray Painting Jobs",
-      subtitle: "MP Painters delivers high-quality painting, expert spraying, and repair services for residential properties. Experience flawless finishes and professional service.",
+      title: "Contractor for all your painting needs",
+      subtitle: "Manny Peintres offers high-quality painting, spraying, and repair services. Discover flawless finishes and professional service.",
       cta: "Request a Free Estimate",
       consultation: "Call Us: 514 463 7097"
     },
     about: {
       title: "About",
       subtitle: "Specialist",
-      desc: "We freshen up homes with our painting abilities. When we come to your home we provide a detailed estimate that lists everything you want completed. We will get rid of all eyesores and outdated colours. Lowest price affordable. Fast and good quality painting (freestyle cutting straight lines).",
+      desc: "We refresh your homes, whether inside or outside, with over 15 (fifteen) years of experience in preparation and execution of work. We use high-quality tools, materials, and paint from Sherwin Williams and Benjamin Moore.",
       points: [
         "Specialized in Residential properties",
         "Expertise in fine spraying and kitchen cabinets",
@@ -67,6 +67,11 @@ export const translations = {
     transformation: {
       title: "Portfolio / Recent Projects",
       subtitle: "Explore our latest spray painting and residential finishing works.",
+      items: [
+        { label: "Project 01", title: "Interior Finishing" },
+        { label: "Project 02", title: "Spray Painting" },
+        { label: "Project 03", title: "Cabinet Restoration" }
+      ]
     },
     testimonials: {
       title: "Client Testimonials",
@@ -74,12 +79,12 @@ export const translations = {
       items: [
         { name: "Sarah M.", role: "Homeowner", text: "Manny and his team did an incredible job spraying our old oak kitchen cabinets. They look brand new! Highly professional and clean." },
         { name: "David L.", role: "Residential Client", text: "The plastering repair work was seamless, and the paint job turned out perfect. They respected our home and finished on schedule." },
-        { name: "Elena V.", role: "Homeowner", text: "MP Painters transformed our entire main floor. The attention to detail around the trim and edges is unmatched. I highly recommend them." }
+        { name: "Elena V.", role: "Homeowner", text: "Manny Peintres transformed our entire main floor. The attention to detail around the trim and edges is unmatched. I highly recommend them." }
       ]
     },
     contact: {
       title: "Request a Professional Quote",
-      subtitle: "Fill out the details below. We'll review your project and provide a comprehensive, no-hidden-fees estimate tailored to your needs.",
+      subtitle: "Fill out the details below. We'll review your project and provide a comprehensive estimate tailored to your needs.",
       info: {
         phone: "514 463 7097",
         email: "pereira.manny@gmail.com",
@@ -100,7 +105,7 @@ export const translations = {
         error: "Failed to send. Please call us directly.",
         success: {
           title: "Message Received!",
-          desc: "Thank you for reaching out to MP Painters. We will contact you shortly.",
+          desc: "Thank you for reaching out to Manny Peintres. We will contact you shortly.",
           button: "Send another message"
         }
       },
@@ -115,7 +120,7 @@ export const translations = {
     },
     footer: {
       desc: "Delivering exceptional painting, spraying, and repair services to residential clients across Montreal.",
-      rights: "© 2026 MP Painters. All rights reserved."
+      rights: "© 2026 Manny Peintres. All rights reserved."
     }
   },
   fr: {
@@ -128,16 +133,16 @@ export const translations = {
       getQuote: "Estimation Gratuite"
     },
     hero: {
-      badge: "Spécialistes en peinture les mieux notés à Montréal",
-      title: "Entrepreneur pour tous les travaux de peinture au pistolet",
-      subtitle: "MP Peintres offre des services de peinture, de pulvérisation experte et de réparation de haute qualité. Découvrez des finitions impeccables et un service professionnel.",
-      cta: "Demander une estimation gratuite",
+      badge: "Spécialiste en peinture les mieux cotés à Montréal",
+      title: "Entrepreneur pour tous vos travaux de peinture",
+      subtitle: "Manny Peintres offre des services de peinture, de pulvérisation et de réparations de haute qualité. Découvrez des finitions impeccables et un service professionnel.",
+      cta: "Demandez une soumission gratuite",
       consultation: "Appelez-nous : 514 463 7097"
     },
     about: {
       title: "À propos",
       subtitle: "Spécialiste",
-      desc: "Nous rafraîchissons les maisons avec nos compétences en peinture. Lors de notre visite chez vous, nous fournissons une estimation détaillée listant tout ce que vous souhaitez réaliser. Nous éliminerons toutes les horreurs et couleurs démodées. Le prix le plus abordable. Peinture rapide et de bonne qualité (coupe à main levée pour des lignes droites).",
+      desc: "Nous rafraîchissons vos maisons que ce soit à l'intérieur ou à l'extérieur avec plus de 15 (quinze) ans d'expérience dans la préparation et l'exécution des travaux. Nous utilisons des outils, des matériaux et de la peinture de bonne qualité soit Sherwin Williams et Benjamin Moore.",
       points: [
         "Spécialisé dans les propriétés résidentielles",
         "Expertise en pulvérisation fine et armoires de cuisine",
@@ -184,8 +189,13 @@ export const translations = {
       }
     },
     transformation: {
-      title: "Réalisation / Projets Récents",
+      title: "Réalisations / Projets Récents",
       subtitle: "Découvrez nos récents travaux de peinture au pistolet et de finition résidentielle.",
+      items: [
+        { label: "Projet 01", title: "Finition Intérieure" },
+        { label: "Projet 02", title: "Peinture au pistolet" },
+        { label: "Projet 03", title: "Restauration d'armoires" }
+      ]
     },
     testimonials: {
       title: "Témoignages Clients",
@@ -193,12 +203,12 @@ export const translations = {
       items: [
         { name: "Sarah M.", role: "Propriétaire", text: "Manny et son équipe ont fait un travail incroyable en pulvérisant nos vieilles armoires de cuisine en chêne. Elles ont l'air toutes neuves ! Très professionnel et propre." },
         { name: "David L.", role: "Client Résidentiel", text: "Le travail de réparation de plâtrage était parfait et la peinture s'est avérée impeccable. Ils ont respecté notre maison et ont terminé à temps." },
-        { name: "Elena V.", role: "Propriétaire", text: "MP Peintres a transformé tout notre rez-de-chaussée. L'attention portée aux détails autour des moulures et des bords est inégalée. Je les recommande vivement." }
+        { name: "Elena V.", role: "Propriétaire", text: "Manny Peintres a transformé tout notre rez-de-chaussée. L'attention portée aux détails autour des moulures et des bords est inégalée. Je les recommande vivement." }
       ]
     },
     contact: {
-      title: "Demander une soumission professionnelle",
-      subtitle: "Remplissez les détails ci-dessous. Nous examinerons votre projet et vous fournirons une estimation complète et sans frais cachés, adaptée à vos besoins.",
+      title: "Demandez une soumission professionnelle",
+      subtitle: "Remplissez les détails ci-dessous. Nous examinerons votre projet et vous fournirons une estimation complète, adaptée à vos besoins.",
       info: {
         phone: "514 463 7097",
         email: "pereira.manny@gmail.com",
@@ -219,7 +229,7 @@ export const translations = {
         error: "Échec de l'envoi. Veuillez nous appeler directement.",
         success: {
           title: "Message Reçu !",
-          desc: "Merci d'avoir contacté MP Peintres. Nous vous contacterons sous peu.",
+          desc: "Merci d'avoir contacté Manny Peintres. Nous vous contacterons sous peu.",
           button: "Envoyer un autre message"
         }
       },
@@ -234,7 +244,7 @@ export const translations = {
     },
     footer: {
       desc: "Offrir des services exceptionnels de peinture, de pulvérisation et de réparation aux clients résidentiels à travers Montréal.",
-      rights: "© 2026 MP Peintres. Tous droits réservés."
+      rights: "© 2026 Manny Peintres. Tous droits réservés."
     }
   }
 };

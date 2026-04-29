@@ -39,8 +39,8 @@ const FadeInText = ({ text, className, delay = 0 }: { text: string, className?: 
 
 const Logo = ({ isDark }: { isDark?: boolean }) => (
   <div className={`flex items-center gap-2 md:gap-3 font-black text-xl md:text-2xl tracking-tighter uppercase ${isDark ? 'text-white' : 'text-slate-900'}`}>
-    <img src="/media/mp.png" alt="MP Painters Logo" className="h-12 md:h-16 w-auto object-contain drop-shadow-sm" />
-    <span>MP Painters</span>
+    <img src="/media/mp.png" alt="Manny Peintres Logo" className="h-12 md:h-16 w-auto object-contain drop-shadow-sm" />
+    <span>Manny Peintres</span>
   </div>
 );
 
@@ -177,9 +177,30 @@ export default function App() {
           </div>
           
           <div className="lg:w-1/2 relative w-full max-w-lg mx-auto lg:max-w-none">
-            <motion.div initial={{ opacity: 0, scale: 0.9, rotateY: 5 }} flex-shrink-0 animate={{ opacity: 1, scale: 1, rotateY: 0 }} transition={{ delay: 0.2, duration: 0.8, ease: [0.165, 0.84, 0.44, 1] }} className="relative z-10 w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(37,99,235,0.25)]">
+            <motion.div initial={{ opacity: 0, scale: 0.9, rotateY: 5 }} animate={{ opacity: 1, scale: 1, rotateY: 0 }} transition={{ delay: 0.2, duration: 0.8, ease: [0.165, 0.84, 0.44, 1] }} className="relative z-10 w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(37,99,235,0.25)] flex-shrink-0">
               <img src="/media/hero.jpg" alt="Painting Process" className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000" decoding="async" />
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/30 to-transparent"></div>
+              
+              <motion.div 
+                 initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                 animate={{ opacity: 1, y: 0, scale: 1 }}
+                 transition={{ delay: 0.6, type: "spring", damping: 15 }}
+                 className="absolute right-4 bottom-4 md:right-8 md:bottom-8 bg-white/90 backdrop-blur-md p-4 md:p-5 rounded-[1.5rem] shadow-2xl border border-white/50 z-20 max-w-[200px]"
+              >
+                  <div className="flex items-center gap-3">
+                     <div className="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/30 shrink-0">
+                        <span className="font-black text-xl">15+</span>
+                     </div>
+                     <div>
+                       <div className="font-black text-slate-800 text-sm leading-tight tracking-tight uppercase">
+                         {lang === 'fr' ? 'Années' : 'Years'}
+                       </div>
+                       <div className="text-[10px] text-blue-600 font-bold uppercase tracking-widest mt-0.5">
+                         {lang === 'fr' ? "D'expérience" : "Of Experience"}
+                       </div>
+                     </div>
+                  </div>
+              </motion.div>
             </motion.div>
             
             {/* Decals */}
@@ -216,7 +237,7 @@ export default function App() {
                className="relative lg:w-1/2 min-h-[400px] md:min-h-[500px]"
             >
               <div className="absolute inset-0 bg-blue-600 rounded-[2.5rem] translate-x-4 translate-y-4 opacity-5 blur-2xl"></div>
-              <img loading="lazy" decoding="async" src="/media/about.jpg" alt="MP Painters Work" className="relative z-10 w-full h-full object-cover rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:shadow-2xl transition-all duration-700" />
+              <img loading="lazy" decoding="async" src="/media/about.jpg" alt="Manny Peintres Work" className="relative z-10 w-full h-full object-cover rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:shadow-2xl transition-all duration-700" />
               
               {/* Highlight card popup */}
               <motion.div 
@@ -379,12 +400,12 @@ export default function App() {
              variants={{ visible: { transition: { staggerChildren: 0.1 } }, hidden: {} }}
              className="grid md:grid-cols-3 gap-8"
           >
-             <motion.div onClick={() => setSelectedImage('/media/work1.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", damping: 20 } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer">
-                 <img src="/media/work1.png" alt="Recent Work" loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
+             <motion.div onClick={() => setSelectedImage('/media/work 5.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { type: "spring", damping: 20 } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer">
+                 <img src="/media/work 5.png" alt="Recent Work" loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
                      <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <span className="text-blue-400 font-black tracking-[0.2em] uppercase text-[10px] mb-2 block">Project 01</span>
-                        <span className="text-white font-black tracking-tight text-xl">Interior Finishing</span>
+                        <span className="text-blue-400 font-black tracking-[0.2em] uppercase text-[10px] mb-2 block">{t.transformation.items[0].label}</span>
+                        <span className="text-white font-black tracking-tight text-xl">{t.transformation.items[0].title}</span>
                      </div>
                  </div>
              </motion.div>
@@ -392,8 +413,8 @@ export default function App() {
                  <img src="/media/work2.png" alt="Recent Work" loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
                      <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <span className="text-blue-400 font-black tracking-[0.2em] uppercase text-[10px] mb-2 block">Project 02</span>
-                        <span className="text-white font-black tracking-tight text-xl">Spray Painting</span>
+                        <span className="text-blue-400 font-black tracking-[0.2em] uppercase text-[10px] mb-2 block">{t.transformation.items[1].label}</span>
+                        <span className="text-white font-black tracking-tight text-xl">{t.transformation.items[1].title}</span>
                      </div>
                  </div>
              </motion.div>
@@ -401,8 +422,8 @@ export default function App() {
                  <img src="/media/work3.png" alt="Recent Work" loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
                      <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <span className="text-blue-400 font-black tracking-[0.2em] uppercase text-[10px] mb-2 block">Project 03</span>
-                        <span className="text-white font-black tracking-tight text-xl">Cabinet Restoration</span>
+                        <span className="text-blue-400 font-black tracking-[0.2em] uppercase text-[10px] mb-2 block">{t.transformation.items[2].label}</span>
+                        <span className="text-white font-black tracking-tight text-xl">{t.transformation.items[2].title}</span>
                      </div>
                  </div>
              </motion.div>
@@ -414,19 +435,22 @@ export default function App() {
       <section id="reviews" className="py-24 bg-slate-50 px-6">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-20">
-            <ShinyText 
-              text={lang === 'fr' ? 'Témoignage' : 'Testimonial'} 
-              className="text-xs font-black uppercase tracking-[0.2em] mb-4 block" 
-              color="#2563eb" 
-              shineColor="#93c5fd" 
-            />
-            
-            <ShinyText 
-              text={t.testimonials.title} 
-              className="text-4xl md:text-6xl font-black mb-8 tracking-tighter block" 
-              color="#0f172a" 
-              shineColor="#2563eb" 
-            />
+            <div className="flex flex-col items-center justify-center">
+              <ShinyText 
+                text={lang === 'fr' ? 'Témoignage' : 'Testimonial'} 
+                className="text-xs font-black uppercase tracking-[0.2em] block" 
+                color="#2563eb" 
+                shineColor="#93c5fd" 
+              />
+              <br />
+              <br />
+              <ShinyText 
+                text={t.testimonials.title} 
+                className="text-4xl md:text-6xl font-black tracking-tighter block" 
+                color="#0f172a" 
+                shineColor="#2563eb" 
+              />
+            </div>
 
             <motion.p 
               initial={{ opacity: 0, y: 10 }} 
@@ -505,7 +529,7 @@ export default function App() {
         <div className="absolute inset-0 z-0 pointer-events-auto overflow-hidden opacity-30">
           <div className="grid grid-cols-4 md:grid-cols-6 grid-rows-3 md:grid-rows-4 h-full transform scale-110">
             {Array.from({ length: 24 }).map((_, i) => {
-              const images = ["/media/work1.png", "/media/work2.png", "/media/work3.png"];
+              const images = ["/media/work 5.png", "/media/work2.png", "/media/work3.png"];
               const img = images[i % 3];
               return (
               <div key={i} className="relative group/item">
@@ -622,14 +646,16 @@ export default function App() {
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
             href="#contact"
-            className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 bg-blue-600 text-white p-4 md:px-6 md:py-4 rounded-full shadow-2xl flex items-center gap-3 group border border-blue-400/30 font-bold"
+            className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 p-0 rounded-full shadow-2xl flex border border-blue-400/30 overflow-hidden group"
           >
-            <div className="relative">
-              <Paintbrush size={24} className="group-hover:rotate-12 transition-transform" />
-              <span className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 border-2 border-blue-600 rounded-full animate-ping"></span>
-              <span className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 border-2 border-blue-600 rounded-full"></span>
+            <div className="bg-blue-600 text-white p-4 md:px-6 md:py-4 flex items-center gap-3 font-bold w-full h-full animate-vibrate">
+              <div className="relative">
+                <Paintbrush size={24} className="group-hover:rotate-12 transition-transform" />
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 border-2 border-blue-600 rounded-full animate-ping"></span>
+                <span className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 border-2 border-blue-600 rounded-full"></span>
+              </div>
+              <span className="hidden leading-none md:inline tracking-wide uppercase text-sm mt-1">{t.nav.getQuote}</span>
             </div>
-            <span className="hidden leading-none md:inline tracking-wide uppercase text-sm mt-1">{t.nav.getQuote}</span>
           </motion.a>
         )}
       </AnimatePresence>
