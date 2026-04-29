@@ -55,6 +55,15 @@ export default function App() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const [isCtaOpen, setIsCtaOpen] = useState(false);
+
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setIsCtaOpen(true);
+      setTimeout(() => setIsCtaOpen(false), 4000); // Keep open for 4 seconds
+    }, 10000); // Repeat every 10 seconds
+    return () => clearInterval(interval);
+  }, []);
 
   useEffect(() => {
     const checkMobile = () => setIsMobile(window.innerWidth < 768);
@@ -706,23 +715,46 @@ export default function App() {
       {/* Floating CTA */}
       <AnimatePresence>
         {isScrolled && (
-          <motion.a
-            initial={{ opacity: 0, y: 50, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            exit={{ opacity: 0, y: 50, scale: 0.9 }}
+          <motion.a 
+            href="#contact"
+            initial={{ opacity: 0, scale: 0.8, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.8, y: 20 }}
             whileHover={{ scale: 1.05 }}
             whileTap={{ scale: 0.95 }}
-            href="#contact"
-            className="fixed bottom-6 right-6 md:bottom-8 md:right-8 z-50 p-0 rounded-full shadow-2xl flex border border-blue-400/30 overflow-hidden group"
+            className="fixed bottom-6 right-6 z-40"
           >
-            <div className="bg-blue-600 text-white p-4 md:px-6 md:py-4 flex items-center gap-3 font-bold w-full h-full animate-vibrate">
-              <div className="relative">
+            <motion.div 
+              animate={{ 
+                width: (isCtaOpen || !isMobile) ? 'auto' : '56px',
+                borderRadius: (isCtaOpen || !isMobile) ? '1rem' : '1.25rem'
+              }}
+              transition={{ type: "spring", stiffness: 200, damping: 20 }}
+              className="bg-blue-600 text-white h-14 shadow-2xl shadow-blue-600/40 flex items-center gap-3 group border border-blue-500/50 overflow-hidden px-4"
+            >
+              <div className="relative shrink-0">
                 <Paintbrush size={24} className="group-hover:rotate-12 transition-transform" />
-                <span className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 border-2 border-blue-600 rounded-full animate-ping"></span>
-                <span className="absolute -top-1 -right-1 w-3 h-3 bg-blue-500 border-2 border-blue-600 rounded-full"></span>
+                <motion.span 
+                   animate={{ scale: [1, 1.5, 1] }}
+                   transition={{ repeat: Infinity, duration: 2 }}
+                   className="absolute -top-1 -right-1 w-2.5 h-2.5 bg-blue-400 border-2 border-blue-600 rounded-full"
+                ></motion.span>
               </div>
-              <span className="hidden leading-none md:inline tracking-wide uppercase text-sm mt-1">{t.nav.getQuote}</span>
-            </div>
+              
+              <AnimatePresence mode="wait">
+                {(isCtaOpen || !isMobile) && (
+                  <motion.span 
+                    key="cta-text"
+                    initial={{ opacity: 0, width: 0, x: -10 }}
+                    animate={{ opacity: 1, width: 'auto', x: 0 }}
+                    exit={{ opacity: 0, width: 0, x: -10 }}
+                    className="leading-none whitespace-nowrap tracking-wide uppercase text-xs font-black"
+                  >
+                    {t.nav.getQuote}
+                  </motion.span>
+                )}
+              </AnimatePresence>
+            </motion.div>
           </motion.a>
         )}
       </AnimatePresence>
