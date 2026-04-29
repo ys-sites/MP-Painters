@@ -585,33 +585,35 @@ export default function App() {
               <p className="text-sm md:text-base leading-relaxed max-w-sm">{t.footer.desc}</p>
             </div>
 
-          {/* Contact Details */}
-          <div>
-            <h4 className="text-white font-bold mb-6 tracking-wide uppercase text-sm">Contact</h4>
-            <div className="space-y-4 text-sm font-medium">
-              <p className="flex items-center gap-3"><Phone size={16} className="text-blue-500" /> {t.contact.info.phone}</p>
-              <p className="flex items-center gap-3"><Mail size={16} className="text-blue-500" /> {t.contact.info.email}</p>
-              <p className="flex items-center gap-3"><MapPin size={16} className="text-blue-500" /> {t.location?.serving || t.contact.info.location}</p>
+            {/* Contact Details */}
+            <div>
+              <h4 className="text-white font-bold mb-6 tracking-wide uppercase text-sm">Contact</h4>
+              <div className="space-y-4 text-sm font-medium">
+                <p className="flex items-center gap-3"><Phone size={16} className="text-blue-500" /> {t.contact.info.phone}</p>
+                <p className="flex items-center gap-3"><Mail size={16} className="text-blue-500" /> {t.contact.info.email}</p>
+                <p className="flex items-center gap-3"><MapPin size={16} className="text-blue-500" /> {t.location?.serving || t.contact.info.location}</p>
+              </div>
             </div>
-          </div>
 
-          {/* Hours */}
-          <div>
-            <h4 className="text-white font-bold mb-6 tracking-wide uppercase text-sm">{t.location?.title || "Hours"}</h4>
-            <div className="space-y-3 text-sm font-medium">
-              <div className="flex justify-between max-w-[220px]">
-                <span className="text-slate-500">{t.location?.days?.mon || "Mon"} - {t.location?.days?.fri || "Fri"}</span>
-                <span className="text-slate-300">{t.location?.hours?.weekdays || "8:00 AM - 6:00 PM"}</span>
-              </div>
-              <div className="flex justify-between max-w-[220px]">
-                <span className="text-slate-500">{t.location?.days?.sat || "Sat"}</span>
-                <span className="text-slate-300">{t.location?.hours?.saturday || "8:00 AM - 3:00 PM"}</span>
-              </div>
-              <div className="flex justify-between max-w-[220px]">
-                <span className="text-slate-500">{t.location?.days?.sun || "Sun"}</span>
-                <span className="text-slate-500">{t.location?.hours?.closed || "Closed"}</span>
+            {/* Hours */}
+            <div>
+              <h4 className="text-white font-bold mb-6 tracking-wide uppercase text-sm">{t.location?.title || "Hours"}</h4>
+              <div className="space-y-3 text-sm font-medium">
+                <div className="flex justify-between max-w-[220px]">
+                  <span className="text-slate-500">{t.location?.days?.mon || "Mon"} - {t.location?.days?.fri || "Fri"}</span>
+                  <span className="text-slate-300">{t.location?.hours?.weekdays || "8:00 AM - 6:00 PM"}</span>
+                </div>
+                <div className="flex justify-between max-w-[220px]">
+                  <span className="text-slate-500">{t.location?.days?.sat || "Sat"}</span>
+                  <span className="text-slate-300">{t.location?.hours?.saturday || "8:00 AM - 3:00 PM"}</span>
+                </div>
+                <div className="flex justify-between max-w-[220px]">
+                  <span className="text-slate-500">{t.location?.days?.sun || "Sun"}</span>
+                  <span className="text-slate-500">{t.location?.hours?.closed || "Closed"}</span>
+                </div>
               </div>
             </div>
+
           </div>
 
         </div>
