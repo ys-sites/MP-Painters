@@ -201,7 +201,7 @@ export const translations = {
       title: "Témoignages Clients",
       subtitle: "Approuvé par les propriétaires à travers Montréal pour la qualité et la fiabilité.",
       items: [
-        { name: "Sarah M.", role: "Propriétaire", text: "Manny et son équipe ont fait un travail incroyable en pulvérisant nos vieilles armoires de cuisine en chêne. Elles ont l'air toutes neuves ! Très professionnel et propre." },
+        { name: "Sarah M.", role: "Propriétaire", text: "Manny Peintres et son équipe ont fait un travail incroyable en pulvérisant nos vieilles armoires de cuisine en chêne. Elles ont l'air toutes neuves ! Très professionnel et propre." },
         { name: "David L.", role: "Client Résidentiel", text: "Le travail de réparation de plâtrage était parfait et la peinture s'est avérée impeccable. Ils ont respecté notre maison et ont terminé à temps." },
         { name: "Elena V.", role: "Propriétaire", text: "Manny Peintres a transformé tout notre rez-de-chaussée. L'attention portée aux détails autour des moulures et des bords est inégalée. Je les recommande vivement." }
       ]

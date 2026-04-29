@@ -39,7 +39,7 @@ const FadeInText = ({ text, className, delay = 0 }: { text: string, className?: 
 
 const Logo = ({ isDark, lang }: { isDark?: boolean; lang?: 'en' | 'fr' }) => (
   <div className={`flex items-center gap-2 font-black text-base md:text-lg tracking-tighter uppercase ${isDark ? 'text-white' : 'text-slate-900'} whitespace-nowrap`}>
-    <img src="/media/mp.png" alt="MP Painter Logo" className="h-8 md:h-10 w-auto object-contain drop-shadow-sm" />
+    <img src="/media/mp.png" alt={lang === 'en' ? 'MP Painter Logo' : 'Logo Manny Peintres'} className="h-8 md:h-10 w-auto object-contain drop-shadow-sm" />
     <span>{lang === 'en' ? 'MP Painter' : 'Manny Peintres'}</span>
   </div>
 );
@@ -65,6 +65,12 @@ export default function App() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  useEffect(() => {
+    document.title = lang === 'en' 
+      ? 'MP Painter | Painting & Spraying Montreal' 
+      : 'Manny Peintres | Peinture et Pulvérisation Montréal';
+  }, [lang]);
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-600 selection:text-white">
@@ -178,7 +184,7 @@ export default function App() {
           
           <div className="lg:w-1/2 relative w-full max-w-lg mx-auto lg:max-w-none">
             <motion.div initial={{ opacity: 0, scale: 0.9, rotateY: 5 }} animate={{ opacity: 1, scale: 1, rotateY: 0 }} transition={{ delay: 0.2, duration: 0.8, ease: [0.165, 0.84, 0.44, 1] }} className="relative z-10 w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(37,99,235,0.25)] flex-shrink-0">
-              <img src="/media/hero.jpg" alt="Painting Process" className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000" decoding="async" />
+              <img src="/media/hero.jpg" alt={lang === 'en' ? 'Painting Process' : 'Processus de peinture'} className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000" decoding="async" />
               <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/30 to-transparent"></div>
               
               <motion.div 
@@ -237,7 +243,7 @@ export default function App() {
                className="relative lg:w-1/2 min-h-[400px] md:min-h-[500px]"
             >
               <div className="absolute inset-0 bg-blue-600 rounded-[2.5rem] translate-x-4 translate-y-4 opacity-5 blur-2xl"></div>
-              <img loading="lazy" decoding="async" src="/media/about.jpg" alt="MP Painter Work" className="relative z-10 w-full h-full object-cover rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:shadow-2xl transition-all duration-700" />
+              <img loading="lazy" decoding="async" src="/media/about.jpg" alt={lang === 'en' ? 'MP Painter Work' : 'Travaux de Manny Peintres'} className="relative z-10 w-full h-full object-cover rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:shadow-2xl transition-all duration-700" />
               
               {/* Highlight card popup */}
               <motion.div 
