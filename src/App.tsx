@@ -38,11 +38,11 @@ const FadeInText = ({ text, className, delay = 0 }: { text: string, className?: 
 };
 
 const Logo = ({ isDark, lang, size = 'normal' }: { isDark?: boolean; lang?: 'en' | 'fr'; size?: 'normal' | 'large' }) => (
-  <div className={`flex items-center gap-3 md:gap-4 font-black tracking-tighter uppercase ${isDark ? 'text-white' : 'text-slate-900'} whitespace-nowrap ${size === 'large' ? 'text-4xl md:text-6xl' : 'text-xl md:text-2xl'}`}>
+  <div className={`flex items-center gap-3 md:gap-5 font-black tracking-tighter uppercase ${isDark ? 'text-white' : 'text-slate-900'} whitespace-nowrap ${size === 'large' ? 'text-2xl md:text-4xl' : 'text-xl md:text-2xl'}`}>
     <img 
       src="/media/mp.png" 
       alt={lang === 'en' ? 'MP Painter Logo' : 'Logo Manny Peintres'} 
-      className={`${size === 'large' ? 'h-24 md:h-32' : 'h-10 md:h-12'} w-auto object-contain drop-shadow-sm`} 
+      className={`${size === 'large' ? 'h-20 md:h-28' : 'h-10 md:h-12'} w-auto object-contain drop-shadow-sm`} 
     />
     <span>{lang === 'en' ? 'MP Painter' : 'Manny Peintres'}</span>
   </div>
@@ -571,15 +571,19 @@ export default function App() {
 
       {/* Footer */}
       <footer className="bg-slate-950 text-slate-400 py-16 px-6 border-t border-slate-900 relative z-20">
-        <div className="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+        <div className="max-w-7xl mx-auto">
           
-          {/* Brand Info */}
-          <div className="flex flex-col items-start gap-8">
-            <div className="opacity-90 hover:opacity-100 transition-all bg-white/5 p-6 md:p-8 rounded-[2.5rem] w-full md:w-auto flex justify-center md:justify-start">
-              <Logo isDark={true} lang={lang} size="large" />
-            </div>
-            <p className="text-sm md:text-base leading-relaxed max-w-sm">{t.footer.desc}</p>
+          {/* Logo Row */}
+          <div className="mb-16 opacity-90 hover:opacity-100 transition-all inline-block">
+            <Logo isDark={true} lang={lang} size="large" />
           </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+            
+            {/* Description Info */}
+            <div className="flex flex-col items-start gap-6">
+              <p className="text-sm md:text-base leading-relaxed max-w-sm">{t.footer.desc}</p>
+            </div>
 
           {/* Contact Details */}
           <div>
