@@ -10,7 +10,7 @@ export const translations = {
     },
     hero: {
       badge: "Top-Rated Painting Specialists in Montreal & Pierrefonds",
-      title: "Contractor for all your painting needs",
+      title: "Professional Painting Contractor in Montreal, Pierrefonds & Laval",
       subtitle: "Manny Painter delivers professional painting, spray painting, and repair services to homeowners in Montreal, Pierrefonds, Laval, and across the West Island. Discover flawless finishes and expert craftsmanship.",
       cta: "Request a Free Estimate",
       consultation: "Call Us: 514 463 7097"
@@ -144,7 +144,7 @@ export const translations = {
     },
     hero: {
       badge: "Spécialistes en peinture les mieux cotés à Montréal et Pierrefonds",
-      title: "Entrepreneur pour tous vos travaux de peinture",
+      title: "Entrepreneur en peinture professionnel à Montréal, Pierrefonds et Laval",
       subtitle: "Manny Painter offre des services professionnels de peinture, pulvérisation et réparation aux propriétaires de Montréal, Pierrefonds, Laval et dans tout le West Island. Des finitions impeccables et un savoir-faire expert.",
       cta: "Demandez une soumission gratuite",
       consultation: "Appelez-nous : 514 463 7097"
