@@ -64,7 +64,8 @@ const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
       viewport={{ once: true }}
       transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       ref={containerRef}
-      className="relative w-full aspect-video overflow-hidden rounded-[2rem] select-none group cursor-ew-resize bg-slate-100 border border-slate-200 shadow-lg"
+      style={{ aspectRatio: '3840 / 5120' }}
+      className="relative w-full overflow-hidden rounded-[2rem] select-none group cursor-ew-resize bg-slate-100 border border-slate-200 shadow-lg"
       onMouseDown={(e) => {
         setIsDragging(true);
         handleMove(e.clientX);

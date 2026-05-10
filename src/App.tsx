@@ -534,7 +534,7 @@ export default function App() {
                title={t.transformation.items[0].title}
                label={t.transformation.items[0].label}
              />
-             <motion.div onClick={() => setSelectedImage('/media/work2.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 40 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer will-change-transform">
+             <motion.div onClick={() => setSelectedImage('/media/work2.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 40 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="w-full rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer will-change-transform" style={{ aspectRatio: '1412 / 1114' }}>
                  <img src="/media/work2.png" alt={t.transformation.items[1].alt} loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
                      <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
@@ -543,7 +543,7 @@ export default function App() {
                      </div>
                  </div>
              </motion.div>
-             <motion.div onClick={() => setSelectedImage('/media/work3.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 40 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer will-change-transform">
+             <motion.div onClick={() => setSelectedImage('/media/work3.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 40 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="w-full rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer will-change-transform" style={{ aspectRatio: '1122 / 1402' }}>
                  <img src="/media/work3.png" alt={t.transformation.items[2].alt} loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
                      <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
