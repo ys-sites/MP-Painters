@@ -116,13 +116,7 @@ const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
         </div>
       </div>
 
-      {/* Hover Text */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8 pointer-events-none z-20">
-        <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-          <span className="text-slate-200 font-black tracking-[0.2em] uppercase text-[10px] mb-2 block">{label}</span>
-          <h3 className="text-white font-black tracking-tight text-xl">{title}</h3>
-        </div>
-      </div>
+
     </motion.div>
   );
 };
