@@ -89,7 +89,8 @@ export const translations = {
       items: [
         { name: "Sarah M.", role: "Homeowner – Montreal", text: "Manny Painter and his team did an incredible job spraying our old oak kitchen cabinets. They look brand new! Highly professional and clean." },
         { name: "David L.", role: "Residential Client – Pierrefonds", text: "The plastering repair work was seamless, and the paint job turned out perfect. They respected our home and finished on schedule." },
-        { name: "Elena V.", role: "Homeowner – West Island", text: "Manny Painter transformed our entire main floor. The attention to detail around the trim and edges is unmatched. I highly recommend them." }
+        { name: "Elena V.", role: "Homeowner – West Island", text: "Manny Painter transformed our entire main floor. The attention to detail around the trim and edges is unmatched. I highly recommend them." },
+        { name: "Sylvie Lafontaine", role: "Homeowner – Montreal", text: "Manny is a real Pro! My old kitchen cabinets have been refreshed! His work is clean and the prep is professional. Thank you Manny!" }
       ]
     },
     contact: {
@@ -223,7 +224,8 @@ export const translations = {
       items: [
         { name: "Sarah M.", role: "Propriétaire – Montréal", text: "Manny Painter et son équipe ont fait un travail incroyable en pulvérisant nos vieilles armoires de cuisine en chêne. Elles ont l'air toutes neuves ! Très professionnel et propre." },
         { name: "David L.", role: "Client Résidentiel – Pierrefonds", text: "Le travail de réparation de plâtrage était parfait et la peinture s'est avérée impeccable. Ils ont respecté notre maison et ont terminé à temps." },
-        { name: "Elena V.", role: "Propriétaire – West Island", text: "Manny Painter a transformé tout notre rez-de-chaussée. L'attention portée aux détails autour des moulures et des bords est inégalée. Je les recommande vivement." }
+        { name: "Elena V.", role: "Propriétaire – West Island", text: "Manny Painter a transformé tout notre rez-de-chaussée. L'attention portée aux détails autour des moulures et des bords est inégalée. Je les recommande vivement." },
+        { name: "Sylvie Lafontaine", role: "Propriétaire – Montréal", text: "Manny est un vrai pro ! Mes vieilles armoires de cuisine ont été rafraîchies ! Son travail est propre et la préparation est professionnelle. Merci Manny !" }
       ]
     },
     contact: {
