@@ -527,8 +527,8 @@ export default function App() {
              className="grid md:grid-cols-3 gap-8"
           >
              <BeforeAfterSlider
-               beforeImage="/media/before1.png"
-               afterImage="/media/after1.png"
+               beforeImage="/media/before1.jpeg"
+               afterImage="/media/after1.jpeg"
                beforeLabel="Before"
                afterLabel="After"
                title={t.transformation.items[0].title}
