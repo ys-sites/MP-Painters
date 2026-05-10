@@ -111,7 +111,7 @@ const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
         style={{ left: `${sliderPosition}%`, transform: 'translateX(-50%)' }}
       >
         {/* Circular Handle with Icon */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full shadow-[0_0_20px_rgba(0,0,0,0.3)] flex items-center justify-center hover:scale-110 transition-transform duration-300 border-2 border-blue-500">
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 bg-white rounded-full flex items-center justify-center transition-transform duration-300 border-2 border-blue-500">
           <GripHorizontal className="w-6 h-6 text-blue-600" strokeWidth={2.5} />
         </div>
       </div>
