@@ -7,6 +7,7 @@ import {
 } from "lucide-react";
 import { translations } from "./translations";
 import ShinyText from "./components/ShinyText";
+import BeforeAfterSlider from "./components/BeforeAfterSlider";
 
 const FadeInText = ({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) => {
   const words = text.split(" ");
@@ -525,15 +526,14 @@ export default function App() {
              variants={{ visible: { transition: { staggerChildren: 0.15 } }, hidden: {} }}
              className="grid md:grid-cols-3 gap-8"
           >
-             <motion.div onClick={() => setSelectedImage('/media/work 5.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 40 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer will-change-transform">
-                 <img src="/media/work 5.png" alt={t.transformation.items[0].alt} loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
-                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
-                     <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <span className="text-blue-400 font-black tracking-[0.2em] uppercase text-[10px] mb-2 block">{t.transformation.items[0].label}</span>
-                        <h3 className="text-white font-black tracking-tight text-xl">{t.transformation.items[0].title}</h3>
-                     </div>
-                 </div>
-             </motion.div>
+             <BeforeAfterSlider
+               beforeImage="/media/before1.png"
+               afterImage="/media/after1.png"
+               beforeLabel="Before"
+               afterLabel="After"
+               title={t.transformation.items[0].title}
+               label={t.transformation.items[0].label}
+             />
              <motion.div onClick={() => setSelectedImage('/media/work2.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 40 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer will-change-transform">
                  <img src="/media/work2.png" alt={t.transformation.items[1].alt} loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
                  <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
