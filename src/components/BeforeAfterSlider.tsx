@@ -84,9 +84,6 @@ const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
         decoding="async"
         draggable={false}
       />
-      <div className="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-black uppercase tracking-widest z-10 shadow-lg">
-        {afterLabel}
-      </div>
 
       {/* Before Image (Foreground, Clipped) */}
       <div 
@@ -101,9 +98,22 @@ const BeforeAfterSlider: React.FC<BeforeAfterSliderProps> = ({
           decoding="async"
           draggable={false}
         />
-        <div className="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-black uppercase tracking-widest z-10 shadow-lg">
-          {beforeLabel}
-        </div>
+      </div>
+
+      {/* Before Label (outside clipped container, fades out near left edge) */}
+      <div 
+        style={{ opacity: Math.max(0, Math.min(1, (sliderPosition - 15) / 10)) }}
+        className="absolute top-4 left-4 bg-black/60 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-black uppercase tracking-widest z-10 shadow-lg pointer-events-none transition-opacity duration-150"
+      >
+        {beforeLabel}
+      </div>
+
+      {/* After Label (outside clipped container, fades out near right edge) */}
+      <div 
+        style={{ opacity: Math.max(0, Math.min(1, (85 - sliderPosition) / 10)) }}
+        className="absolute top-4 right-4 bg-black/60 backdrop-blur-md text-white px-4 py-2 rounded-full text-sm font-black uppercase tracking-widest z-10 shadow-lg pointer-events-none transition-opacity duration-150"
+      >
+        {afterLabel}
       </div>
 
       {/* Slider Handle Line */}

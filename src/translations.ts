@@ -80,7 +80,8 @@ export const translations = {
       items: [
         { label: "Project 01", title: "Interior Finishing", alt: "Interior wall painting and finishing by Manny Painter in Montreal" },
         { label: "Project 02", title: "Spray Painting", alt: "Professional spray painting service in Pierrefonds and Montreal area" },
-        { label: "Project 03", title: "Cabinet Restoration", alt: "Kitchen cabinet painting and restoration in Montreal West Island" }
+        { label: "Project 03", title: "Cabinet Restoration", alt: "Kitchen cabinet painting and restoration in Montreal West Island" },
+        { label: "Project 04", title: "Exterior Refresh", alt: "Professional exterior painting and siding refresh in Montreal" }
       ]
     },
     testimonials: {
@@ -215,7 +216,8 @@ export const translations = {
       items: [
         { label: "Projet 01", title: "Finition Intérieure", alt: "Peinture intérieure et finition par Manny Painter à Montréal" },
         { label: "Projet 02", title: "Peinture au pistolet", alt: "Service de peinture au pistolet professionnel à Pierrefonds et Montréal" },
-        { label: "Projet 03", title: "Restauration d'armoires", alt: "Peinture et restauration d'armoires de cuisine à Montréal West Island" }
+        { label: "Projet 03", title: "Restauration d'armoires", alt: "Peinture et restauration d'armoires de cuisine à Montréal West Island" },
+        { label: "Projet 04", title: "Rafraîchissement Extérieur", alt: "Service de peinture extérieure professionnel à Montréal" }
       ]
     },
     testimonials: {
