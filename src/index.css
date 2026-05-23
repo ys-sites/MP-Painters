@@ -1,5 +1,24 @@
 @import "tailwindcss";
 
+@theme {
+  --animate-marquee-vertical: marquee-vertical 30s linear infinite;
+  --animate-marquee-vertical-slow: marquee-vertical 40s linear infinite;
+  --animate-marquee-vertical-fast: marquee-vertical 25s linear infinite;
+
+  @keyframes marquee-vertical {
+    0% {
+      transform: translateY(0%);
+    }
+    100% {
+      transform: translateY(-50%);
+    }
+  }
+}
+
+.marquee-track:hover {
+  animation-play-state: paused;
+}
+
 @layer utilities {
   .animate-vibrate {
     animation: vibrate 5s cubic-bezier(.36,.07,.19,.97) infinite;

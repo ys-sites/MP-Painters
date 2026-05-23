@@ -534,24 +534,22 @@ export default function App() {
                title={t.transformation.items[0].title}
                label={t.transformation.items[0].label}
              />
-             <motion.div onClick={() => setSelectedImage('/media/work2.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 40 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="w-full rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer will-change-transform" style={{ aspectRatio: '1412 / 1114' }}>
-                 <img src="/media/work2.png" alt={t.transformation.items[1].alt} loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
-                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
-                     <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <span className="text-blue-400 font-black tracking-[0.2em] uppercase text-[10px] mb-2 block">{t.transformation.items[1].label}</span>
-                        <h3 className="text-white font-black tracking-tight text-xl">{t.transformation.items[1].title}</h3>
-                     </div>
-                 </div>
-             </motion.div>
-             <motion.div onClick={() => setSelectedImage('/media/work3.png')} variants={{ hidden: { opacity: 0, scale: 0.95, y: isMobile ? 40 : 30 }, visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } }} className="w-full rounded-[2rem] overflow-hidden shadow-lg border border-slate-200 group relative cursor-pointer will-change-transform" style={{ aspectRatio: '1122 / 1402' }}>
-                 <img src="/media/work3.png" alt={t.transformation.items[2].alt} loading="lazy" decoding="async" className="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-[1.5s] ease-out" />
-                 <div className="absolute inset-0 bg-gradient-to-t from-slate-900/90 via-slate-900/40 to-transparent opacity-0 group-hover:opacity-100 transition-all duration-500 flex flex-col justify-end p-8">
-                     <div className="translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                        <span className="text-blue-400 font-black tracking-[0.2em] uppercase text-[10px] mb-2 block">{t.transformation.items[2].label}</span>
-                        <h3 className="text-white font-black tracking-tight text-xl">{t.transformation.items[2].title}</h3>
-                     </div>
-                 </div>
-             </motion.div>
+             <BeforeAfterSlider
+               beforeImage="/media/before 2.jpeg"
+               afterImage="/media/after 2.jpeg"
+               beforeLabel="Before"
+               afterLabel="After"
+               title={t.transformation.items[1].title}
+               label={t.transformation.items[1].label}
+             />
+             <BeforeAfterSlider
+               beforeImage="/media/before 3.jpeg"
+               afterImage="/media/after 3.jpeg"
+               beforeLabel="Before"
+               afterLabel="After"
+               title={t.transformation.items[2].title}
+               label={t.transformation.items[2].label}
+             />
           </motion.div>
         </div>
       </section>
@@ -597,56 +595,53 @@ export default function App() {
                maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)' 
              }}
           >
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-full">
-              {[
-                { duration: 60, offset: 0 },
-                { duration: 85, offset: 1 },
-                { duration: 75, offset: 2 }
-              ].map((col, cIdx) => {
-                // Reorder reviews slightly for each column to break uniformity
-                const colReviews = [
-                  ...t.testimonials.items.slice(col.offset), 
-                  ...t.testimonials.items.slice(0, col.offset)
-                ];
-                // Duplicate enough times for smooth loop
-                const repeatedReviews = [...colReviews, ...colReviews, ...colReviews];
-                
-                return (
-                  <div key={cIdx} className={`h-max ${cIdx === 1 ? 'hidden md:block' : ''} ${cIdx === 2 ? 'hidden lg:block' : ''}`}>
-                    <motion.div
-                      animate={{ y: ["0%", "-50%"] }}
-                      transition={{ ease: "linear", duration: col.duration, repeat: Infinity, repeatType: "loop" }}
-                      className="flex flex-col gap-6 will-change-transform"
-                      style={{ transform: 'translateZ(0)' }}
-                    >
-                      {repeatedReviews.map((review: any, idx: number) => (
-                          <div 
-                            key={idx}
-                            className="bg-white/80 backdrop-blur-sm p-8 md:p-10 rounded-[2.5rem] relative border border-slate-200/50 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.03)] hover:shadow-xl transition-all duration-500 hover:-translate-y-1 group"
-                          >
-                            <div className="absolute top-8 right-8 opacity-[0.05] group-hover:scale-110 transition-transform duration-500">
-                              <Quote size={60} className="text-blue-600" />
-                            </div>
-                            <div className="flex gap-1 mb-8 text-yellow-400">
-                              {[1,2,3,4,5].map(star => <Star key={star} size={18} fill="currentColor" />)}
-                            </div>
-                            <p className="text-slate-700 mb-8 font-semibold text-lg relative z-10 leading-relaxed min-h-[100px] tracking-tight italic">"{review.text}"</p>
-                            <div className="flex items-center gap-4 pt-8 border-t border-slate-100/50">
-                              <div className="w-14 h-14 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl flex items-center justify-center text-blue-700 font-black text-xl shadow-inner group-hover:scale-105 transition-transform duration-500 capitalize">
-                                {review.name.charAt(0)}
-                              </div>
-                              <div>
-                                <p className="font-black text-slate-900 tracking-tight">{review.name}</p>
-                                <p className="text-[10px] text-blue-600 font-black uppercase tracking-[0.2em] opacity-70">{review.role}</p>
-                              </div>
-                            </div>
-                          </div>
-                      ))}
-                    </motion.div>
-                  </div>
-                )
-              })}
-            </div>
+             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-full">
+               {[
+                 { speed: 'animate-marquee-vertical', offset: 0 },
+                 { speed: 'animate-marquee-vertical-slow', offset: 1 },
+                 { speed: 'animate-marquee-vertical-fast', offset: 2 }
+               ].map((col, cIdx) => {
+                 // Reorder reviews slightly for each column to break uniformity
+                 const colReviews = [
+                   ...t.testimonials.items.slice(col.offset), 
+                   ...t.testimonials.items.slice(0, col.offset)
+                 ];
+                 // Duplicate reviews to create a seamless loop
+                 const repeatedReviews = [...colReviews, ...colReviews];
+                 
+                 return (
+                   <div key={cIdx} className={`h-max ${cIdx === 1 ? 'hidden md:block' : ''} ${cIdx === 2 ? 'hidden lg:block' : ''}`}>
+                     <div
+                       className={`flex flex-col gap-6 marquee-track will-change-transform ${col.speed}`}
+                     >
+                       {repeatedReviews.map((review: any, idx: number) => (
+                           <div 
+                             key={idx}
+                             className="bg-white/80 backdrop-blur-sm p-8 md:p-10 rounded-[2.5rem] relative border border-slate-200/50 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.03)] hover:shadow-xl transition-all duration-500 hover:-translate-y-1 group"
+                           >
+                             <div className="absolute top-8 right-8 opacity-[0.05] group-hover:scale-110 transition-transform duration-500">
+                               <Quote size={60} className="text-blue-600" />
+                             </div>
+                             <div className="flex gap-1 mb-8 text-yellow-400">
+                               {[1,2,3,4,5].map(star => <Star key={star} size={18} fill="currentColor" />)}
+                             </div>
+                             <p className="text-slate-700 mb-8 font-semibold text-lg relative z-10 leading-relaxed min-h-[100px] tracking-tight italic">"{review.text}"</p>
+                             <div className="flex items-center gap-4 pt-8 border-t border-slate-100/50">
+                               <div className="w-14 h-14 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl flex items-center justify-center text-blue-700 font-black text-xl shadow-inner group-hover:scale-105 transition-transform duration-500 capitalize">
+                                 {review.name.charAt(0)}
+                               </div>
+                               <div>
+                                 <p className="font-black text-slate-900 tracking-tight">{review.name}</p>
+                                 <p className="text-[10px] text-blue-600 font-black uppercase tracking-[0.2em] opacity-70">{review.role}</p>
+                               </div>
+                             </div>
+                           </div>
+                       ))}
+                     </div>
+                   </div>
+                 )
+               })}
+             </div>
           </div>
         </div>
       </section>
