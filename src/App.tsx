@@ -561,57 +561,60 @@ export default function App() {
                 {t.transformation.subtitle}
               </motion.p>
             </div>
-            
-            {/* Carousel Navigation Buttons */}
-            <div className="flex gap-3 shrink-0">
-              <button 
-                onClick={prevSlide}
-                className="w-12 h-12 rounded-full border border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 text-slate-700 flex items-center justify-center transition-all shadow-sm active:scale-95 cursor-pointer z-10"
-                aria-label="Previous Project"
-              >
-                <ChevronLeft size={24} />
-              </button>
-              <button 
-                onClick={nextSlide}
-                className="w-12 h-12 rounded-full border border-slate-200 bg-white hover:bg-slate-50 hover:border-slate-300 text-slate-700 flex items-center justify-center transition-all shadow-sm active:scale-95 cursor-pointer z-10"
-                aria-label="Next Project"
-              >
-                <ChevronRight size={24} />
-              </button>
-            </div>
           </div>
 
-          <div className="overflow-hidden w-full -mx-4 px-4">
-            <div 
-              className="flex transition-transform duration-500 ease-out"
-              style={{ 
-                transform: `translateX(-${carouselIndex * (100 / visibleItems)}%)`,
-              }}
+          <div className="relative group/carousel">
+            {/* Left Button */}
+            <button 
+              onClick={prevSlide}
+              className="absolute left-2 md:-left-6 lg:-left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-slate-200/80 bg-white/90 backdrop-blur-sm hover:bg-white text-slate-800 hover:text-blue-600 flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer z-30 opacity-80 md:opacity-60 md:hover:opacity-100"
+              aria-label="Previous Project"
             >
-              {[
-                { before: "/media/before1.jpeg", after: "/media/after1.jpeg", idx: 0 },
-                { before: "/media/before 2.jpeg", after: "/media/after 2.jpeg", idx: 1 },
-                { before: "/media/before 3.jpeg", after: "/media/after 3.jpeg", idx: 2 },
-                { before: "/media/before 4.jpeg", after: "/media/after 4.jpeg", idx: 3 }
-              ].map((project, index) => (
-                <div 
-                  key={index}
-                  style={{
-                    width: `${100 / visibleItems}%`
-                  }}
-                  className="px-4 shrink-0"
-                >
-                  <BeforeAfterSlider
-                    beforeImage={project.before}
-                    afterImage={project.after}
-                    beforeLabel="Before"
-                    afterLabel="After"
-                    title={t.transformation.items[project.idx]?.title || ""}
-                    label={t.transformation.items[project.idx]?.label || ""}
-                  />
-                </div>
-              ))}
+              <ChevronLeft size={24} />
+            </button>
+
+            {/* Carousel Slider */}
+            <div className="overflow-hidden w-full -mx-4 px-4">
+              <div 
+                className="flex transition-transform duration-500 ease-out"
+                style={{ 
+                  transform: `translateX(-${carouselIndex * (100 / visibleItems)}%)`,
+                }}
+              >
+                {[
+                  { before: "/media/before1.jpeg", after: "/media/after1.jpeg", idx: 0 },
+                  { before: "/media/before 2.jpeg", after: "/media/after 2.jpeg", idx: 1 },
+                  { before: "/media/before 3.jpeg", after: "/media/after 3.jpeg", idx: 2 },
+                  { before: "/media/before 4.jpeg", after: "/media/after 4.jpeg", idx: 3 }
+                ].map((project, index) => (
+                  <div 
+                    key={index}
+                    style={{
+                      width: `${100 / visibleItems}%`
+                    }}
+                    className="px-4 shrink-0"
+                  >
+                    <BeforeAfterSlider
+                      beforeImage={project.before}
+                      afterImage={project.after}
+                      beforeLabel="Before"
+                      afterLabel="After"
+                      title={t.transformation.items[project.idx]?.title || ""}
+                      label={t.transformation.items[project.idx]?.label || ""}
+                    />
+                  </div>
+                ))}
+              </div>
             </div>
+
+            {/* Right Button */}
+            <button 
+              onClick={nextSlide}
+              className="absolute right-2 md:-right-6 lg:-right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-slate-200/80 bg-white/90 backdrop-blur-sm hover:bg-white text-slate-800 hover:text-blue-600 flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer z-30 opacity-80 md:opacity-60 md:hover:opacity-100"
+              aria-label="Next Project"
+            >
+              <ChevronRight size={24} />
+            </button>
           </div>
         </div>
       </section>
