@@ -892,7 +892,7 @@ function ContactForm({ t }: { t: any }) {
     e.preventDefault();
     setStatus('loading');
     try {
-      const response = await fetch('https://services.leadconnectorhq.com/hooks/o7aUwpKbtkP4AOP0pEjC/webhook-trigger/90eda2d8-523f-4a45-ad8b-6e3da043de9b', {
+      const response = await fetch('https://hook.us2.make.com/qu71fl6al0vj91l5522j8rkhp8bar4rm', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(formData),
