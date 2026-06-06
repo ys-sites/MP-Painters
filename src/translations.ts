@@ -81,7 +81,10 @@ export const translations = {
         { label: "Project 01", title: "Interior Finishing", alt: "Interior wall painting and finishing by Manny Painter in Montreal" },
         { label: "Project 02", title: "Spray Painting", alt: "Professional spray painting service in Pierrefonds and Montreal area" },
         { label: "Project 03", title: "Cabinet Restoration", alt: "Kitchen cabinet painting and restoration in Montreal West Island" },
-        { label: "Project 04", title: "Exterior Refresh", alt: "Professional exterior painting and siding refresh in Montreal" }
+        { label: "Project 04", title: "Exterior Refresh", alt: "Professional exterior painting and siding refresh in Montreal" },
+        { label: "Project 05", title: "Deck & Siding", alt: "Deck and siding painting work in Montreal by Manny Painter" },
+        { label: "Project 06", title: "Plaster & Drywall", alt: "Drywall and plaster repair service in Montreal West Island" },
+        { label: "Project 07", title: "Cabinet Refinishing", alt: "Kitchen cabinet spray painting in Laval by Manny Painter" }
       ]
     },
     testimonials: {
@@ -217,7 +220,10 @@ export const translations = {
         { label: "Projet 01", title: "Finition Intérieure", alt: "Peinture intérieure et finition par Manny Painter à Montréal" },
         { label: "Projet 02", title: "Peinture au pistolet", alt: "Service de peinture au pistolet professionnel à Pierrefonds et Montréal" },
         { label: "Projet 03", title: "Restauration d'armoires", alt: "Peinture et restauration d'armoires de cuisine à Montréal West Island" },
-        { label: "Projet 04", title: "Rafraîchissement Extérieur", alt: "Service de peinture extérieure professionnel à Montréal" }
+        { label: "Projet 04", title: "Rafraîchissement Extérieur", alt: "Service de peinture extérieure professionnel à Montréal" },
+        { label: "Projet 05", title: "Terrasse & Revêtement", alt: "Peinture de terrasse et revêtement à Montréal par Manny Painter" },
+        { label: "Projet 06", title: "Plâtre & Cloisons Sèches", alt: "Service de réparation de plâtre et cloisons sèches dans le West Island" },
+        { label: "Projet 07", title: "Restauration d'armoires", alt: "Peinture au pistolet d'armoires de cuisine à Laval par Manny Painter" }
       ]
     },
     testimonials: {

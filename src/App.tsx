@@ -9,6 +9,16 @@ import { translations } from "./translations";
 import ShinyText from "./components/ShinyText";
 import BeforeAfterSlider from "./components/BeforeAfterSlider";
 
+const PORTFOLIO_PROJECTS = [
+  { before: "/media/before1.jpeg", after: "/media/after1.jpeg", idx: 0 },
+  { before: "/media/before 2.jpeg", after: "/media/after 2.jpeg", idx: 1 },
+  { before: "/media/before 3.jpeg", after: "/media/after 3.jpeg", idx: 2 },
+  { before: "/media/before 4.jpeg", after: "/media/after 4.jpeg", idx: 3 },
+  { before: "/media/before 5.jpeg", after: "/media/after 5.jpeg", idx: 4 },
+  { before: "/media/before 6.jpeg", after: "/media/after 6.jpeg", idx: 5 },
+  { before: "/media/before 7.jpeg", after: "/media/after 7.jpeg", idx: 6 }
+];
+
 const FadeInText = ({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) => {
   const words = text.split(" ");
   return (
@@ -76,7 +86,7 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    const maxIndex = 4 - visibleItems;
+    const maxIndex = PORTFOLIO_PROJECTS.length - visibleItems;
     if (carouselIndex > maxIndex) {
       setCarouselIndex(Math.max(0, maxIndex));
     }
@@ -84,7 +94,7 @@ export default function App() {
 
   const nextSlide = () => {
     setCarouselIndex((prev) => {
-      const maxIndex = 4 - visibleItems;
+      const maxIndex = PORTFOLIO_PROJECTS.length - visibleItems;
       if (prev >= maxIndex) {
         return 0;
       }
@@ -94,7 +104,7 @@ export default function App() {
 
   const prevSlide = () => {
     setCarouselIndex((prev) => {
-      const maxIndex = 4 - visibleItems;
+      const maxIndex = PORTFOLIO_PROJECTS.length - visibleItems;
       if (prev <= 0) {
         return maxIndex;
       }
@@ -581,12 +591,7 @@ export default function App() {
                   transform: `translateX(-${carouselIndex * (100 / visibleItems)}%)`,
                 }}
               >
-                {[
-                  { before: "/media/before1.jpeg", after: "/media/after1.jpeg", idx: 0 },
-                  { before: "/media/before 2.jpeg", after: "/media/after 2.jpeg", idx: 1 },
-                  { before: "/media/before 3.jpeg", after: "/media/after 3.jpeg", idx: 2 },
-                  { before: "/media/before 4.jpeg", after: "/media/after 4.jpeg", idx: 3 }
-                ].map((project, index) => (
+                {PORTFOLIO_PROJECTS.map((project, index) => (
                   <div 
                     key={index}
                     style={{
