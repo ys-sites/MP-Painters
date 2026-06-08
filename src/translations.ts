@@ -92,9 +92,11 @@ export const translations = {
       subtitle: "Trusted by homeowners across Montreal, Pierrefonds, Laval, and the West Island for quality and reliability.",
       items: [
         { name: "Sarah M.", role: "Homeowner – Montreal", text: "Manny Painter and his team did an incredible job spraying our old oak kitchen cabinets. They look brand new! Highly professional and clean." },
+        { name: "Alex Soccer", role: "Homeowner – Montreal", text: "The service was exceptionally good, with excellent communication and professionalism, particularly in his work." },
         { name: "David L.", role: "Residential Client – Pierrefonds", text: "The plastering repair work was seamless, and the paint job turned out perfect. They respected our home and finished on schedule." },
         { name: "Elena V.", role: "Homeowner – West Island", text: "Manny Painter transformed our entire main floor. The attention to detail around the trim and edges is unmatched. I highly recommend them." },
-        { name: "Sylvie Lafontaine", role: "Homeowner – Montreal", text: "Manny is a real Pro! My old kitchen cabinets have been refreshed! His work is clean and the prep is professional. Thank you Manny!" }
+        { name: "Sylvie Lafontaine", role: "Homeowner – Montreal", text: "Manny is a real Pro! My old kitchen cabinets have been refreshed! His work is clean and the prep is professional. Thank you Manny!" },
+        { name: "Viviane C.", role: "Local Guide – Montreal", text: "Manny is very professional, works efficiently and the result is always amazing! I'm so glad I've found such an amazing painter and I am looking forward to work with him again." }
       ]
     },
     contact: {
@@ -253,9 +255,11 @@ export const translations = {
       subtitle: "Approuvé par les propriétaires à travers Montréal, Pierrefonds, Laval et le West Island pour la qualité et la fiabilité.",
       items: [
         { name: "Sarah M.", role: "Propriétaire – Montréal", text: "Manny Painter et son équipe ont fait un travail incroyable en pulvérisant nos vieilles armoires de cuisine en chêne. Elles ont l'air toutes neuves ! Très professionnel et propre." },
+        { name: "Alex Soccer", role: "Propriétaire – Montréal", text: "Le service était exceptionnellement bon, avec une excellente communication et un grand professionnalisme, particulièrement dans son travail." },
         { name: "David L.", role: "Client Résidentiel – Pierrefonds", text: "Le travail de réparation de plâtrage était parfait et la peinture s'est avérée impeccable. Ils ont respecté notre maison et ont terminé à temps." },
         { name: "Elena V.", role: "Propriétaire – West Island", text: "Manny Painter a transformé tout notre rez-de-chaussée. L'attention portée aux détails autour des moulures et des bords est inégalée. Je les recommande vivement." },
-        { name: "Sylvie Lafontaine", role: "Propriétaire – Montréal", text: "Manny est un vrai pro ! Mes vieilles armoires de cuisine ont été rafraîchies ! Son travail est propre et la préparation est professionnelle. Merci Manny !" }
+        { name: "Sylvie Lafontaine", role: "Propriétaire – Montréal", text: "Manny est un vrai pro ! Mes vieilles armoires de cuisine ont été rafraîchies ! Son travail est propre et la préparation est professionnelle. Merci Manny !" },
+        { name: "Viviane C.", role: "Guide local – Montréal", text: "Manny est très professionnel, travaille efficacement et le résultat est toujours incroyable ! Je suis tellement contente d'avoir trouvé un peintre aussi formidable et j'ai hâte de retravailler avec lui." }
       ]
     },
     contact: {
