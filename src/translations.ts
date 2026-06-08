@@ -136,6 +136,29 @@ export const translations = {
     footer: {
       desc: "Delivering exceptional painting, spraying, and repair services to residential clients across Montreal, Pierrefonds, Laval, Dollard-des-Ormeaux, Pointe-Claire, and the greater West Island area.",
       rights: "© 2026 Manny Painter. All rights reserved."
+    },
+    portfolio: {
+      viewAll: "View All Projects",
+      backHome: "Back to Home",
+      emptyState: "No projects found in this category.",
+      before: "BEFORE",
+      after: "AFTER",
+      categories: {
+        All: "All",
+        Exterior: "Exterior",
+        Interior: "Interior",
+        Cabinet: "Cabinet",
+        Commercial: "Commercial"
+      },
+      projects: {
+        1: "Victorian Exterior",
+        2: "Living Room",
+        3: "Kitchen Cabinets",
+        4: "Siding Refresh",
+        5: "Office Repaint",
+        6: "Dining Area",
+        7: "Cabinet Respray"
+      }
     }
   },
   fr: {
@@ -275,6 +298,29 @@ export const translations = {
     footer: {
       desc: "Des services exceptionnels de peinture, pulvérisation et réparation pour les clients résidentiels à Montréal, Pierrefonds, Laval, Dollard-des-Ormeaux, Pointe-Claire et dans tout le West Island.",
       rights: "© 2026 Manny Painter. Tous droits réservés."
+    },
+    portfolio: {
+      viewAll: "Voir tous les projets",
+      backHome: "Retour à l'accueil",
+      emptyState: "Aucun projet trouvé dans cette catégorie.",
+      before: "AVANT",
+      after: "APRÈS",
+      categories: {
+        All: "Tous",
+        Exterior: "Extérieur",
+        Interior: "Intérieur",
+        Cabinet: "Armoires",
+        Commercial: "Commercial"
+      },
+      projects: {
+        1: "Extérieur Victorien",
+        2: "Salon de séjour",
+        3: "Armoires de cuisine",
+        4: "Finition de revêtement",
+        5: "Peinture commerciale",
+        6: "Salle à manger",
+        7: "Peinture d'armoires"
+      }
     }
   }
 };

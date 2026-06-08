@@ -7,17 +7,28 @@ import {
 } from "lucide-react";
 import { translations } from "./translations";
 import ShinyText from "./components/ShinyText";
-import BeforeAfterSlider from "./components/BeforeAfterSlider";
+import BeforeAfterCard from "./components/BeforeAfterCard";
 
-const PORTFOLIO_PROJECTS = [
-  { before: "/media/before1.jpeg", after: "/media/after1.jpeg", idx: 0 },
-  { before: "/media/before 2.jpeg", after: "/media/after 2.jpeg", idx: 1 },
-  { before: "/media/before 3.jpeg", after: "/media/after 3.jpeg", idx: 2 },
-  { before: "/media/before 4.jpeg", after: "/media/after 4.jpeg", idx: 3 },
-  { before: "/media/before 5.jpeg", after: "/media/after 5.jpeg", idx: 4 },
-  { before: "/media/before 6.jpeg", after: "/media/after 6.jpeg", idx: 5 },
-  { before: "/media/before 7.jpeg", after: "/media/after 7.jpeg", idx: 6 }
+const CATEGORIES = ["All", "Exterior", "Interior", "Cabinet", "Commercial"] as const;
+
+const ALL_PROJECTS = [
+  { id: 1, beforeSrc: "/media/job1-before.jpg", afterSrc: "/media/job1-after.jpg", category: "Exterior", label: "Victorian Exterior" },
+  { id: 2, beforeSrc: "/media/job2-before.jpg", afterSrc: "/media/job2-after.jpg", category: "Interior", label: "Living Room" },
+  { id: 3, beforeSrc: "/media/job3-before.jpg", afterSrc: "/media/job3-after.jpg", category: "Cabinet",  label: "Kitchen Cabinets" },
+  { id: 4, beforeSrc: "/media/job4-before.jpg", afterSrc: "/media/job4-after.jpg", category: "Exterior", label: "Siding Refresh" },
+  { id: 5, beforeSrc: "/media/job5-before.jpg", afterSrc: "/media/job5-after.jpg", category: "Commercial", label: "Office Repaint" },
+  { id: 6, beforeSrc: "/media/job6-before.jpg", afterSrc: "/media/job6-after.jpg", category: "Interior", label: "Dining Area" },
+  { id: 7, beforeSrc: "/media/job7-before.jpg", afterSrc: "/media/job7-after.jpg", category: "Cabinet",  label: "Cabinet Respray" },
 ];
+
+const cardVariants = {
+  hidden: { opacity: 0, y: 30 },
+  visible: (custom: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: custom * 0.15, duration: 0.8, ease: [0.16, 1, 0.3, 1] }
+  })
+};
 
 const FadeInText = ({ text, className, delay = 0 }: { text: string, className?: string, delay?: number }) => {
   const words = text.split(" ");
@@ -67,49 +78,44 @@ export default function App() {
   const [isMobile, setIsMobile] = useState(false);
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
   const [isCtaOpen, setIsCtaOpen] = useState(false);
-  const [visibleItems, setVisibleItems] = useState(3);
-  const [carouselIndex, setCarouselIndex] = useState(0);
+
+  // Router, filter, and lightbox states
+  const [currentPath, setCurrentPath] = useState(window.location.pathname);
+  const [activeCategory, setActiveCategory] = useState<string>("All");
+  const [lightboxProject, setLightboxProject] = useState<typeof ALL_PROJECTS[0] | null>(null);
 
   useEffect(() => {
-    const handleResize = () => {
-      if (window.innerWidth < 768) {
-        setVisibleItems(1);
-      } else if (window.innerWidth < 1024) {
-        setVisibleItems(2);
-      } else {
-        setVisibleItems(3);
-      }
+    const handleLocationChange = () => {
+      setCurrentPath(window.location.pathname);
+      window.scrollTo(0, 0);
     };
-    handleResize();
-    window.addEventListener('resize', handleResize);
-    return () => window.removeEventListener('resize', handleResize);
+    window.addEventListener("popstate", handleLocationChange);
+    return () => window.removeEventListener("popstate", handleLocationChange);
   }, []);
 
-  useEffect(() => {
-    const maxIndex = PORTFOLIO_PROJECTS.length - visibleItems;
-    if (carouselIndex > maxIndex) {
-      setCarouselIndex(Math.max(0, maxIndex));
-    }
-  }, [visibleItems]);
-
-  const nextSlide = () => {
-    setCarouselIndex((prev) => {
-      const maxIndex = PORTFOLIO_PROJECTS.length - visibleItems;
-      if (prev >= maxIndex) {
-        return 0;
-      }
-      return prev + 1;
-    });
+  const navigate = (to: string) => {
+    window.history.pushState({}, "", to);
+    setCurrentPath(to);
+    window.scrollTo(0, 0);
   };
 
-  const prevSlide = () => {
-    setCarouselIndex((prev) => {
-      const maxIndex = PORTFOLIO_PROJECTS.length - visibleItems;
-      if (prev <= 0) {
-        return maxIndex;
+  const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, hash: string) => {
+    e.preventDefault();
+    if (currentPath !== "/") {
+      window.history.pushState({}, "", "/");
+      setCurrentPath("/");
+      setTimeout(() => {
+        const element = document.getElementById(hash);
+        if (element) {
+          element.scrollIntoView({ behavior: "smooth" });
+        }
+      }, 100);
+    } else {
+      const element = document.getElementById(hash);
+      if (element) {
+        element.scrollIntoView({ behavior: "smooth" });
       }
-      return prev - 1;
-    });
+    }
   };
 
   useEffect(() => {
@@ -143,10 +149,16 @@ export default function App() {
   }, []);
 
   useEffect(() => {
-    document.title = lang === 'fr'
-      ? 'Manny Painter | Peintre Montréal, Pierrefonds & Laval | Soumission Gratuite'
-      : 'Manny Painter | Painter Montreal, Pierrefonds & Laval | Free Estimate';
-  }, [lang]);
+    if (currentPath === "/portfolio") {
+      document.title = lang === 'fr'
+        ? 'Réalisations & Portfolio | Manny Painter'
+        : 'Portfolio & Recent Projects | Manny Painter';
+    } else {
+      document.title = lang === 'fr'
+        ? 'Manny Painter | Peintre Montréal, Pierrefonds & Laval | Soumission Gratuite'
+        : 'Manny Painter | Painter Montreal, Pierrefonds & Laval | Free Estimate';
+    }
+  }, [lang, currentPath]);;
 
   return (
     <div className="min-h-screen bg-slate-50 text-slate-800 font-sans selection:bg-blue-600 selection:text-white">
@@ -154,7 +166,7 @@ export default function App() {
       {/* Navigation */}
       <nav className={`fixed top-0 inset-x-0 z-50 transition-all duration-500 ease-[cubic-bezier(0.2,0.8,0.2,1)] will-change-transform ${isScrolled ? 'bg-white/70 backdrop-blur-2xl border-b border-white/50 shadow-[0_4px_30px_rgba(0,0,0,0.03)] py-2.5 md:py-3' : 'bg-transparent py-5 md:py-8'}`}>
         <div className="max-w-7xl mx-auto px-6 flex items-center justify-between relative z-10 font-bold">
-          <a href="#" className="hover:opacity-80 transition-opacity active:scale-95 duration-200">
+          <a href="#" onClick={(e) => { e.preventDefault(); navigate("/"); }} className="hover:opacity-80 transition-opacity active:scale-95 duration-200">
             <Logo lang={lang} />
           </a>
           
@@ -163,6 +175,7 @@ export default function App() {
               <a 
                 key={item}
                 href={`#${item}`} 
+                onClick={(e) => handleNavClick(e, item)}
                 className="text-slate-600 hover:text-blue-600 transition-all relative group py-2"
               >
                 {t.nav[item as keyof typeof t.nav]}
@@ -176,7 +189,7 @@ export default function App() {
               <button onClick={() => setLang('en')} className={`px-2 py-1 text-xs font-bold rounded ${lang === 'en' ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}>EN</button>
               <button onClick={() => setLang('fr')} className={`px-2 py-1 text-xs font-bold rounded ${lang === 'fr' ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}>FR</button>
             </div>
-            <a href="#contact" className="bg-blue-600 text-white px-3 lg:px-4 py-2 rounded-lg font-bold hover:bg-blue-700 transition-colors text-[10px] lg:text-xs tracking-wider uppercase shadow-md shadow-blue-600/20 whitespace-nowrap">
+            <a href="#contact" onClick={(e) => handleNavClick(e, "contact")} className="bg-blue-600 text-white px-3 lg:px-4 py-2 rounded-lg font-bold hover:bg-blue-700 transition-colors text-[10px] lg:text-xs tracking-wider uppercase shadow-md shadow-blue-600/20 whitespace-nowrap">
               {t.nav.getQuote}
             </a>
           </div>
@@ -209,17 +222,24 @@ export default function App() {
               className="w-4/5 max-w-sm bg-white h-full shadow-2xl p-6 flex flex-col"
             >
               <div className="flex justify-between items-center mb-8">
-                <Logo lang={lang} />
+                <a href="#" onClick={(e) => { e.preventDefault(); setMobileMenuOpen(false); navigate("/"); }} className="hover:opacity-80 transition-opacity active:scale-95 duration-200">
+                  <Logo lang={lang} />
+                </a>
                 <button onClick={() => setMobileMenuOpen(false)} className="p-2 text-slate-500 hover:bg-slate-100 rounded-full">
                   <X size={24} />
                 </button>
               </div>
               
               <div className="flex flex-col gap-6 text-lg font-bold text-slate-800 uppercase tracking-wide">
-                <a href="#about" onClick={() => setMobileMenuOpen(false)}>{t.nav.about}</a>
-                <a href="#services" onClick={() => setMobileMenuOpen(false)}>{t.nav.services}</a>
-                <a href="#portfolio" onClick={() => setMobileMenuOpen(false)}>{t.nav.portfolio}</a>
-                <a href="#reviews" onClick={() => setMobileMenuOpen(false)}>{t.nav.reviews}</a>
+                {['about', 'services', 'portfolio', 'reviews'].map((item) => (
+                  <a 
+                    key={item} 
+                    href={`#${item}`} 
+                    onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, item); }}
+                  >
+                    {t.nav[item as keyof typeof t.nav]}
+                  </a>
+                ))}
               </div>
 
               <div className="mt-8 pt-8 border-t border-slate-100 flex gap-2">
@@ -227,7 +247,7 @@ export default function App() {
                 <button onClick={() => { setLang('fr'); setMobileMenuOpen(false); }} className={`flex-1 py-3 rounded-lg font-bold tracking-wide ${lang === 'fr' ? 'bg-blue-50 text-blue-600 border border-blue-200' : 'bg-slate-50 text-slate-600'}`}>FRANÇAIS</button>
               </div>
 
-              <a href="#contact" onClick={() => setMobileMenuOpen(false)} className="mt-auto bg-blue-600 text-white text-center py-4 rounded-xl font-bold uppercase tracking-wider">
+              <a href="#contact" onClick={(e) => { setMobileMenuOpen(false); handleNavClick(e, "contact"); }} className="mt-auto bg-blue-600 text-white text-center py-4 rounded-xl font-bold uppercase tracking-wider">
                 {t.nav.getQuote}
               </a>
             </motion.div>
@@ -235,533 +255,629 @@ export default function App() {
         )}
       </AnimatePresence>
 
-      {/* Hero Section (Split Layout) */}
-      <section className="pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 overflow-hidden relative">
-        <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-blue-300/30 to-blue-500/10 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/3 pointer-events-none will-change-transform"></div>
-        <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-slate-200/50 to-blue-200/20 rounded-full blur-3xl opacity-60 translate-y-1/4 -translate-x-1/4 pointer-events-none will-change-transform"></div>
-        
-        <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
-          <div className="lg:w-1/2 relative text-center lg:text-left">
-            <motion.div 
-              initial={{ opacity: 0, y: isMobile ? 30 : 20 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-              className="inline-block px-4 py-1.5 bg-blue-100/50 text-blue-700 font-bold text-xs uppercase tracking-widest rounded-full mb-6 border border-blue-200 backdrop-blur-sm will-change-transform"
-            >
-              {t.hero.badge}
-            </motion.div>
-            <motion.div
-              initial={{ opacity: 0, y: isMobile ? 40 : 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
-              className="will-change-transform"
-            >
-              <h1>
-                <ShinyText
-                  text={t.hero.title}
-                  disabled={false}
-                  speed={3}
-                  className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-6 block"
-                  color="#0f172a"
-                  shineColor="#2563eb"
-                />
-              </h1>
-            </motion.div>
-            <motion.p 
-              initial={{ opacity: 0, y: isMobile ? 30 : 0 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
-              className="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium will-change-transform"
-            >
-              {t.hero.subtitle}
-            </motion.p>
-            <motion.div 
-              initial={{ opacity: 0, y: isMobile ? 40 : 0 }} 
-              animate={{ opacity: 1, y: 0 }} 
-              transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
-              className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start will-change-transform"
-            >
-              <a href="#contact" className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-xl shadow-blue-600/20 text-center flex items-center justify-center gap-2">
-                {t.hero.cta} <ArrowRight size={18} />
-              </a>
-              <a href="tel:5144637097" className="w-full sm:w-auto px-8 py-4 bg-white/80 backdrop-blur-sm text-slate-800 font-bold rounded-xl hover:bg-white transition-colors border-2 border-slate-200 text-center flex items-center justify-center gap-2 flex-shrink-0">
-                <Phone size={18} className="text-blue-600" /> 514 463 7097
-              </a>
-            </motion.div>
-          </div>
-          
-          <div className="lg:w-1/2 relative w-full max-w-lg mx-auto lg:max-w-none">
-            <motion.div 
-              initial={{ opacity: 0, y: 60, scale: 0.9, rotateY: 5 }} 
-              animate={{ opacity: 1, y: 0, scale: 1, rotateY: 0 }} 
-              transition={{ 
-                delay: 0.2, 
-                duration: 1.2, 
-                ease: [0.16, 1, 0.3, 1] 
-              }} 
-              className="relative z-10 w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(37,99,235,0.25)] flex-shrink-0"
-            >
-              <img src="/media/hero.jpg" alt={lang === 'en' ? 'Professional painter Manny Painter serving Montreal, Pierrefonds and Laval' : 'Manny Painter – peintre professionnel à Montréal, Pierrefonds et Laval'} className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000" decoding="async" />
-              <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/30 to-transparent"></div>
-              
-              <motion.div 
-                 initial={{ opacity: 0, y: 30, scale: 0.8 }}
-                 animate={{ opacity: 1, y: 0, scale: 1 }}
-                 transition={{ delay: 0.6, type: "spring", damping: 15 }}
-                 className="absolute right-4 bottom-4 md:right-8 md:bottom-8 bg-white/90 backdrop-blur-md p-4 md:p-5 rounded-[1.5rem] shadow-2xl border border-white/50 z-20 max-w-[200px]"
-              >
-                  <div className="flex items-center gap-3">
-                     <div className="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/30 shrink-0">
-                        <span className="font-black text-xl">15+</span>
-                     </div>
-                     <div>
-                       <div className="font-black text-slate-800 text-sm leading-tight tracking-tight uppercase">
-                         {lang === 'fr' ? 'Années' : 'Years'}
-                       </div>
-                       <div className="text-[10px] text-blue-600 font-bold uppercase tracking-widest mt-0.5">
-                         {lang === 'fr' ? "D'expérience" : "Of Experience"}
-                       </div>
-                     </div>
-                  </div>
-              </motion.div>
-            </motion.div>
-            
-            {/* Decals */}
-            <motion.div 
-               animate={{ 
-                 y: [0, -15, 0],
-                 rotate: [0, 2, 0]
-               }}
-               transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-               className="absolute -bottom-6 -left-6 w-3/4 h-3/4 bg-blue-100/50 rounded-[2rem] -z-10 blur-sm"
-            ></motion.div>
-          </div>
-        </div>
-      </section>
+      {currentPath === "/portfolio" ? (
+        /* Portfolio Subpage */
+        <main className="pt-32 pb-24 px-6 min-h-[70vh] bg-slate-50 relative overflow-hidden">
+          <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-blue-300/20 to-blue-500/5 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
+          <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-slate-200/40 to-blue-200/10 rounded-full blur-3xl opacity-60 translate-y-1/4 -translate-x-1/4 pointer-events-none"></div>
 
-      {/* About Section - Storytelling */}
-      <section id="about" className="py-24 bg-white px-6 overflow-hidden">
-        <div className="max-w-7xl mx-auto">
+          <div className="max-w-7xl mx-auto relative z-10">
+            {/* Header / Intro */}
             <div className="text-center mb-16">
-              <ShinyText 
-                text={t.nav.about} 
-                className="text-xs font-black uppercase tracking-[0.2em] mb-4 block" 
-                color="#2563eb" 
-                shineColor="#93c5fd" 
-              />
-            </div>
-
-          <div className="flex flex-col lg:flex-row gap-16 items-center">
-            <motion.div 
-               initial={{ opacity: 0, scale: 0.95, x: -30 }} 
-               whileInView={{ opacity: 1, scale: 1, x: 0 }} 
-               transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
-               viewport={{ once: true, margin: "-100px" }} 
-               className="relative lg:w-1/2 min-h-[400px] md:min-h-[500px]"
-            >
-              <div className="absolute inset-0 bg-blue-600 rounded-[2.5rem] translate-x-4 translate-y-4 opacity-5 blur-2xl"></div>
-              <img loading="lazy" decoding="async" src="/media/about.jpg" alt={lang === 'en' ? 'Manny Painter residential painting work in Montreal, Pierrefonds and Laval' : 'Travaux de peinture résidentielle de Manny Painter à Montréal, Pierrefonds et Laval'} className="relative z-10 w-full h-full object-cover rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:shadow-2xl transition-all duration-700" />
-              
-              {/* Highlight card popup */}
-              <motion.div 
-                 initial={{ opacity: 0, y: 30, scale: 0.8 }}
-                 whileInView={{ opacity: 1, y: 0, scale: 1 }}
-                 transition={{ delay: 0.6, type: "spring", damping: 15 }}
-                 viewport={{ once: true }}
-                 className="absolute -right-2 -bottom-6 md:-right-8 md:-bottom-8 bg-white/90 backdrop-blur-md p-6 md:p-8 rounded-[2rem] shadow-[0_20px_40px_rgba(0,0,0,0.08)] border border-white/50 z-20 max-w-[220px]"
-              >
-                  <div className="flex items-center gap-4 mb-3">
-                     <div className="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/30">
-                        <CheckCircle size={24} />
-                     </div>
-                     <div className="font-black text-3xl text-slate-900 tracking-tighter">100%</div>
-                  </div>
-                  <p className="text-[10px] text-slate-500 font-black uppercase tracking-[0.2em] leading-relaxed opacity-80">Customer<br/>Satisfaction</p>
-              </motion.div>
-            </motion.div>
-            
-            <div className="lg:w-1/2">
-              <h2>
-                <ShinyText
-                  text={lang === 'fr' ? 'Spécialiste' : 'Specialist'}
-                  className="text-3xl md:text-5xl font-extrabold mb-8 leading-tight block"
-                  color="#0f172a"
-                  shineColor="#2563eb"
-                />
-              </h2>
-              <motion.p 
-                 initial={{ opacity: 0, y: 20 }}
-                 whileInView={{ opacity: 1, y: 0 }}
-                 viewport={{ once: true }}
-                 transition={{ delay: 0.3, duration: 0.6 }}
-                 className="text-slate-600 text-lg leading-relaxed mb-10 pb-6 border-b border-slate-100"
-              >
-                {t.about.desc}
-              </motion.p>
-              
-              <motion.div 
-                 initial="hidden"
-                 whileInView="visible"
-                 viewport={{ once: true }}
-                 variants={{ visible: { transition: { staggerChildren: 0.1, delayChildren: 0.4 } }, hidden: {} }}
-                 className="grid sm:grid-cols-2 gap-6"
-              >
-                {t.about.points.map((point: string, idx: number) => (
-                  <motion.div 
-                     key={idx} 
-                     variants={{ 
-                       hidden: { opacity: 0, x: isMobile ? 0 : -20, y: isMobile ? 30 : 0 }, 
-                       visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } 
-                     }}
-                     className="flex items-start gap-4 group will-change-transform"
-                  >
-                    <div className="flex-shrink-0 w-10 h-10 bg-blue-50 group-hover:bg-blue-600 group-hover:text-white transition-colors rounded-xl flex items-center justify-center text-blue-600 mt-1">
-                       <CheckCircle size={18} />
-                    </div>
-                    <span className="text-slate-700 font-medium leading-relaxed">{point}</span>
-                  </motion.div>
-                ))}
-              </motion.div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Services Grid */}
-      <section id="services" className="py-32 bg-slate-900 text-white px-6 relative overflow-hidden">
-        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-700 via-transparent to-transparent"></div>
-        <div className="max-w-7xl mx-auto relative z-10">
-          <div className="text-center mb-20">
-            <ShinyText 
-              text={t.nav.services} 
-              className="text-xs font-black uppercase tracking-[0.2em] mb-4 block" 
-              color="#3b82f6" 
-              shineColor="#93c5fd" 
-            />
-            <h2 className="flex justify-center items-center gap-4 flex-wrap">
-              <ShinyText
-                text={lang === 'fr' ? 'Spécialité' : 'Speciality'}
-                className="text-4xl md:text-5xl font-extrabold tracking-tight"
-                color="#60a5fa"
-                shineColor="#ffffff"
-              />
-              <span className="text-4xl md:text-5xl font-extrabold text-blue-500/50">/</span>
-              <ShinyText
-                text={t.services.title}
-                className="text-4xl md:text-5xl font-extrabold tracking-tight"
-                color="#ffffff"
-                shineColor="#60a5fa"
-              />
-            </h2>
-            <motion.p initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-slate-400 max-w-2xl mx-auto text-xl mt-6">{t.services.subtitle}</motion.p>
-          </div>
-
-          <motion.div 
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{ 
-              visible: { transition: { staggerChildren: 0.15 } }, 
-              hidden: {} 
-            }}
-            className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
-          >
-            {t.services.items.map((service: any, idx: number) => {
-              const icons = [<SprayCan size={32} />, <Home size={32} />, <Paintbrush size={32} />, <Hammer size={32} />];
-              return (
-                <motion.div 
-                  key={idx}
-                  variants={{
-                    hidden: { opacity: 0, y: isMobile ? 50 : 20 },
-                    visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
-                  }}
-                  className="bg-slate-800/80 backdrop-blur-sm border border-white/5 p-8 rounded-[2rem] hover:bg-slate-800 transition-all group hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(37,99,235,0.15)] overflow-hidden relative will-change-transform"
-                >
-                  <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl -translate-y-12 translate-x-12 group-hover:bg-blue-500/20 transition-all"></div>
-                  <div className="w-16 h-16 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-inner">
-                    {icons[idx]}
-                  </div>
-                  <h3 className="text-xl font-black mb-4 tracking-tight group-hover:text-blue-400 transition-colors">{service.title}</h3>
-                  <p className="text-slate-400 leading-relaxed text-sm font-medium">{service.desc}</p>
-                </motion.div>
-              );
-            })}
-          </motion.div>
-
-          <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-20 flex flex-col md:flex-row items-center justify-between bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500 rounded-[2.5rem] p-10 md:p-14 shadow-[0_30px_60px_-10px_rgba(37,99,235,0.3)] relative overflow-hidden group">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-1000"></div>
-            <h3 className="text-2xl md:text-3xl font-black mb-6 md:mb-0 max-w-lg text-center md:text-left text-white tracking-tight relative z-10">{t.services.cta.title}</h3>
-            <a href="#contact" className="px-10 py-5 bg-white text-blue-700 font-black rounded-2xl hover:bg-slate-50 transition-all w-full md:w-auto text-center shadow-xl uppercase tracking-[0.2em] relative z-10 hover:-translate-y-1 active:translate-y-0 text-sm">
-              {t.services.cta.button}
-            </a>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Service Areas */}
-      <section id="service-areas" className="py-20 bg-white px-6">
-        <div className="max-w-7xl mx-auto text-center">
-          <ShinyText
-            text={lang === 'fr' ? 'Zones Desservies' : 'Service Areas'}
-            className="text-xs font-black uppercase tracking-[0.2em] mb-4 block"
-            color="#2563eb"
-            shineColor="#93c5fd"
-          />
-          <h2>
-            <ShinyText
-              text={t.serviceAreas.title}
-              className="text-3xl md:text-4xl font-extrabold mb-4 block"
-              color="#0f172a"
-              shineColor="#2563eb"
-            />
-          </h2>
-          <motion.p
-            initial={{ opacity: 0, y: 10 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.2 }}
-            className="text-slate-600 max-w-2xl mx-auto mb-12 text-lg"
-          >
-            {t.serviceAreas.subtitle}
-          </motion.p>
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.2 }}
-            variants={{ visible: { transition: { staggerChildren: 0.05 } }, hidden: {} }}
-            className="flex flex-wrap justify-center gap-3"
-          >
-            {t.serviceAreas.areas.map((area: string) => (
-              <motion.div
-                key={area}
-                variants={{
-                  hidden: { opacity: 0, scale: 0.9, y: 10 },
-                  visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4 } }
-                }}
-                className="flex items-center gap-2 bg-blue-50 border border-blue-100 hover:bg-blue-100 hover:border-blue-200 text-blue-700 font-bold px-5 py-3 rounded-xl text-sm transition-all cursor-default"
-              >
-                <MapPin size={14} className="text-blue-500 shrink-0" />
-                <span>{area}</span>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Portfolio / Transformations */}
-      <section id="portfolio" className="py-32 bg-slate-50 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
-            <div className="max-w-2xl">
               <ShinyText 
                 text={t.nav.portfolio} 
                 className="text-xs font-black uppercase tracking-[0.2em] mb-4 block" 
                 color="#2563eb" 
                 shineColor="#93c5fd" 
               />
+              <h1 className="text-4xl md:text-5xl font-extrabold text-slate-900 tracking-tight mb-4">
+                {t.transformation.title}
+              </h1>
+              <p className="text-slate-600 text-lg max-w-2xl mx-auto font-medium">
+                {t.transformation.subtitle}
+              </p>
+            </div>
+
+            {/* Category Filter Pills */}
+            <div className="flex flex-wrap justify-center gap-2 mb-12">
+              {CATEGORIES.map((cat) => {
+                const label = t.portfolio.categories[cat] || cat;
+                return (
+                  <button
+                    key={cat}
+                    onClick={() => setActiveCategory(cat)}
+                    className={`px-5 py-2.5 rounded-full text-xs font-black tracking-widest uppercase transition-all duration-200 border cursor-pointer active:scale-95 ${
+                      activeCategory === cat
+                        ? "bg-blue-600 border-blue-600 text-white shadow-md shadow-blue-600/25 animate-none"
+                        : "bg-white border-slate-200 text-slate-600 hover:bg-slate-50 shadow-sm"
+                    }`}
+                  >
+                    {label}
+                  </button>
+                );
+              })}
+            </div>
+
+            {/* Grid of Cards with AnimatePresence */}
+            {(() => {
+              const filteredProjects = activeCategory === "All"
+                ? ALL_PROJECTS
+                : ALL_PROJECTS.filter(p => p.category === activeCategory);
+
+              if (filteredProjects.length === 0) {
+                return (
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: 20 }}
+                    className="text-center py-20 bg-white/80 backdrop-blur-md border border-slate-200/60 rounded-3xl p-8 max-w-md mx-auto shadow-sm"
+                  >
+                    <div className="w-16 h-16 bg-slate-100 rounded-full flex items-center justify-center mx-auto mb-4 text-slate-400">
+                      <Paintbrush size={32} />
+                    </div>
+                    <p className="text-slate-600 font-bold uppercase tracking-wider text-xs">{t.portfolio.emptyState}</p>
+                  </motion.div>
+                );
+              }
+
+              return (
+                <motion.div 
+                  layout 
+                  className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8"
+                >
+                  <AnimatePresence mode="popLayout">
+                    {filteredProjects.map((project) => (
+                      <motion.div
+                        key={project.id}
+                        layout
+                        initial={{ opacity: 0, scale: 0.9 }}
+                        animate={{ opacity: 1, scale: 1 }}
+                        exit={{ opacity: 0, scale: 0.9 }}
+                        transition={{ duration: 0.3 }}
+                      >
+                        <BeforeAfterCard
+                          id={project.id}
+                          beforeSrc={project.beforeSrc}
+                          afterSrc={project.afterSrc}
+                          category={project.category}
+                          label={project.label}
+                          lang={lang}
+                          onClick={() => setLightboxProject(project)}
+                        />
+                      </motion.div>
+                    ))}
+                  </AnimatePresence>
+                </motion.div>
+              );
+            })()}
+          </div>
+        </main>
+      ) : (
+        /* Homepage Content */
+        <>
+          {/* Hero Section (Split Layout) */}
+          <section className="pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 overflow-hidden relative">
+            <div className="absolute top-0 right-0 w-[800px] h-[800px] bg-gradient-to-br from-blue-300/30 to-blue-500/10 rounded-full blur-3xl opacity-50 -translate-y-1/2 translate-x-1/3 pointer-events-none will-change-transform"></div>
+            <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-gradient-to-tr from-slate-200/50 to-blue-200/20 rounded-full blur-3xl opacity-60 translate-y-1/4 -translate-x-1/4 pointer-events-none will-change-transform"></div>
+            
+            <div className="max-w-7xl mx-auto flex flex-col lg:flex-row items-center gap-16 relative z-10">
+              <div className="lg:w-1/2 relative text-center lg:text-left">
+                <motion.div 
+                  initial={{ opacity: 0, y: isMobile ? 30 : 20 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
+                  className="inline-block px-4 py-1.5 bg-blue-100/50 text-blue-700 font-bold text-xs uppercase tracking-widest rounded-full mb-6 border border-blue-200 backdrop-blur-sm will-change-transform"
+                >
+                  {t.hero.badge}
+                </motion.div>
+                <motion.div
+                  initial={{ opacity: 0, y: isMobile ? 40 : 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.1, duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                  className="will-change-transform"
+                >
+                  <h1>
+                    <ShinyText
+                      text={t.hero.title}
+                      disabled={false}
+                      speed={3}
+                      className="text-4xl md:text-5xl lg:text-6xl font-extrabold leading-[1.1] mb-6 block"
+                      color="#0f172a"
+                      shineColor="#2563eb"
+                    />
+                  </h1>
+                </motion.div>
+                <motion.p 
+                  initial={{ opacity: 0, y: isMobile ? 30 : 0 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  transition={{ delay: 0.3, duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
+                  className="text-lg text-slate-600 mb-8 leading-relaxed max-w-2xl mx-auto lg:mx-0 font-medium will-change-transform"
+                >
+                  {t.hero.subtitle}
+                </motion.p>
+                <motion.div 
+                  initial={{ opacity: 0, y: isMobile ? 40 : 0 }} 
+                  animate={{ opacity: 1, y: 0 }} 
+                  transition={{ delay: 0.5, duration: 0.8, ease: [0.16, 1, 0.3, 1] }} 
+                  className="flex flex-col sm:flex-row items-center gap-4 justify-center lg:justify-start will-change-transform"
+                >
+                  <a href="#contact" onClick={(e) => handleNavClick(e, "contact")} className="w-full sm:w-auto px-8 py-4 bg-blue-600 text-white font-bold rounded-xl hover:bg-blue-700 transition-colors shadow-xl shadow-blue-600/20 text-center flex items-center justify-center gap-2">
+                    {t.hero.cta} <ArrowRight size={18} />
+                  </a>
+                  <a href="tel:5144637097" className="w-full sm:w-auto px-8 py-4 bg-white/80 backdrop-blur-sm text-slate-800 font-bold rounded-xl hover:bg-white transition-colors border-2 border-slate-200 text-center flex items-center justify-center gap-2 flex-shrink-0">
+                    <Phone size={18} className="text-blue-600" /> 514 463 7097
+                  </a>
+                </motion.div>
+              </div>
+              
+              <div className="lg:w-1/2 relative w-full max-w-lg mx-auto lg:max-w-none">
+                <motion.div 
+                  initial={{ opacity: 0, y: 60, scale: 0.9, rotateY: 5 }} 
+                  animate={{ opacity: 1, y: 0, scale: 1, rotateY: 0 }} 
+                  transition={{ 
+                    delay: 0.2, 
+                    duration: 1.2, 
+                    ease: [0.16, 1, 0.3, 1] 
+                  }} 
+                  className="relative z-10 w-full aspect-[4/3] rounded-[2rem] overflow-hidden shadow-[0_30px_60px_-15px_rgba(37,99,235,0.25)] flex-shrink-0"
+                >
+                  <img src="/media/hero.jpg" alt={lang === 'en' ? 'Professional painter Manny Painter serving Montreal, Pierrefonds and Laval' : 'Manny Painter – peintre professionnel à Montréal, Pierrefonds et Laval'} className="w-full h-full object-cover transform hover:scale-105 transition-transform duration-1000" decoding="async" />
+                  <div className="absolute inset-0 bg-gradient-to-tr from-blue-900/30 to-transparent"></div>
+                  
+                  <motion.div 
+                     initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                     animate={{ opacity: 1, y: 0, scale: 1 }}
+                     transition={{ delay: 0.6, type: "spring", damping: 15 }}
+                     className="absolute right-4 bottom-4 md:right-8 md:bottom-8 bg-white/90 backdrop-blur-md p-4 md:p-5 rounded-[1.5rem] shadow-2xl border border-white/50 z-20 max-w-[200px]"
+                  >
+                      <div className="flex items-center gap-3">
+                         <div className="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/30 shrink-0">
+                            <span className="font-black text-xl">15+</span>
+                         </div>
+                         <div>
+                           <div className="font-black text-slate-800 text-sm leading-tight tracking-tight uppercase">
+                             {lang === 'fr' ? 'Années' : 'Years'}
+                           </div>
+                           <div className="text-[10px] text-blue-600 font-bold uppercase tracking-widest mt-0.5">
+                             {lang === 'fr' ? "D'expérience" : "Of Experience"}
+                           </div>
+                         </div>
+                      </div>
+                  </motion.div>
+                </motion.div>
+                
+                {/* Decals */}
+                <motion.div 
+                   animate={{ 
+                     y: [0, -15, 0],
+                     rotate: [0, 2, 0]
+                   }}
+                   transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
+                   className="absolute -bottom-6 -left-6 w-3/4 h-3/4 bg-blue-100/50 rounded-[2rem] -z-10 blur-sm"
+                ></motion.div>
+              </div>
+            </div>
+          </section>
+
+          {/* About Section - Storytelling */}
+          <section id="about" className="py-24 bg-white px-6 overflow-hidden">
+            <div className="max-w-7xl mx-auto">
+                <div className="text-center mb-16">
+                  <ShinyText 
+                    text={t.nav.about} 
+                    className="text-xs font-black uppercase tracking-[0.2em] mb-4 block" 
+                    color="#2563eb" 
+                    shineColor="#93c5fd" 
+                  />
+                </div>
+
+              <div className="flex flex-col lg:flex-row gap-16 items-center">
+                <motion.div 
+                   initial={{ opacity: 0, scale: 0.95, x: -30 }} 
+                   whileInView={{ opacity: 1, scale: 1, x: 0 }} 
+                   transition={{ duration: 1, ease: [0.16, 1, 0.3, 1] }}
+                   viewport={{ once: true, margin: "-100px" }} 
+                   className="relative lg:w-1/2 min-h-[400px] md:min-h-[500px]"
+                >
+                  <div className="absolute inset-0 bg-blue-600 rounded-[2.5rem] translate-x-4 translate-y-4 opacity-5 blur-2xl"></div>
+                  <img loading="lazy" decoding="async" src="/media/about.jpg" alt={lang === 'en' ? 'Manny Painter residential painting work in Montreal, Pierrefonds and Laval' : 'Travaux de peinture résidentielle de Manny Painter à Montréal, Pierrefonds et Laval'} className="relative z-10 w-full h-full object-cover rounded-[2.5rem] shadow-[0_20px_50px_rgba(0,0,0,0.1)] hover:shadow-2xl transition-all duration-700" />
+                  
+                  {/* Highlight card popup */}
+                  <motion.div 
+                     initial={{ opacity: 0, y: 30, scale: 0.8 }}
+                     whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                     transition={{ delay: 0.6, type: "spring", damping: 15 }}
+                     viewport={{ once: true }}
+                     className="absolute -right-2 -bottom-6 md:-right-8 md:-bottom-8 bg-white/90 backdrop-blur-md p-6 md:p-8 rounded-[2rem] shadow-[0_20px_40px_rgba(0,0,0,0.08)] border border-white/50 z-20 max-w-[220px]"
+                  >
+                      <div className="flex items-center gap-4 mb-3">
+                         <div className="w-12 h-12 bg-blue-600 text-white rounded-2xl flex items-center justify-center shadow-lg shadow-blue-600/30">
+                            <CheckCircle size={24} />
+                         </div>
+                         <div className="font-black text-3xl text-slate-900 tracking-tighter">100%</div>
+                      </div>
+                      <p className="text-[10px] text-slate-500 font-black uppercase tracking-[0.2em] leading-relaxed opacity-80">Customer<br/>Satisfaction</p>
+                  </motion.div>
+                </motion.div>
+                
+                <div className="lg:w-1/2">
+                  <h2>
+                    <ShinyText
+                      text={lang === 'fr' ? 'Spécialiste' : 'Specialist'}
+                      className="text-3xl md:text-5xl font-extrabold mb-8 leading-tight block"
+                      color="#0f172a"
+                      shineColor="#2563eb"
+                    />
+                  </h2>
+                  <motion.p 
+                     initial={{ opacity: 0, y: 20 }}
+                     whileInView={{ opacity: 1, y: 0 }}
+                     viewport={{ once: true }}
+                     transition={{ delay: 0.3, duration: 0.6 }}
+                     className="text-slate-600 text-lg leading-relaxed mb-10 pb-6 border-b border-slate-100"
+                  >
+                    {t.about.desc}
+                  </motion.p>
+                  
+                  <motion.div 
+                     initial="hidden"
+                     whileInView="visible"
+                     viewport={{ once: true }}
+                     variants={{ visible: { transition: { staggerChildren: 0.1, delayChildren: 0.4 } }, hidden: {} }}
+                     className="grid sm:grid-cols-2 gap-6"
+                  >
+                    {t.about.points.map((point: string, idx: number) => (
+                      <motion.div 
+                         key={idx} 
+                         variants={{ 
+                           hidden: { opacity: 0, x: isMobile ? 0 : -20, y: isMobile ? 30 : 0 }, 
+                           visible: { opacity: 1, x: 0, y: 0, transition: { duration: 0.8, ease: [0.16, 1, 0.3, 1] } } 
+                         }}
+                         className="flex items-start gap-4 group will-change-transform"
+                      >
+                        <div className="flex-shrink-0 w-10 h-10 bg-blue-50 group-hover:bg-blue-600 group-hover:text-white transition-colors rounded-xl flex items-center justify-center text-blue-600 mt-1">
+                           <CheckCircle size={18} />
+                        </div>
+                        <span className="text-slate-700 font-medium leading-relaxed">{point}</span>
+                      </motion.div>
+                    ))}
+                  </motion.div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Services Grid */}
+          <section id="services" className="py-32 bg-slate-900 text-white px-6 relative overflow-hidden">
+            <div className="absolute inset-0 opacity-10 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-blue-700 via-transparent to-transparent"></div>
+            <div className="max-w-7xl mx-auto relative z-10">
+              <div className="text-center mb-20">
+                <ShinyText 
+                  text={t.nav.services} 
+                  className="text-xs font-black uppercase tracking-[0.2em] mb-4 block" 
+                  color="#3b82f6" 
+                  shineColor="#93c5fd" 
+                />
+                <h2 className="flex justify-center items-center gap-4 flex-wrap">
+                  <ShinyText
+                    text={lang === 'fr' ? 'Spécialité' : 'Speciality'}
+                    className="text-4xl md:text-5xl font-extrabold tracking-tight"
+                    color="#60a5fa"
+                    shineColor="#ffffff"
+                  />
+                  <span className="text-4xl md:text-5xl font-extrabold text-blue-500/50">/</span>
+                  <ShinyText
+                    text={t.services.title}
+                    className="text-4xl md:text-5xl font-extrabold tracking-tight"
+                    color="#ffffff"
+                    shineColor="#60a5fa"
+                  />
+                </h2>
+                <motion.p initial={{ opacity: 0, scale: 0.95 }} whileInView={{ opacity: 1, scale: 1 }} viewport={{ once: true }} transition={{ delay: 0.2 }} className="text-slate-400 max-w-2xl mx-auto text-xl mt-6">{t.services.subtitle}</motion.p>
+              </div>
+
+              <motion.div 
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={{ 
+                  visible: { transition: { staggerChildren: 0.15 } }, 
+                  hidden: {} 
+                }}
+                className="grid sm:grid-cols-2 lg:grid-cols-4 gap-6"
+              >
+                {t.services.items.map((service: any, idx: number) => {
+                  const icons = [<SprayCan size={32} />, <Home size={32} />, <Paintbrush size={32} />, <Hammer size={32} />];
+                  return (
+                    <motion.div 
+                      key={idx}
+                      variants={{
+                        hidden: { opacity: 0, y: isMobile ? 50 : 20 },
+                        visible: { opacity: 1, y: 0, transition: { duration: 1, ease: [0.16, 1, 0.3, 1] } }
+                      }}
+                      className="bg-slate-800/80 backdrop-blur-sm border border-white/5 p-8 rounded-[2rem] hover:bg-slate-800 transition-all group hover:-translate-y-2 hover:shadow-[0_20px_40px_rgba(37,99,235,0.15)] overflow-hidden relative will-change-transform"
+                    >
+                      <div className="absolute top-0 right-0 w-24 h-24 bg-blue-500/10 rounded-full blur-2xl -translate-y-12 translate-x-12 group-hover:bg-blue-500/20 transition-all"></div>
+                      <div className="w-16 h-16 bg-blue-500/10 text-blue-400 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-hover:bg-blue-600 group-hover:text-white transition-all duration-500 shadow-inner">
+                        {icons[idx]}
+                      </div>
+                      <h3 className="text-xl font-black mb-4 tracking-tight group-hover:text-blue-400 transition-colors">{service.title}</h3>
+                      <p className="text-slate-400 leading-relaxed text-sm font-medium">{service.desc}</p>
+                    </motion.div>
+                  );
+                })}
+              </motion.div>
+
+              <motion.div initial={{ opacity: 0, y: 30 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} className="mt-20 flex flex-col md:flex-row items-center justify-between bg-gradient-to-br from-blue-700 via-blue-600 to-blue-500 rounded-[2.5rem] p-10 md:p-14 shadow-[0_30px_60px_-10px_rgba(37,99,235,0.3)] relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2 group-hover:scale-110 transition-transform duration-1000"></div>
+                <h3 className="text-2xl md:text-3xl font-black mb-6 md:mb-0 max-w-lg text-center md:text-left text-white tracking-tight relative z-10">{t.services.cta.title}</h3>
+                <a href="#contact" onClick={(e) => handleNavClick(e, "contact")} className="px-10 py-5 bg-white text-blue-700 font-black rounded-2xl hover:bg-slate-50 transition-all w-full md:w-auto text-center shadow-xl uppercase tracking-[0.2em] relative z-10 hover:-translate-y-1 active:translate-y-0 text-sm">
+                  {t.services.cta.button}
+                </a>
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Service Areas */}
+          <section id="service-areas" className="py-20 bg-white px-6">
+            <div className="max-w-7xl mx-auto text-center">
+              <ShinyText
+                text={lang === 'fr' ? 'Zones Desservies' : 'Service Areas'}
+                className="text-xs font-black uppercase tracking-[0.2em] mb-4 block"
+                color="#2563eb"
+                shineColor="#93c5fd"
+              />
               <h2>
                 <ShinyText
-                  text={t.transformation.title}
-                  className="text-4xl md:text-5xl font-extrabold mb-4 block"
+                  text={t.serviceAreas.title}
+                  className="text-3xl md:text-4xl font-extrabold mb-4 block"
                   color="#0f172a"
                   shineColor="#2563eb"
                 />
               </h2>
-              <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-slate-600 text-lg">
-                {t.transformation.subtitle}
-              </motion.p>
-            </div>
-          </div>
-
-          <div className="relative group/carousel">
-            {/* Left Button */}
-            <button 
-              onClick={prevSlide}
-              className="absolute left-2 md:-left-6 lg:-left-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-slate-200/80 bg-white/90 backdrop-blur-sm hover:bg-white text-slate-800 hover:text-blue-600 flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer z-30 opacity-80 md:opacity-60 md:hover:opacity-100"
-              aria-label="Previous Project"
-            >
-              <ChevronLeft size={24} />
-            </button>
-
-            {/* Carousel Slider */}
-            <div className="overflow-hidden w-full -mx-4 px-4">
-              <div 
-                className="flex transition-transform duration-500 ease-out"
-                style={{ 
-                  transform: `translateX(-${carouselIndex * (100 / visibleItems)}%)`,
-                }}
+              <motion.p
+                initial={{ opacity: 0, y: 10 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-slate-600 max-w-2xl mx-auto mb-12 text-lg"
               >
-                {PORTFOLIO_PROJECTS.map((project, index) => (
-                  <div 
-                    key={index}
-                    style={{
-                      width: `${100 / visibleItems}%`
+                {t.serviceAreas.subtitle}
+              </motion.p>
+              <motion.div
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.2 }}
+                variants={{ visible: { transition: { staggerChildren: 0.05 } }, hidden: {} }}
+                className="flex flex-wrap justify-center gap-3"
+              >
+                {t.serviceAreas.areas.map((area: string) => (
+                  <motion.div
+                    key={area}
+                    variants={{
+                      hidden: { opacity: 0, scale: 0.9, y: 10 },
+                      visible: { opacity: 1, scale: 1, y: 0, transition: { duration: 0.4 } }
                     }}
-                    className="px-4 shrink-0"
+                    className="flex items-center gap-2 bg-blue-50 border border-blue-100 hover:bg-blue-100 hover:border-blue-200 text-blue-700 font-bold px-5 py-3 rounded-xl text-sm transition-all cursor-default"
                   >
-                    <BeforeAfterSlider
-                      beforeImage={project.before}
-                      afterImage={project.after}
-                      beforeLabel="Before"
-                      afterLabel="After"
-                      title={t.transformation.items[project.idx]?.title || ""}
-                      label={t.transformation.items[project.idx]?.label || ""}
+                    <MapPin size={14} className="text-blue-500 shrink-0" />
+                    <span>{area}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </div>
+          </section>
+
+          {/* Homepage Section (TransformationSection) */}
+          <section id="portfolio" className="py-32 bg-slate-50 px-6">
+            <div className="max-w-7xl mx-auto text-center">
+              <div className="text-center mb-16">
+                <ShinyText 
+                  text={t.nav.portfolio} 
+                  className="text-xs font-black uppercase tracking-[0.2em] mb-4 block" 
+                  color="#2563eb" 
+                  shineColor="#93c5fd" 
+                />
+                <h2>
+                  <ShinyText
+                    text={t.transformation.title}
+                    className="text-4xl md:text-5xl font-extrabold mb-4 block"
+                    color="#0f172a"
+                    shineColor="#2563eb"
+                  />
+                </h2>
+                <motion.p initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-slate-600 text-lg max-w-2xl mx-auto">
+                  {t.transformation.subtitle}
+                </motion.p>
+              </div>
+
+              {/* 3 Featured Jobs in a 3-column Grid */}
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+                {ALL_PROJECTS.slice(0, 3).map((project, idx) => (
+                  <motion.div
+                    key={project.id}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true }}
+                    custom={idx}
+                    variants={cardVariants}
+                  >
+                    <BeforeAfterCard
+                      id={project.id}
+                      beforeSrc={project.beforeSrc}
+                      afterSrc={project.afterSrc}
+                      category={project.category}
+                      label={project.label}
+                      lang={lang}
+                      onClick={() => setLightboxProject(project)}
                     />
-                  </div>
+                  </motion.div>
                 ))}
               </div>
+
+              {/* View All Projects Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.4 }}
+              >
+                <button
+                  onClick={() => navigate("/portfolio")}
+                  className="inline-flex items-center gap-2 bg-blue-600 text-white font-bold px-8 py-4 rounded-xl hover:bg-blue-700 transition-all shadow-lg shadow-blue-600/20 active:scale-95 duration-200 mt-12 cursor-pointer"
+                >
+                  {t.portfolio.viewAll} <ArrowRight size={18} />
+                </button>
+              </motion.div>
             </div>
+          </section>
 
-            {/* Right Button */}
-            <button 
-              onClick={nextSlide}
-              className="absolute right-2 md:-right-6 lg:-right-8 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full border border-slate-200/80 bg-white/90 backdrop-blur-sm hover:bg-white text-slate-800 hover:text-blue-600 flex items-center justify-center transition-all shadow-md active:scale-95 cursor-pointer z-30 opacity-80 md:opacity-60 md:hover:opacity-100"
-              aria-label="Next Project"
-            >
-              <ChevronRight size={24} />
-            </button>
-          </div>
-        </div>
-      </section>
+          {/* Testimonials */}
+          <section id="reviews" className="py-24 bg-slate-50 px-6">
+            <div className="max-w-7xl mx-auto">
+              <div className="text-center mb-20">
+                <div className="flex flex-col items-center justify-center">
+                  <ShinyText 
+                    text={lang === 'fr' ? 'Témoignage' : 'Testimonial'} 
+                    className="text-xs font-black uppercase tracking-[0.2em] block" 
+                    color="#2563eb" 
+                    shineColor="#93c5fd" 
+                  />
+                  <br />
+                  <br />
+                  <h2>
+                    <ShinyText
+                      text={t.testimonials.title}
+                      className="text-4xl md:text-6xl font-black tracking-tighter block"
+                      color="#0f172a"
+                      shineColor="#2563eb"
+                    />
+                  </h2>
+                </div>
 
-      {/* Testimonials */}
-      <section id="reviews" className="py-24 bg-slate-50 px-6">
-        <div className="max-w-7xl mx-auto">
-          <div className="text-center mb-20">
-            <div className="flex flex-col items-center justify-center">
-              <ShinyText 
-                text={lang === 'fr' ? 'Témoignage' : 'Testimonial'} 
-                className="text-xs font-black uppercase tracking-[0.2em] block" 
-                color="#2563eb" 
-                shineColor="#93c5fd" 
-              />
-              <br />
-              <br />
-              <h2>
-                <ShinyText
-                  text={t.testimonials.title}
-                  className="text-4xl md:text-6xl font-black tracking-tighter block"
-                  color="#0f172a"
-                  shineColor="#2563eb"
-                />
-              </h2>
-            </div>
-
-            <motion.p 
-              initial={{ opacity: 0, y: 10 }} 
-              whileInView={{ opacity: 1, y: 0 }} 
-              viewport={{ once: true }} 
-              transition={{ delay: 0.3 }} 
-              className="text-slate-500 max-w-2xl mx-auto text-xl font-medium mt-8"
-            >
-              {t.testimonials.subtitle}
-            </motion.p>
-          </div>
-
-          <div 
-             className="relative h-[600px] md:h-[800px] overflow-hidden" 
-             style={{ 
-               WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)', 
-               maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)' 
-             }}
-          >
-             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-full">
-               {[
-                 { speed: 'animate-marquee-vertical', offset: 0 },
-                 { speed: 'animate-marquee-vertical-slow', offset: 1 },
-                 { speed: 'animate-marquee-vertical-fast', offset: 2 }
-               ].map((col, cIdx) => {
-                 // Reorder reviews slightly for each column to break uniformity
-                 const colReviews = [
-                   ...t.testimonials.items.slice(col.offset), 
-                   ...t.testimonials.items.slice(0, col.offset)
-                 ];
-                 // Duplicate reviews to create a seamless loop
-                 const repeatedReviews = [...colReviews, ...colReviews];
-                 
-                 return (
-                   <div key={cIdx} className={`h-max ${cIdx === 1 ? 'hidden md:block' : ''} ${cIdx === 2 ? 'hidden lg:block' : ''}`}>
-                     <div
-                       className={`flex flex-col gap-6 marquee-track will-change-transform ${col.speed}`}
-                     >
-                       {repeatedReviews.map((review: any, idx: number) => (
-                           <div 
-                             key={idx}
-                             className="bg-white/80 backdrop-blur-sm p-8 md:p-10 rounded-[2.5rem] relative border border-slate-200/50 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.03)] hover:shadow-xl transition-all duration-500 hover:-translate-y-1 group"
-                           >
-                             <div className="absolute top-8 right-8 opacity-[0.05] group-hover:scale-110 transition-transform duration-500">
-                               <Quote size={60} className="text-blue-600" />
-                             </div>
-                             <div className="flex gap-1 mb-8 text-yellow-400">
-                               {[1,2,3,4,5].map(star => <Star key={star} size={18} fill="currentColor" />)}
-                             </div>
-                             <p className="text-slate-700 mb-8 font-semibold text-lg relative z-10 leading-relaxed min-h-[100px] tracking-tight italic">"{review.text}"</p>
-                             <div className="flex items-center gap-4 pt-8 border-t border-slate-100/50">
-                               <div className="w-14 h-14 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl flex items-center justify-center text-blue-700 font-black text-xl shadow-inner group-hover:scale-105 transition-transform duration-500 capitalize">
-                                 {review.name.charAt(0)}
-                               </div>
-                               <div>
-                                 <p className="font-black text-slate-900 tracking-tight">{review.name}</p>
-                                 <p className="text-[10px] text-blue-600 font-black uppercase tracking-[0.2em] opacity-70">{review.role}</p>
-                               </div>
-                             </div>
-                           </div>
-                       ))}
-                     </div>
-                   </div>
-                 )
-               })}
-             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section id="contact" className="bg-slate-50 border-y border-slate-200 relative overflow-hidden group/main py-24 lg:py-32">
-        {/* Background Images with Fade */}
-        <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-10">
-          <div className="grid grid-cols-4 md:grid-cols-6 grid-rows-3 md:grid-rows-4 h-full transform scale-110">
-            {Array.from({ length: 24 }).map((_, i) => {
-              const images = ["/media/work 5.png", "/media/work2.png", "/media/work3.png"];
-              const img = images[i % 3];
-              return (
-              <div key={i} className="relative group/item">
-                <img loading="lazy" decoding="async" src={img} alt="" className="w-full h-full object-cover transition-opacity duration-500 opacity-20 group-hover/main:opacity-10 will-change-[opacity]" />
-                <img loading="lazy" decoding="async" src={img} alt="" className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 will-change-[opacity]" />
+                <motion.p 
+                  initial={{ opacity: 0, y: 10 }} 
+                  whileInView={{ opacity: 1, y: 0 }} 
+                  viewport={{ once: true }} 
+                  transition={{ delay: 0.3 }} 
+                  className="text-slate-500 max-w-2xl mx-auto text-xl font-medium mt-8"
+                >
+                  {t.testimonials.subtitle}
+                </motion.p>
               </div>
-            )})}
-          </div>
-        </div>
 
-        <div className="max-w-3xl mx-auto relative z-10 px-6">
-          <div className="text-center mb-10">
-            <h2>
-              <ShinyText
-                text={t.contact.title}
-                className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight block"
-                color="#0f172a"
-                shineColor="#2563eb"
-              />
-            </h2>
-            <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-slate-600 text-lg">{t.contact.subtitle}</motion.p>
-          </div>
-          
-          <div className="bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-16 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] border border-white/50 relative overflow-hidden group/form">
-            <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl opacity-50 group-hover/form:scale-110 transition-transform duration-1000"></div>
-            <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-slate-500/10 rounded-full blur-3xl opacity-50 group-hover/form:scale-110 transition-transform duration-1000"></div>
-            <ContactForm t={t} />
-          </div>
-        </div>
-      </section>
+              <div 
+                 className="relative h-[600px] md:h-[800px] overflow-hidden" 
+                 style={{ 
+                   WebkitMaskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)', 
+                   maskImage: 'linear-gradient(to bottom, transparent, black 10%, black 90%, transparent)' 
+                 }}
+              >
+                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 h-full">
+                   {[
+                     { speed: 'animate-marquee-vertical', offset: 0 },
+                     { speed: 'animate-marquee-vertical-slow', offset: 1 },
+                     { speed: 'animate-marquee-vertical-fast', offset: 2 }
+                   ].map((col, cIdx) => {
+                     const colReviews = [
+                       ...t.testimonials.items.slice(col.offset), 
+                       ...t.testimonials.items.slice(0, col.offset)
+                     ];
+                     const repeatedReviews = [...colReviews, ...colReviews];
+                     
+                     return (
+                       <div key={cIdx} className={`h-max ${cIdx === 1 ? 'hidden md:block' : ''} ${cIdx === 2 ? 'hidden lg:block' : ''}`}>
+                         <div
+                           className={`flex flex-col gap-6 marquee-track will-change-transform ${col.speed}`}
+                         >
+                           {repeatedReviews.map((review: any, idx: number) => (
+                               <div 
+                                 key={idx}
+                                 className="bg-white/80 backdrop-blur-sm p-8 md:p-10 rounded-[2.5rem] relative border border-slate-200/50 shadow-[0_15px_30px_-5px_rgba(0,0,0,0.03)] hover:shadow-xl transition-all duration-500 hover:-translate-y-1 group"
+                               >
+                                 <div className="absolute top-8 right-8 opacity-[0.05] group-hover:scale-110 transition-transform duration-500">
+                                   <Quote size={60} className="text-blue-600" />
+                                 </div>
+                                 <div className="flex gap-1 mb-8 text-yellow-400">
+                                   {[1,2,3,4,5].map(star => <Star key={star} size={18} fill="currentColor" />)}
+                                 </div>
+                                 <p className="text-slate-700 mb-8 font-semibold text-lg relative z-10 leading-relaxed min-h-[100px] tracking-tight italic">"{review.text}"</p>
+                                 <div className="flex items-center gap-4 pt-8 border-t border-slate-100/50">
+                                   <div className="w-14 h-14 bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl flex items-center justify-center text-blue-700 font-black text-xl shadow-inner group-hover:scale-105 transition-transform duration-500 capitalize">
+                                     {review.name.charAt(0)}
+                                   </div>
+                                   <div>
+                                     <p className="font-black text-slate-900 tracking-tight">{review.name}</p>
+                                     <p className="text-[10px] text-blue-600 font-black uppercase tracking-[0.2em] opacity-70">{review.role}</p>
+                                   </div>
+                                 </div>
+                               </div>
+                           ))}
+                         </div>
+                       </div>
+                     )
+                   })}
+                 </div>
+              </div>
+            </div>
+          </section>
+
+          {/* Contact Section */}
+          <section id="contact" className="bg-slate-50 border-y border-slate-200 relative overflow-hidden group/main py-24 lg:py-32">
+            {/* Background Images with Fade */}
+            <div className="absolute inset-0 z-0 pointer-events-none overflow-hidden opacity-10">
+              <div className="grid grid-cols-4 md:grid-cols-6 grid-rows-3 md:grid-rows-4 h-full transform scale-110">
+                {Array.from({ length: 24 }).map((_, i) => {
+                  const images = ["/media/work 5.png", "/media/work2.png", "/media/work3.png"];
+                  const img = images[i % 3];
+                  return (
+                    <div key={i} className="relative group/item">
+                      <img loading="lazy" decoding="async" src={img} alt="" className="w-full h-full object-cover transition-opacity duration-500 opacity-20 group-hover/main:opacity-10 will-change-[opacity]" />
+                      <img loading="lazy" decoding="async" src={img} alt="" className="absolute inset-0 w-full h-full object-cover opacity-0 group-hover/item:opacity-100 transition-opacity duration-300 will-change-[opacity]" />
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
+            <div className="max-w-3xl mx-auto relative z-10 px-6">
+              <div className="text-center mb-10">
+                <h2>
+                  <ShinyText
+                    text={t.contact.title}
+                    className="text-4xl md:text-5xl font-extrabold mb-4 tracking-tight block"
+                    color="#0f172a"
+                    shineColor="#2563eb"
+                  />
+                </h2>
+                <motion.p initial={{ opacity: 0, y: 10 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true }} transition={{ delay: 0.3 }} className="text-slate-600 text-lg">{t.contact.subtitle}</motion.p>
+              </div>
+              
+              <div className="bg-white/80 backdrop-blur-xl rounded-[2.5rem] p-8 md:p-16 shadow-[0_40px_100px_-20px_rgba(0,0,0,0.1)] border border-white/50 relative overflow-hidden group/form">
+                <div className="absolute -top-24 -right-24 w-64 h-64 bg-blue-500/10 rounded-full blur-3xl opacity-50 group-hover/form:scale-110 transition-transform duration-1000"></div>
+                <div className="absolute -bottom-24 -left-24 w-64 h-64 bg-slate-500/10 rounded-full blur-3xl opacity-50 group-hover/form:scale-110 transition-transform duration-1000"></div>
+                <ContactForm t={t} />
+              </div>
+            </div>
+          </section>
+        </>
+      )}
 
       {/* Footer */}
       <footer className="bg-slate-950 text-slate-400 py-16 px-6 border-t border-slate-900 relative z-20">
         <div className="max-w-7xl mx-auto">
           
           {/* Logo Row */}
-          <div className="mb-16 opacity-90 hover:opacity-100 transition-all inline-block">
+          <a
+            href="#"
+            onClick={(e) => {
+              e.preventDefault();
+              navigate("/");
+            }}
+            className="mb-16 opacity-90 hover:opacity-100 transition-all inline-block hover:opacity-80 active:scale-95 cursor-pointer"
+          >
             <Logo isDark={true} lang={lang} size="large" />
-          </div>
+          </a>
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
             
@@ -837,11 +953,51 @@ export default function App() {
         )}
       </AnimatePresence>
 
+      {/* Before/After Lightbox Modal */}
+      <AnimatePresence>
+        {lightboxProject && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={() => setLightboxProject(null)}
+            className="fixed inset-0 z-[100] bg-slate-950/95 backdrop-blur-md flex items-center justify-center p-4 md:p-8 cursor-pointer"
+          >
+            <button
+              onClick={() => setLightboxProject(null)}
+              className="absolute top-6 right-6 text-white hover:text-red-400 p-2.5 transition-colors cursor-pointer bg-white/10 hover:bg-white/20 rounded-full z-[110]"
+            >
+              <X size={28} />
+            </button>
+            
+            <motion.div
+              initial={{ scale: 0.95, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.95, opacity: 0 }}
+              transition={{ type: "spring", damping: 25, stiffness: 200 }}
+              className="w-full max-w-4xl relative"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <BeforeAfterCard
+                id={lightboxProject.id}
+                beforeSrc={lightboxProject.beforeSrc}
+                afterSrc={lightboxProject.afterSrc}
+                category={lightboxProject.category}
+                label={lightboxProject.label}
+                lang={lang}
+                className="w-full shadow-2xl"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+
       {/* Floating CTA */}
       <AnimatePresence>
         {isScrolled && (
           <motion.a 
             href="#contact"
+            onClick={(e) => handleNavClick(e, "contact")}
             initial={{ opacity: 0, scale: 0.8, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 20 }}
