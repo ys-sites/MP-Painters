@@ -147,8 +147,7 @@ export const translations = {
         All: "All",
         Exterior: "Exterior",
         Interior: "Interior",
-        Cabinet: "Cabinet",
-        Commercial: "Commercial"
+        Cabinet: "Cabinet"
       },
       projects: {
         1: "Bathroom Painting",
@@ -309,8 +308,7 @@ export const translations = {
         All: "Tous",
         Exterior: "Extérieur",
         Interior: "Intérieur",
-        Cabinet: "Armoires",
-        Commercial: "Commercial"
+        Cabinet: "Armoires"
       },
       projects: {
         1: "Peinture de salle de bain",

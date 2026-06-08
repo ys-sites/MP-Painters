@@ -9,7 +9,7 @@ import { translations } from "./translations";
 import ShinyText from "./components/ShinyText";
 import BeforeAfterCard from "./components/BeforeAfterCard";
 
-const CATEGORIES = ["All", "Exterior", "Interior", "Cabinet", "Commercial"] as const;
+const CATEGORIES = ["All", "Exterior", "Interior", "Cabinet"] as const;
 
 const ALL_PROJECTS = [
   { id: 1, src: "/media/jobs/1.jpg", category: "Interior", label: "Bathroom Painting" },
