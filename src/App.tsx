@@ -12,13 +12,13 @@ import BeforeAfterCard from "./components/BeforeAfterCard";
 const CATEGORIES = ["All", "Exterior", "Interior", "Cabinet", "Commercial"] as const;
 
 const ALL_PROJECTS = [
-  { id: 1, beforeSrc: "/media/job1-before.jpg", afterSrc: "/media/job1-after.jpg", category: "Exterior", label: "Victorian Exterior" },
-  { id: 2, beforeSrc: "/media/job2-before.jpg", afterSrc: "/media/job2-after.jpg", category: "Interior", label: "Living Room" },
-  { id: 3, beforeSrc: "/media/job3-before.jpg", afterSrc: "/media/job3-after.jpg", category: "Cabinet",  label: "Kitchen Cabinets" },
-  { id: 4, beforeSrc: "/media/job4-before.jpg", afterSrc: "/media/job4-after.jpg", category: "Exterior", label: "Siding Refresh" },
-  { id: 5, beforeSrc: "/media/job5-before.jpg", afterSrc: "/media/job5-after.jpg", category: "Commercial", label: "Office Repaint" },
-  { id: 6, beforeSrc: "/media/job6-before.jpg", afterSrc: "/media/job6-after.jpg", category: "Interior", label: "Dining Area" },
-  { id: 7, beforeSrc: "/media/job7-before.jpg", afterSrc: "/media/job7-after.jpg", category: "Cabinet",  label: "Cabinet Respray" },
+  { id: 1, src: "/media/jobs/1.jpg", category: "Interior", label: "Bathroom Painting" },
+  { id: 2, src: "/media/jobs/2.jpg", category: "Interior", label: "Drywall Repair & Painting" },
+  { id: 3, src: "/media/jobs/3.jpg", category: "Exterior", label: "Balustrade & Entrance Painting" },
+  { id: 4, src: "/media/jobs/4.jpg", category: "Exterior", label: "Concrete Porch Stairs" },
+  { id: 5, src: "/media/jobs/5.jpg", category: "Cabinet",  label: "Cabinet Doors Spraying" },
+  { id: 6, src: "/media/jobs/6.jpg", category: "Cabinet",  label: "Cabinet Refinishing" },
+  { id: 7, src: "/media/jobs/7.jpg", category: "Cabinet",  label: "Kitchen Cabinets Respray" },
 ];
 
 const cardVariants = {
@@ -337,8 +337,7 @@ export default function App() {
                       >
                         <BeforeAfterCard
                           id={project.id}
-                          beforeSrc={project.beforeSrc}
-                          afterSrc={project.afterSrc}
+                          src={project.src}
                           category={project.category}
                           label={project.label}
                           lang={lang}
@@ -704,8 +703,7 @@ export default function App() {
                   >
                     <BeforeAfterCard
                       id={project.id}
-                      beforeSrc={project.beforeSrc}
-                      afterSrc={project.afterSrc}
+                      src={project.src}
                       category={project.category}
                       label={project.label}
                       lang={lang}
@@ -980,8 +978,7 @@ export default function App() {
             >
               <BeforeAfterCard
                 id={lightboxProject.id}
-                beforeSrc={lightboxProject.beforeSrc}
-                afterSrc={lightboxProject.afterSrc}
+                src={lightboxProject.src}
                 category={lightboxProject.category}
                 label={lightboxProject.label}
                 lang={lang}

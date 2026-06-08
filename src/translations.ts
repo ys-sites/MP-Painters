@@ -151,13 +151,13 @@ export const translations = {
         Commercial: "Commercial"
       },
       projects: {
-        1: "Victorian Exterior",
-        2: "Living Room",
-        3: "Kitchen Cabinets",
-        4: "Siding Refresh",
-        5: "Office Repaint",
-        6: "Dining Area",
-        7: "Cabinet Respray"
+        1: "Bathroom Painting",
+        2: "Wall Repair & Painting",
+        3: "Balustrade & Entrance Painting",
+        4: "Concrete Porch Stairs",
+        5: "Cabinet Doors Spraying",
+        6: "Cabinet Refinishing",
+        7: "Kitchen Cabinets Respray"
       }
     }
   },
@@ -313,13 +313,13 @@ export const translations = {
         Commercial: "Commercial"
       },
       projects: {
-        1: "Extérieur Victorien",
-        2: "Salon de séjour",
-        3: "Armoires de cuisine",
-        4: "Finition de revêtement",
-        5: "Peinture commerciale",
-        6: "Salle à manger",
-        7: "Peinture d'armoires"
+        1: "Peinture de salle de bain",
+        2: "Plâtre & Peinture",
+        3: "Finition d'entrée extérieure",
+        4: "Peinture d'escaliers extérieurs",
+        5: "Pulvérisation d'armoires",
+        6: "Restauration d'armoires",
+        7: "Pulvérisation de cuisine"
       }
     }
   }
