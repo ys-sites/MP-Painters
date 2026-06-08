@@ -31,7 +31,7 @@ const BeforeAfterCard: React.FC<BeforeAfterCardProps> = ({
   return (
     <div
       onClick={onClick}
-      className={`relative w-full aspect-[4/3] overflow-hidden rounded-3xl select-none group cursor-pointer bg-slate-100 border border-slate-200 shadow-md hover:shadow-xl transition-all duration-300 ${className}`}
+      className={`relative w-full aspect-[16/9] overflow-hidden rounded-3xl select-none group cursor-pointer bg-slate-100 border border-slate-200 shadow-md hover:shadow-xl transition-all duration-300 ${className}`}
     >
       {/* Project Image */}
       <img
