@@ -36,3 +36,65 @@
     transform: translate3d(2px, 0, 0) scale(1.02);
   }
 }
+
+/* YS MARKETING SOLUTIONS SIGNATURE */
+.ys-signature-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: rgba(255, 255, 255, 0.01);
+  border: 1px solid rgba(255, 255, 255, 0.05);
+  transition: background 0.3s, border-color 0.3s, transform 0.3s;
+  text-decoration: none;
+  cursor: pointer;
+  width: fit-content;
+}
+
+.ys-signature-btn:hover {
+  background: rgba(234, 88, 12, 0.03);
+  border-color: rgba(234, 88, 12, 0.2);
+  transform: translateY(-1px);
+}
+
+.ys-sig-logo {
+  height: 16px;
+  width: auto;
+  object-fit: contain;
+  filter: brightness(0.9);
+  transition: transform 0.3s;
+  will-change: transform;
+}
+
+.ys-signature-btn:hover .ys-sig-logo {
+  transform: scale(1.05);
+  filter: brightness(1);
+}
+
+.ys-sig-text {
+  font-size: 10px;
+  color: #a1a1aa; /* text-zinc-400 */
+  font-weight: 300;
+  transition: color 0.3s;
+  line-height: 1;
+}
+
+.ys-signature-btn:hover .ys-sig-text {
+  color: #d4d4d8; /* text-zinc-300 */
+}
+
+.ys-sig-highlight {
+  font-weight: 600;
+  color: #a1a1aa; /* text-zinc-400 */
+  transition: color 0.3s;
+}
+
+.ys-signature-btn:hover .ys-sig-highlight {
+  color: #ea580c;
+}
+
+.ys-sig-divider {
+  color: rgba(255, 255, 255, 0.1);
+  margin: 0 4px;
+}
