@@ -19,6 +19,8 @@ const ALL_PROJECTS = [
   { id: 5, src: "/media/jobs/5.jpg", category: "Cabinet",  label: "Cabinet Doors Spraying" },
   { id: 6, src: "/media/jobs/6.jpg", category: "Cabinet",  label: "Cabinet Refinishing" },
   { id: 7, src: "/media/jobs/7.jpg", category: "Cabinet",  label: "Kitchen Cabinets Respray" },
+  { id: 8, src: "/media/jobs/8.jpg", category: "Exterior", label: "Front Door Refinishing" },
+  { id: 9, src: "/media/jobs/9.jpg", category: "Exterior", label: "Exterior Siding Painting" },
 ];
 
 const cardVariants = {
@@ -917,7 +919,7 @@ export default function App() {
 
         </div>
         
-        <div className="max-w-7xl mx-auto pt-8 border-t border-slate-900 text-sm text-center md:text-left flex flex-col md:flex-row justify-between items-center gap-4">
+        <div className="max-w-7xl mx-auto pt-8 border-t border-slate-900 text-sm flex flex-col items-center justify-center gap-4 text-center">
           <p>{t.footer.rights}</p>
           <div className="flex justify-center items-center">
             <a 

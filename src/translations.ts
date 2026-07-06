@@ -158,7 +158,9 @@ export const translations = {
         4: "Concrete Porch Stairs",
         5: "Cabinet Doors Spraying",
         6: "Cabinet Refinishing",
-        7: "Kitchen Cabinets Respray"
+        7: "Kitchen Cabinets Respray",
+        8: "Front Door Refinishing",
+        9: "Exterior Siding Painting"
       }
     }
   },
@@ -321,7 +323,9 @@ export const translations = {
         4: "Peinture d'escaliers extérieurs",
         5: "Pulvérisation d'armoires",
         6: "Restauration d'armoires",
-        7: "Pulvérisation de cuisine"
+        7: "Pulvérisation de cuisine",
+        8: "Restauration de porte d'entrée",
+        9: "Peinture de revêtement extérieur"
       }
     }
   }
