@@ -999,6 +999,7 @@ export default function App() {
                 label={lightboxProject.label}
                 lang={lang}
                 className="w-full shadow-2xl"
+                isLightbox={true}
               />
             </motion.div>
           </motion.div>
