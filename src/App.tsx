@@ -919,9 +919,11 @@ export default function App() {
 
         </div>
         
-        <div className="max-w-7xl mx-auto pt-8 border-t border-slate-900 text-sm flex flex-col items-center justify-center gap-4 text-center">
-          <p>{t.footer.rights}</p>
-          <div className="flex justify-center items-center">
+        <div className="max-w-7xl mx-auto pt-8 border-t border-slate-900 text-sm flex flex-col md:flex-row items-center justify-between gap-4 relative">
+          <p className="text-slate-500 text-xs md:text-sm text-center md:text-left order-2 md:order-1">
+            {t.footer.rights}
+          </p>
+          <div className="flex justify-center items-center order-1 md:order-2 md:absolute md:left-1/2 md:-translate-x-1/2">
             <a 
               href="https://www.ysdev.ca" 
               target="_blank" 
