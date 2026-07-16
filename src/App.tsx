@@ -21,9 +21,8 @@ const ALL_PROJECTS = [
   { id: 7, src: "/media/jobs/7.jpg", category: "Cabinet",  label: "Kitchen Cabinets Respray" },
   { id: 8, src: "/media/jobs/8.jpg", category: "Exterior", label: "Front Door Refinishing" },
   { id: 9, src: "/media/jobs/9.jpg", category: "Exterior", label: "Exterior Siding Painting" },
-  { id: 10, src: "/media/jobs/10.png", category: "Cabinet", label: "Kitchen Prep & Drywall" },
+  { id: 10, src: "/media/jobs/10.png", category: "Cabinet", label: "Kitchen Cabinet Refinishing" },
   { id: 11, src: "/media/jobs/11.png", category: "Cabinet", label: "Cabinet Spray Prep" },
-  { id: 12, src: "/media/jobs/12.png", category: "Cabinet", label: "Two-Tone Cabinet Spraying" },
 ];
 
 const cardVariants = {
