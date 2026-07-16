@@ -160,7 +160,10 @@ export const translations = {
         6: "Cabinet Refinishing",
         7: "Kitchen Cabinets Respray",
         8: "Front Door Refinishing",
-        9: "Exterior Siding Painting"
+        9: "Exterior Siding Painting",
+        10: "Kitchen Cabinet Prep & Modification",
+        11: "Kitchen Cabinet Primer & Prep",
+        12: "Two-Tone Kitchen Cabinet Spraying"
       }
     }
   },
@@ -325,7 +328,10 @@ export const translations = {
         6: "Restauration d'armoires",
         7: "Pulvérisation de cuisine",
         8: "Restauration de porte d'entrée",
-        9: "Peinture de revêtement extérieur"
+        9: "Peinture de revêtement extérieur",
+        10: "Préparation et modification de cuisine",
+        11: "Apprêt et préparation d'armoires",
+        12: "Pulvérisation d'armoires bicolores"
       }
     }
   }
