@@ -25,6 +25,7 @@ const ALL_PROJECTS = [
   { id: 11, src: "/media/jobs/11.jpg", category: "Cabinet", label: "Cabinet Spray Prep" },
   { id: 12, src: "/media/jobs/12.jpg", category: "Interior", label: "Interior Painting & Finishing" },
   { id: 13, src: "/media/jobs/13.jpg", category: "Cabinet", label: "Cabinet Refinishing & Spraying" },
+  { id: 14, src: "/media/jobs/14.jpg", category: "Exterior", label: "Residential Painting & Finishing" },
 ];
 
 const cardVariants = {
